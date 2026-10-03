@@ -1,0 +1,2211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>We Create</title>
+    <meta name="description" content="We Create builds HR and payroll dashboards for hotels, factories and growing businesses: attendance, leave, payroll, advances, incentives, welfare and income tax in one screen. Built your way in Chennai, supported 24/7.">
+    <meta name="theme-color" content="#13080c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+/* We Create — company site (client showcase: STAY BAY Business Hotels)
+   Layout: dark "wine-ink" stage with crimson + gold from the dashboard brand; alternating paper sections for rhythm;
+   oversized grotesque display type, pinned horizontal story, sticky stacked cards. */
+:root {
+    --ink: #13080c;
+    --ink-2: #1d0e14;
+    --ink-3: #2a141c;
+    --line: rgba(246, 237, 228, .11);
+    --paper: #f6ede4;
+    --paper-2: #ecdfd2;
+    --fg: #f6ede4;
+    --muted: #b8a39d;
+    --crimson: #d62839;
+    --wine: #7d0b22;
+    --gold: #e3b94f;
+    --gold-deep: #9a7417;
+    --mint: #3ecf8e;
+    --on-paper: #2a1219;
+    --on-paper-muted: #6f5a55;
+    --grad: linear-gradient(135deg, #7d0b22 0%, #b3122f 45%, #e04a5c 100%);
+    --grad-gold: linear-gradient(135deg, #b8901f 0%, #f0d27a 100%);
+    --display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+    --body: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --gutter: clamp(16px, 4vw, 56px);
+    --max: 1280px;
+    --radius: 22px;
+    color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+::selection { background: var(--crimson); color: #fff; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+h1, h2, h3, h4 { font-family: var(--display); line-height: 1.02; letter-spacing: -.035em; margin: 0; text-wrap: balance; font-weight: 700; }
+p { margin: 0; }
+.wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); display: inline-flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ''; width: 26px; height: 1px; background: currentColor; }
+.lede { font-size: clamp(18px, 1.6vw, 21px); color: var(--muted); max-width: 60ch; }
+.t-xl { font-size: clamp(46px, 8.6vw, 132px); }
+.t-l { font-size: clamp(36px, 5.6vw, 80px); }
+.t-m { font-size: clamp(28px, 3.4vw, 48px); }
+.gold-text { background: var(--grad-gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.crimson-text { color: var(--crimson); }
+.italic { font-style: italic; font-weight: 400; }
+section { position: relative; }
+.pad { padding-block: clamp(80px, 12vw, 170px); }
+
+/* ---------- grain ---------- */
+body::after {
+    content: none; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- preloader & page curtain ---------- */
+.loader { position: fixed; inset: 0; z-index: 200; background: var(--ink); display: grid; place-items: center; }
+.loader-inner { text-align: center; }
+.loader-count { font-family: var(--display); font-size: clamp(80px, 18vw, 220px); font-weight: 800; letter-spacing: -.06em; line-height: 1; font-variant-numeric: tabular-nums; }
+.loader-word { font-family: var(--mono); font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.loader-bar { width: min(320px, 70vw); height: 2px; background: var(--line); margin: 22px auto 0; overflow: hidden; }
+.loader-bar i { display: block; height: 100%; width: 0; background: var(--grad-gold); }
+.curtain { position: fixed; inset: 0; z-index: 190; pointer-events: none; display: grid; grid-template-columns: repeat(5, 1fr); }
+.curtain i { background: var(--grad); transform: scaleY(0); transform-origin: bottom; transition: transform .55s cubic-bezier(.77, 0, .18, 1); }
+.curtain i:nth-child(2) { transition-delay: .04s; } .curtain i:nth-child(3) { transition-delay: .08s; } .curtain i:nth-child(4) { transition-delay: .12s; } .curtain i:nth-child(5) { transition-delay: .16s; }
+.curtain.in i { transform: scaleY(1); }
+.curtain.out i { transform-origin: top; }
+
+/* ---------- progress + nav ---------- */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 120; transform-origin: left; transform: scaleX(0); background: var(--grad-gold); }
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 110; padding-top: env(safe-area-inset-top, 0px); transition: transform .45s cubic-bezier(.2, .8, .2, 1), background .3s; }
+.nav.hide { transform: translateY(-110%); }
+.nav.solid { background: rgba(19, 8, 12, .95); border-bottom: 1px solid var(--line); }
+.nav-in { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 76px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-mark { width: 42px; height: 42px; border-radius: 12px; background: var(--grad-gold); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 16px; color: #4a1500; letter-spacing: .02em; box-shadow: 0 8px 22px rgba(227, 185, 79, .25); }
+.brand b { display: block; font-family: var(--display); font-size: 18px; letter-spacing: -.02em; line-height: 1.1; }
+.brand small { display: block; font-size: 11.5px; color: var(--muted); letter-spacing: .04em; }
+.nav-links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--ink-2); }
+.nav-links a { display: block; text-decoration: none; padding: 9px 16px; border-radius: 999px; font-size: 14.5px; font-weight: 500; color: var(--muted); transition: color .2s, background .2s; }
+.nav-links a:hover { color: var(--fg); }
+.nav-links a.active { background: var(--fg); color: var(--ink); }
+.nav-cta { display: flex; align-items: center; gap: 10px; }
+.burger { display: none; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: transparent; cursor: pointer; position: relative; }
+.burger i { position: absolute; left: 13px; right: 13px; height: 2px; background: var(--fg); transition: transform .3s, top .3s; }
+.burger i:first-child { top: 18px; } .burger i:last-child { top: 26px; }
+.menu-open .burger i:first-child { top: 22px; transform: rotate(45deg); }
+.menu-open .burger i:last-child { top: 22px; transform: rotate(-45deg); }
+.mobile-menu { position: fixed; inset: 0; z-index: 105; background: var(--ink); padding: 110px var(--gutter) 40px; display: flex; flex-direction: column; justify-content: space-between; clip-path: circle(0 at calc(100% - 40px) 38px); transition: clip-path .7s cubic-bezier(.77, 0, .18, 1); }
+.menu-open .mobile-menu { clip-path: circle(150% at calc(100% - 40px) 38px); }
+.mobile-menu a.big { display: block; font-family: var(--display); font-size: clamp(44px, 12vw, 72px); font-weight: 700; text-decoration: none; letter-spacing: -.04em; line-height: 1.08; }
+.mobile-menu a.big span { font-family: var(--mono); font-size: 12px; color: var(--gold); vertical-align: top; margin-right: 10px; letter-spacing: .1em; }
+.mobile-menu .meta { color: var(--muted); font-size: 14px; display: grid; gap: 4px; }
+@media (max-width: 960px) { .nav-links, .nav-cta .btn { display: none; } .burger { display: block; } }
+
+/* ---------- buttons ---------- */
+.btn { position: relative; display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 999px; border: 1px solid transparent; font-weight: 600; font-size: 15.5px; text-decoration: none; cursor: pointer; overflow: hidden; isolation: isolate; transition: transform .25s, box-shadow .25s; white-space: nowrap; }
+.btn::before { content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit; transform: translateY(101%); transition: transform .45s cubic-bezier(.2, .8, .2, 1); }
+.btn:hover::before { transform: translateY(0); }
+.btn-primary { background: var(--crimson); color: #fff; box-shadow: 0 14px 34px -10px rgba(214, 40, 57, .7); }
+.btn-primary::before { background: var(--gold); }
+.btn-primary:hover { color: var(--ink); }
+.btn-ghost { border-color: var(--line); color: var(--fg); background: rgba(246, 237, 228, .03); }
+.btn-ghost::before { background: var(--fg); }
+.btn-ghost:hover { color: var(--ink); }
+.btn-wa { background: #25d366; color: #052e16; }
+.btn-wa::before { background: #fff; }
+.btn .arrow { width: 18px; height: 18px; transition: transform .3s; }
+.btn:hover .arrow { transform: translateX(4px) rotate(-45deg); }
+.btn svg { flex: none; }
+
+/* ---------- reveal helpers (only hidden once JS + GSAP are ready) ---------- */
+.split-line { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
+.split-word { display: inline-block; }
+.js-ready [data-reveal] { opacity: 0; transform: translateY(40px); }
+
+/* ---------- HOME: hero ---------- */
+.hero { padding-top: 150px; padding-bottom: 60px; overflow: hidden; }
+.hero-glow { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hero-glow i { position: absolute; border-radius: 50%; opacity: .5; }
+.hero-glow i:nth-child(1) { width: 52vw; height: 52vw; left: -18vw; top: -20vw; background: radial-gradient(circle, #b3122f, transparent 65%); }
+.hero-glow i:nth-child(2) { width: 40vw; height: 40vw; right: -14vw; top: 10vw; background: radial-gradient(circle, rgba(227, 185, 79, .55), transparent 65%); }
+.hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+.hero-grid > * { min-width: 0; }
+.hero h1 { font-size: clamp(50px, 7.4vw, 112px); font-weight: 800; letter-spacing: -.035em; line-height: .96; }
+.hero h1 .serif { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -.02em; color: var(--gold); }
+.hero .lede { margin-top: 26px; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
+.hero-badges { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 38px; font-size: 13.5px; color: var(--muted); }
+.hero-badges span { display: inline-flex; align-items: center; gap: 8px; }
+.hero-badges i { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 4px rgba(62, 207, 142, .18); animation: pulse 2s infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 9px rgba(62, 207, 142, 0); } }
+@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } .hero { padding-top: 120px; } }
+
+/* mock dashboard */
+.mock-stage { perspective: 1600px; }
+.mock { position: relative; border-radius: 20px; background: #fffaf5; color: #241318; padding: 14px; box-shadow: 0 60px 120px -40px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 255, 255, .06); transform: rotateY(-14deg) rotateX(8deg); transform-style: preserve-3d; font-size: 11px; }
+.mock-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 13px; background: var(--grad); color: #fff; }
+.mock-top .m-logo { width: 26px; height: 26px; border-radius: 8px; background: var(--grad-gold); color: #4a1500; display: grid; place-items: center; font-weight: 800; font-size: 8px; }
+.mock-top b { font-family: var(--display); font-size: 14px; letter-spacing: -.02em; }
+.mock-top .m-fy { margin-left: auto; padding: 4px 9px; border-radius: 99px; background: rgba(255, 255, 255, .2); font-size: 9.5px; font-weight: 600; }
+.mock-tabs { display: flex; gap: 4px; margin: 10px 0; overflow: hidden; }
+.mock-tabs span { padding: 5px 9px; border-radius: 7px; font-size: 9.5px; font-weight: 600; color: #6f5f63; white-space: nowrap; }
+.mock-tabs span.on { background: var(--grad); color: #fff; }
+.mock-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+.mock-kpi { background: #fff; border: 1px solid rgba(36, 19, 24, .07); border-radius: 10px; padding: 9px; transform: translateZ(30px); }
+.mock-kpi b { display: block; font-family: var(--display); font-size: 15px; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.mock-kpi small { color: #6f5f63; font-size: 9px; }
+.mock-kpi em { display: block; font-style: normal; font-size: 8.5px; font-weight: 700; margin-top: 2px; }
+.mock-row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 7px; margin-top: 7px; }
+.mock-card { background: #fff; border: 1px solid rgba(36, 19, 24, .07); border-radius: 10px; padding: 10px; transform: translateZ(18px); }
+.mock-card h5 { margin: 0 0 8px; font-family: var(--body); font-size: 10px; font-weight: 700; }
+.bars { display: flex; align-items: flex-end; gap: 5px; height: 84px; border-bottom: 1px solid rgba(36, 19, 24, .08); }
+.bars i { flex: 1; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, #d62839, #9c1830); height: var(--h); transform-origin: bottom; }
+.bars i.proj { background: rgba(201, 162, 39, .55); }
+.bar-labels { display: flex; gap: 5px; margin-top: 4px; font-size: 7.5px; color: #8a7a7d; }
+.bar-labels span { flex: 1; text-align: center; }
+.mock-alert { display: flex; align-items: center; gap: 7px; padding: 6px 7px; border-radius: 7px; background: #fffaf3; border: 1px solid rgba(201, 162, 39, .3); margin-bottom: 5px; font-size: 9px; }
+.mock-alert b { width: 18px; height: 18px; border-radius: 5px; background: #fff; color: var(--crimson); display: grid; place-items: center; font-size: 9px; flex: none; }
+.mock-float { position: absolute; padding: 10px 14px; border-radius: 14px; background: var(--ink-2); color: var(--fg); border: 1px solid var(--line); box-shadow: 0 24px 50px -16px rgba(0, 0, 0, .7); font-size: 12px; transform: translateZ(80px); display: flex; gap: 10px; align-items: center; white-space: nowrap; }
+.mock-float b { font-family: var(--display); font-size: 16px; }
+.mock-float .dot { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; background: rgba(62, 207, 142, .15); color: var(--mint); font-weight: 700; }
+.mock-float.f1 { left: -34px; bottom: 60px; }
+.mock-float.f2 { right: -20px; top: -24px; }
+.mock-float.f2 .dot { background: rgba(227, 185, 79, .15); color: var(--gold); }
+.client-tag { position: absolute; left: 14px; bottom: -26px; font-family: var(--mono); font-size: 10.5px; color: var(--gold); letter-spacing: .08em; }
+.sample-tag { position: absolute; right: 14px; bottom: -26px; font-family: var(--mono); font-size: 10.5px; color: var(--muted); letter-spacing: .08em; }
+@media (max-width: 560px) { .mock { transform: none; } .mock-kpis { grid-template-columns: repeat(2, 1fr); } .mock-float.f1 { left: 6px; bottom: -30px; } .mock-float.f2 { right: 6px; } }
+
+/* ---------- marquee ---------- */
+.marquee { border-block: 1px solid var(--line); padding-block: 22px; overflow: hidden; background: var(--ink-2); }
+.marquee-track { display: flex; gap: 48px; width: max-content; animation: marquee 38s linear infinite; will-change: transform; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee span { font-family: var(--display); font-size: clamp(24px, 3vw, 40px); font-weight: 600; letter-spacing: -.03em; white-space: nowrap; display: inline-flex; align-items: center; gap: 48px; color: var(--muted); }
+.marquee span::after { content: '✦'; color: var(--gold); font-size: .6em; }
+.marquee span:nth-child(3n+1) { color: var(--fg); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- word scrub statement ---------- */
+.statement p { font-family: var(--display); font-size: clamp(32px, 4.8vw, 72px); font-weight: 600; letter-spacing: -.04em; line-height: 1.08; max-width: 22ch; }
+.statement .w { opacity: .14; transition: opacity .2s; }
+.statement .w.hl { color: var(--gold); }
+.no-js .statement .w, .reduced .statement .w { opacity: 1; }
+
+/* ---------- horizontal story ---------- */
+.hstory { background: var(--paper); color: var(--on-paper); overflow: hidden; }
+.hstory-head { padding-block: clamp(70px, 9vw, 120px) 40px; display: flex; justify-content: space-between; align-items: end; gap: 30px; flex-wrap: wrap; }
+.hstory-head p { color: var(--on-paper-muted); max-width: 42ch; }
+.hstory .eyebrow { color: var(--wine); }
+.hnav { display: flex; align-items: center; gap: 14px; }
+.hbtn { width: 56px; height: 56px; border-radius: 50%; border: 1px solid rgba(42, 18, 25, .2); background: #fff; color: var(--on-paper); cursor: pointer; display: grid; place-items: center; transition: background .25s, color .25s, transform .25s, opacity .25s; }
+.hbtn svg { width: 22px; height: 22px; }
+.hbtn:hover:not(:disabled) { background: var(--crimson); color: #fff; border-color: var(--crimson); transform: scale(1.06); }
+.hbtn:disabled { opacity: .3; cursor: default; }
+.hbar { width: 120px; height: 3px; border-radius: 3px; background: rgba(42, 18, 25, .12); overflow: hidden; }
+.hbar i { display: block; height: 100%; width: 8%; background: var(--grad); border-radius: 3px; transition: width .2s; }
+.hscroll { overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); overscroll-behavior-x: contain; scrollbar-width: none; cursor: grab; padding-bottom: clamp(60px, 8vw, 110px); }
+.hscroll::-webkit-scrollbar { display: none; }
+.hscroll.dragging { scroll-snap-type: none; cursor: grabbing; user-select: none; }
+.hscroll:focus-visible { outline-offset: -4px; }
+.htrack { display: flex; gap: 28px; padding-inline: var(--gutter); width: max-content; }
+.htrack::after { content: ''; flex: none; width: 1px; }
+.hhint { font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--on-paper-muted); }
+.hpanel { width: min(520px, 84vw); flex: none; scroll-snap-align: start; border-radius: 28px; background: #fff; border: 1px solid rgba(42, 18, 25, .08); padding: 34px; display: flex; flex-direction: column; gap: 22px; box-shadow: 0 30px 60px -40px rgba(42, 18, 25, .4); }
+.hpanel .time { font-family: var(--mono); font-size: 13px; color: var(--wine); letter-spacing: .1em; display: flex; justify-content: space-between; }
+.hpanel h3 { font-size: clamp(30px, 3vw, 42px); }
+.hpanel p { color: var(--on-paper-muted); }
+.hpanel .ui { margin-top: auto; border-radius: 18px; background: var(--paper); padding: 16px; font-size: 13px; display: grid; gap: 8px; }
+.ui-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; background: #fff; border-radius: 11px; }
+.ui-row b { font-weight: 600; }
+.chip { font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 99px; white-space: nowrap; }
+.chip.ok { background: rgba(16, 185, 129, .14); color: #047857; }
+.chip.warn { background: rgba(245, 158, 11, .18); color: #92400e; }
+.chip.bad { background: rgba(214, 40, 57, .12); color: #a3122a; }
+.chip.info { background: rgba(125, 11, 34, .1); color: var(--wine); }
+.steps-ui { display: flex; gap: 6px; flex-wrap: wrap; }
+.steps-ui span { padding: 7px 11px; border-radius: 99px; font-size: 11px; font-weight: 700; letter-spacing: .05em; background: #fff; color: var(--on-paper-muted); }
+.steps-ui span.done { background: rgba(16, 185, 129, .14); color: #047857; }
+.steps-ui span.now { background: var(--grad); color: #fff; }
+.hpanel.final { background: var(--grad); color: #fff; justify-content: center; }
+.hpanel.final p { color: rgba(255, 255, 255, .85); }
+.hpanel.final .time { color: var(--gold); }
+@media (max-width: 600px) { .hpanel { padding: 24px; } .hbar { display: none; } }
+
+/* ---------- numbers ---------- */
+.numbers { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+.num-cell { padding: clamp(28px, 4vw, 50px) clamp(10px, 2vw, 28px); border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); }
+.num-cell:nth-child(3n) { border-right: none; }
+.num-cell b { display: block; font-family: var(--display); font-size: clamp(60px, 9vw, 140px); font-weight: 800; letter-spacing: -.06em; line-height: .9; font-variant-numeric: tabular-nums; }
+.num-cell b sup { font-size: .35em; color: var(--gold); vertical-align: top; margin-left: 4px; }
+.num-cell span { display: block; margin-top: 14px; color: var(--muted); max-width: 26ch; }
+@media (max-width: 700px) { .numbers { grid-template-columns: 1fr 1fr; } .num-cell:nth-child(3n) { border-right: 1px solid var(--line); } .num-cell:nth-child(2n) { border-right: none; } }
+
+/* ---------- before / after ---------- */
+.compare { position: relative; border-radius: 28px; overflow: hidden; border: 1px solid var(--line); height: clamp(460px, 52vw, 560px); user-select: none; }
+.cmp-side { position: absolute; inset: 0; padding: clamp(24px, 4vw, 50px); display: flex; flex-direction: column; gap: 18px; }
+.cmp-old { background: #e8dccb; color: #3b2a1e; font-family: 'Caveat', 'Comic Sans MS', cursive; background-image: repeating-linear-gradient(0deg, transparent 0 33px, rgba(60, 90, 160, .22) 33px 34px); }
+.cmp-old h3 { font-family: 'Caveat', cursive; font-size: clamp(34px, 4vw, 52px); letter-spacing: 0; font-weight: 700; }
+.cmp-old ul { list-style: none; padding: 0; margin: 0; font-size: clamp(20px, 2.2vw, 27px); line-height: 1.35; display: grid; gap: 4px; }
+.cmp-old .strike { text-decoration: line-through; text-decoration-color: #c0392b; text-decoration-thickness: 2px; }
+.cmp-new { background: var(--ink-2); clip-path: inset(0 0 0 var(--pos, 50%)); align-items: flex-end; text-align: right; }
+.cmp-new h3 { font-size: clamp(30px, 3.4vw, 46px); }
+.cmp-new ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: clamp(15px, 1.4vw, 17px); }
+.cmp-new li { display: flex; gap: 10px; justify-content: flex-end; align-items: center; }
+.cmp-new li::after { content: '✓'; color: var(--mint); font-weight: 800; }
+.cmp-handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; background: var(--gold); transform: translateX(-1px); pointer-events: none; }
+.cmp-handle::after { content: '⇆'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 54px; height: 54px; border-radius: 50%; background: var(--gold); color: var(--ink); display: grid; place-items: center; font-size: 22px; font-weight: 800; box-shadow: 0 10px 30px rgba(0, 0, 0, .5); }
+.compare input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+.cmp-tag { position: absolute; bottom: 18px; font-family: var(--mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; padding: 6px 12px; border-radius: 99px; }
+.cmp-tag.l { left: 18px; background: rgba(59, 42, 30, .1); color: #3b2a1e; }
+.cmp-tag.r { right: 18px; background: var(--crimson); color: #fff; }
+@media (max-width: 640px) { .cmp-old ul li:nth-child(n+6), .cmp-new ul li:nth-child(n+6) { display: none; } }
+
+/* ---------- benefits ---------- */
+.benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.benefit { background: var(--ink); padding: clamp(26px, 3vw, 40px); position: relative; overflow: hidden; min-height: 280px; display: flex; flex-direction: column; gap: 14px; }
+.benefit::before { content: ''; position: absolute; inset: 0; background: var(--grad); transform: translateY(101%); transition: transform .6s cubic-bezier(.2, .8, .2, 1); z-index: 0; }
+.benefit:hover::before { transform: translateY(0); }
+.benefit > * { position: relative; z-index: 1; }
+.benefit .ico { width: 52px; height: 52px; border-radius: 15px; border: 1px solid var(--line); display: grid; place-items: center; color: var(--gold); transition: background .3s; }
+.benefit:hover .ico { background: rgba(255, 255, 255, .14); border-color: transparent; color: #fff; }
+.benefit h3 { font-size: 27px; margin-top: auto; }
+@media (max-width: 960px) { .benefits { grid-template-columns: repeat(2, 1fr); } .benefits.three { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .benefits { grid-template-columns: 1fr; } }
+.benefit p { color: var(--muted); transition: color .3s; }
+.benefit:hover p { color: rgba(255, 255, 255, .88); }
+.ico svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- section heads ---------- */
+.shead { display: flex; justify-content: space-between; align-items: end; gap: 30px; flex-wrap: wrap; margin-bottom: clamp(40px, 6vw, 80px); }
+.shead > div { max-width: 760px; display: grid; gap: 20px; }
+.shead p { color: var(--muted); max-width: 46ch; }
+
+/* ---------- industry cards ---------- */
+.ind-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.ind-card { position: relative; border-radius: var(--radius); padding: 30px; min-height: 380px; display: flex; flex-direction: column; gap: 14px; overflow: hidden; text-decoration: none; background: var(--ink-2); border: 1px solid var(--line); transform-style: preserve-3d; transition: border-color .3s; }
+.ind-card:hover { border-color: rgba(227, 185, 79, .45); }
+.ind-card .big-ico { width: 64px; height: 64px; color: var(--gold); }
+.ind-card .big-ico svg { width: 64px; height: 64px; stroke: currentColor; fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.ind-card h3 { font-size: 34px; margin-top: auto; }
+.ind-card p { color: var(--muted); font-size: 15.5px; }
+.ind-card .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.ind-card .tags span { font-size: 12px; padding: 5px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); }
+.ind-card .glow { position: absolute; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(214, 40, 57, .35), transparent 65%); left: var(--mx, 50%); top: var(--my, 50%); transform: translate(-50%, -50%); pointer-events: none; opacity: 0; transition: opacity .3s; }
+.ind-card:hover .glow { opacity: 1; }
+.ind-card .flag { position: absolute; top: 24px; right: 24px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; padding: 5px 10px; border-radius: 99px; background: var(--gold); color: var(--ink); }
+
+/* ---------- builder teaser ---------- */
+.builder { background: var(--paper); color: var(--on-paper); border-radius: 36px; margin-inline: var(--gutter); overflow: hidden; }
+.builder-in { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; padding: clamp(36px, 6vw, 80px); }
+.builder-in > * { min-width: 0; }
+.builder .eyebrow { color: var(--wine); }
+.builder p { color: var(--on-paper-muted); margin-top: 20px; max-width: 52ch; }
+.builder h2 { color: var(--on-paper); }
+.builder .btn-ghost { color: var(--on-paper); border-color: rgba(42, 18, 25, .2); }
+.builder .btn-ghost::before { background: var(--on-paper); }
+.builder .btn-ghost:hover { color: var(--paper); }
+@media (max-width: 860px) { .builder-in { grid-template-columns: 1fr; } }
+
+/* ---------- CTA ---------- */
+.cta-band { text-align: center; overflow: hidden; }
+.cta-band h2 { font-size: clamp(54px, 11vw, 180px); font-weight: 800; letter-spacing: -.06em; line-height: .88; }
+.cta-band p { color: var(--muted); margin: 28px auto 0; max-width: 52ch; font-size: 18px; }
+.cta-band .hero-ctas { justify-content: center; }
+.orbit { position: absolute; left: 50%; top: 50%; width: 900px; height: 900px; margin: -450px 0 0 -450px; border-radius: 50%; border: 1px dashed rgba(227, 185, 79, .18); pointer-events: none; animation: spin 60s linear infinite; }
+.orbit::before { content: ''; position: absolute; top: -6px; left: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 24px var(--gold); }
+.orbit.o2 { width: 620px; height: 620px; margin: -310px 0 0 -310px; animation-duration: 40s; animation-direction: reverse; border-color: rgba(214, 40, 57, .22); }
+.orbit.o2::before { background: var(--crimson); box-shadow: 0 0 24px var(--crimson); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- footer ---------- */
+.footer { border-top: 1px solid var(--line); padding-block: 70px 40px; background: var(--ink-2); }
+.foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+.foot-grid > * { min-width: 0; }
+.foot-grid h4 { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 16px; }
+.foot-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.foot-grid a { text-decoration: none; color: var(--muted); transition: color .2s; overflow-wrap: anywhere; }
+.foot-grid a:hover { color: var(--fg); }
+.foot-big { font-family: var(--display); font-size: clamp(30px, 3.4vw, 46px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 18px; }
+.avail { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 99px; border: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
+.avail i { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); animation: pulse 2s infinite; }
+.foot-bottom { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: 13.5px; }
+@media (max-width: 800px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > :first-child { grid-column: 1 / -1; } }
+
+/* ---------- floating WhatsApp ---------- */
+.wa-float { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 100; width: 60px; height: 60px; border-radius: 50%; background: #25d366; color: #fff; display: grid; place-items: center; box-shadow: 0 14px 34px -8px rgba(37, 211, 102, .6); text-decoration: none; transition: transform .3s; }
+.wa-float:hover { transform: scale(1.08) rotate(-8deg); }
+.wa-float svg { width: 30px; height: 30px; }
+.wa-float::after { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid #25d366; animation: ring 2.4s infinite; }
+@keyframes ring { 0% { transform: scale(.85); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
+.wa-tip { position: absolute; right: 72px; top: 50%; transform: translateY(-50%); background: var(--fg); color: var(--ink); padding: 8px 14px; border-radius: 12px; font-size: 13px; font-weight: 600; white-space: nowrap; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.wa-float:hover .wa-tip { opacity: 1; }
+
+/* ---------- inner page hero ---------- */
+.page-hero { padding-top: clamp(140px, 18vw, 220px); padding-bottom: clamp(50px, 7vw, 90px); overflow: hidden; }
+.page-hero h1 { font-size: clamp(52px, 10vw, 156px); font-weight: 800; letter-spacing: -.04em; line-height: .94; margin-top: 22px; }
+.page-hero .lede { margin-top: 28px; }
+.page-hero .hero-glow i:nth-child(1) { opacity: .4; }
+
+/* ---------- FEATURES: stacked cards ---------- */
+.stack { display: grid; gap: 26px; padding-bottom: 10vh; }
+.stack-card { position: sticky; top: calc(96px + var(--i, 0) * 14px); border-radius: 30px; border: 1px solid var(--line); background: var(--ink-2); padding: clamp(26px, 4vw, 52px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(26px, 4vw, 60px); align-items: center; transform-origin: center top; box-shadow: 0 -30px 60px -40px rgba(0, 0, 0, .8); }
+.stack-card > * { min-width: 0; }
+.stack-card:nth-child(3n+2) { background: #22101a; }
+.stack-card:nth-child(3n) { background: #1a0d12; }
+.stack-card .idx { font-family: var(--mono); font-size: 12.5px; color: var(--gold); letter-spacing: .14em; }
+.stack-card h3 { font-size: clamp(34px, 4vw, 58px); margin: 14px 0 18px; }
+.stack-card p { color: var(--muted); }
+.stack-card ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; }
+.stack-card li { display: flex; gap: 12px; align-items: flex-start; font-size: 15.5px; }
+.stack-card li::before { content: ''; flex: none; width: 7px; height: 7px; margin-top: 9px; border-radius: 2px; background: var(--crimson); transform: rotate(45deg); }
+.win { border-radius: 20px; background: var(--paper); color: var(--on-paper); padding: 18px; font-size: 13px; display: grid; gap: 8px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .7); }
+.win-bar { display: flex; gap: 6px; margin-bottom: 4px; }
+.win-bar i { width: 10px; height: 10px; border-radius: 50%; background: #e4cfc0; }
+.win-bar i:first-child { background: var(--crimson); } .win-bar i:nth-child(2) { background: var(--gold); }
+.win-bar span { margin-left: auto; font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted); }
+.cal { display: grid; grid-template-columns: 90px repeat(7, 1fr); gap: 4px; align-items: center; font-size: 11px; }
+.cal b { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal i { font-style: normal; text-align: center; padding: 5px 0; border-radius: 6px; font-weight: 700; color: #fff; font-size: 10px; }
+.s-P { background: #10b981; } .s-A { background: #ef4444; } .s-HD { background: #0ea5e9; } .s-WO { background: #4b7c87; } .s-H { background: #e3bd54; color: #3e2723 !important; } .s-L { background: #8b5cf6; } .s-WH { background: #0f766e; }
+.cal .hd { background: none; color: var(--on-paper-muted); font-weight: 600; }
+.slip { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.slip div { display: grid; gap: 4px; }
+.slip p { display: flex; justify-content: space-between; font-size: 12px; border-bottom: 1px dashed rgba(42, 18, 25, .12); padding-bottom: 3px; }
+.slip h6 { margin: 0 0 4px; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--wine); }
+.net { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 12px; background: var(--grad); color: #fff; }
+.net b { font-family: var(--display); font-size: 22px; }
+@media (max-width: 860px) { .stack-card { grid-template-columns: 1fr; position: relative; top: 0; } }
+
+/* basic/advanced demo */
+.mode-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.mode-demo > * { min-width: 0; }
+.toggle { display: inline-flex; align-items: center; gap: 14px; padding: 10px 16px; border-radius: 99px; border: 1px solid var(--line); background: var(--ink-2); }
+.toggle button { background: none; border: 0; cursor: pointer; font-weight: 700; color: var(--muted); }
+.toggle button.on { color: var(--fg); }
+.track { position: relative; width: 66px; height: 36px; border-radius: 99px; background: var(--grad-gold); border: 0; cursor: pointer; transition: background .3s; }
+.track[aria-checked="true"] { background: var(--grad); }
+.track i { position: absolute; top: 4px; left: 4px; width: 28px; height: 28px; border-radius: 50%; background: #fff; transition: transform .35s cubic-bezier(.3, 1.5, .5, 1); }
+.track[aria-checked="true"] i { transform: translateX(30px); }
+.tabs-demo { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.tabs-demo span { padding: 10px 16px; border-radius: 12px; background: var(--ink-2); border: 1px solid var(--line); font-size: 14px; font-weight: 600; transition: opacity .35s, transform .35s, background .35s; }
+.tabs-demo span.adv { background: rgba(214, 40, 57, .14); border-color: rgba(214, 40, 57, .35); }
+.tabs-demo.basic span.adv { opacity: .15; transform: scale(.92); }
+@media (max-width: 860px) { .mode-demo { grid-template-columns: 1fr; } }
+
+/* security list */
+.sec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.sec-item { padding: 26px; border-radius: 20px; border: 1px solid var(--line); display: grid; gap: 10px; align-content: start; }
+.sec-item h4 { font-size: 22px; }
+.sec-item p { color: var(--muted); font-size: 15px; }
+.sec-item .ico { width: 46px; height: 46px; border-radius: 13px; background: rgba(227, 185, 79, .1); color: var(--gold); display: grid; place-items: center; }
+
+/* ---------- INDUSTRIES ---------- */
+.process { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; counter-reset: step; position: relative; }
+.process::before { content: ''; position: absolute; top: 30px; left: 30px; right: 30px; height: 1px; background: var(--line); }
+.process .fill { position: absolute; top: 30px; left: 30px; height: 1px; width: calc(100% - 60px); background: var(--grad-gold); transform-origin: left; transform: scaleX(0); }
+.p-step { position: relative; padding-right: 20px; }
+.p-step .n { width: 60px; height: 60px; border-radius: 50%; background: var(--ink); border: 1px solid var(--line); display: grid; place-items: center; font-family: var(--mono); color: var(--gold); position: relative; z-index: 1; }
+.p-step h4 { font-size: 24px; margin: 22px 0 10px; }
+.p-step p { color: var(--muted); font-size: 15px; }
+@media (max-width: 900px) { .process { grid-template-columns: 1fr; gap: 30px; } .process::before { top: 30px; bottom: 30px; left: 30px; right: auto; width: 1px; height: auto; } .process .fill { display: none; } .p-step { padding-left: 84px; padding-right: 0; } .p-step .n { position: absolute; left: 0; top: 0; } .p-step h4 { margin-top: 12px; } }
+
+.wishes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.wish { padding: 24px; border-radius: 18px; background: #fff; border: 1px solid rgba(42, 18, 25, .08); color: var(--on-paper); display: grid; gap: 8px; align-content: start; transition: transform .3s, box-shadow .3s; }
+.wish:hover { transform: translateY(-6px) rotate(-.6deg); box-shadow: 0 24px 40px -24px rgba(42, 18, 25, .4); }
+.wish b { font-family: var(--display); font-size: 22px; letter-spacing: -.02em; }
+.wish span { color: var(--on-paper-muted); font-size: 15px; }
+.paper-sec { background: var(--paper); color: var(--on-paper); }
+.paper-sec .eyebrow { color: var(--wine); }
+.paper-sec .shead p { color: var(--on-paper-muted); }
+.support-big { display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 5vw, 70px); align-items: center; }
+.support-big > * { min-width: 0; }
+.clock { width: clamp(180px, 22vw, 280px); aspect-ratio: 1; max-width: 100%; border-radius: 50%; border: 1px solid var(--line); position: relative; display: grid; place-items: center; background: radial-gradient(circle, var(--ink-3), var(--ink)); }
+.clock b { font-family: var(--display); font-size: clamp(54px, 7vw, 92px); font-weight: 800; letter-spacing: -.05em; }
+.clock .hand { position: absolute; left: 50%; top: 50%; width: 2px; height: 42%; background: var(--gold); transform-origin: top; animation: spin 8s linear infinite; }
+.clock .hand::after { content: ''; position: absolute; bottom: -4px; left: -4px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 16px var(--gold); }
+@media (max-width: 700px) { .support-big { grid-template-columns: 1fr; justify-items: start; } }
+
+/* ---------- ABOUT ---------- */
+.about-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(20px, 4vw, 60px); align-items: end; }
+.about-hero > * { min-width: 0; }
+.caricature-wrap { position: relative; display: grid; justify-items: center; }
+.caricature { width: min(460px, 100%); height: auto; overflow: visible; }
+.caricature .head { transform-origin: 50% 88%; transform-box: fill-box; animation: bobble 3.6s ease-in-out infinite; }
+@keyframes bobble { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3.5deg); } }
+.caricature .cloud { animation: drift 18s linear infinite; }
+.caricature .cloud.c2 { animation-duration: 26s; animation-delay: -8s; }
+@keyframes drift { from { transform: translateX(-60px); } to { transform: translateX(60px); } }
+.caricature .blink { animation: blink 5s infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+.speech { position: absolute; top: 4%; right: 0; background: var(--fg); color: var(--ink); padding: 12px 18px; border-radius: 20px 20px 4px 20px; font-weight: 700; font-size: 15px; box-shadow: 0 20px 40px -16px rgba(0, 0, 0, .6); max-width: 220px; }
+.photo-chip { position: absolute; left: 0; bottom: 12%; width: 120px; padding: 8px 8px 26px; background: #fff; border-radius: 6px; transform: rotate(-7deg); box-shadow: 0 24px 40px -16px rgba(0, 0, 0, .7); }
+.photo-chip img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 3px; }
+.photo-chip span { position: absolute; bottom: 6px; left: 0; right: 0; text-align: center; font-family: 'Caveat', cursive; color: #3b2a1e; font-size: 16px; }
+@media (max-width: 900px) { .about-hero { grid-template-columns: 1fr; } }
+
+.story { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(30px, 6vw, 90px); }
+.story > * { min-width: 0; }
+.story .sticky-col { position: sticky; top: 120px; align-self: start; }
+.story-text { display: grid; gap: 22px; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.65; }
+.story-text p:first-child::first-letter { font-family: var(--display); float: left; font-size: 5.2em; line-height: .8; padding: 6px 12px 0 0; color: var(--gold); font-weight: 800; }
+@media (max-width: 860px) { .story { grid-template-columns: 1fr; } .story .sticky-col { position: static; } }
+
+.skills { display: flex; flex-wrap: wrap; gap: 10px; }
+.skills span { padding: 12px 20px; border-radius: 99px; border: 1px solid var(--line); font-weight: 600; font-size: 15px; transition: background .25s, color .25s, transform .25s; }
+.skills span:hover { background: var(--gold); color: var(--ink); transform: translateY(-3px) rotate(-2deg); }
+.quote { font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(34px, 5vw, 74px); line-height: 1.08; letter-spacing: -.02em; max-width: 20ch; }
+.quote em { color: var(--gold); }
+
+/* ---------- CONTACT: chat ---------- */
+.chat-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 24px; align-items: start; }
+.chat-layout > * { min-width: 0; }
+.faq-col h3 { font-size: 28px; margin-bottom: 8px; }
+.faq-col > p { color: var(--muted); margin-bottom: 20px; font-size: 15px; }
+.faq-list { display: grid; gap: 8px; }
+.faq-q { text-align: left; width: 100%; padding: 15px 18px; border-radius: 14px; border: 1px solid var(--line); background: var(--ink-2); cursor: pointer; font-weight: 600; font-size: 15px; display: flex; justify-content: space-between; align-items: center; gap: 12px; transition: border-color .2s, background .2s, transform .2s; }
+.faq-q:hover { border-color: rgba(227, 185, 79, .5); transform: translateX(4px); }
+.faq-q::after { content: '→'; color: var(--gold); transition: transform .2s; flex: none; }
+.faq-q:hover::after { transform: translateX(4px); }
+.faq-q.asked { opacity: .55; }
+.chat { border-radius: 26px; overflow: hidden; border: 1px solid var(--line); background: #0f0609; display: flex; flex-direction: column; height: clamp(560px, 72vh, 700px); position: sticky; top: 100px; }
+.chat-head { display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: var(--grad); }
+.chat-head .av { width: 44px; height: 44px; border-radius: 50%; background: var(--grad-gold); display: grid; place-items: center; font-family: var(--display); font-weight: 800; color: #4a1500; position: relative; }
+.chat-head .av::after { content: ''; position: absolute; right: 0; bottom: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--mint); border: 2px solid #9c1830; }
+.chat-head b { display: block; font-size: 16px; }
+.chat-head small { font-size: 12.5px; opacity: .85; }
+.chat-head .reset { margin-left: auto; background: rgba(255, 255, 255, .16); border: 0; border-radius: 99px; padding: 7px 12px; font-size: 12.5px; cursor: pointer; color: #fff; }
+.chat-body { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px; background-image: radial-gradient(rgba(246, 237, 228, .04) 1px, transparent 1px); background-size: 18px 18px; overscroll-behavior: contain; }
+.msg { max-width: 82%; padding: 12px 16px; border-radius: 18px; font-size: 15px; line-height: 1.5; animation: pop .35s cubic-bezier(.3, 1.4, .5, 1) both; overflow-wrap: anywhere; }
+.msg.bot { background: var(--ink-3); border-bottom-left-radius: 5px; align-self: flex-start; }
+.msg.me { background: var(--crimson); color: #fff; border-bottom-right-radius: 5px; align-self: flex-end; }
+.msg time { display: block; font-size: 10.5px; opacity: .55; margin-top: 4px; font-family: var(--mono); }
+.msg a { color: var(--gold); font-weight: 600; }
+.msg .quick { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.msg .quick button { border: 1px solid var(--line); background: rgba(246, 237, 228, .05); border-radius: 99px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
+.msg .quick button:hover { border-color: var(--gold); }
+@keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.94); } }
+.typing { display: inline-flex; gap: 4px; padding: 14px 16px; }
+.typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: typing 1s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes typing { 0%, 60%, 100% { transform: translateY(0); opacity: .4; } 30% { transform: translateY(-5px); opacity: 1; } }
+.chat-input { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--line); background: var(--ink-2); }
+.chat-input input { flex: 1; min-width: 0; border-radius: 99px; border: 1px solid var(--line); background: var(--ink); color: var(--fg); padding: 13px 18px; font: inherit; font-size: 15px; }
+.chat-input input:focus { outline: none; border-color: var(--gold); }
+.chat-input button { width: 48px; height: 48px; flex: none; border-radius: 50%; border: 0; background: var(--crimson); color: #fff; cursor: pointer; display: grid; place-items: center; }
+.chat-input button svg { width: 20px; height: 20px; }
+@media (max-width: 900px) { .chat-layout { grid-template-columns: 1fr; } .chat { position: relative; top: 0; } }
+
+/* WhatsApp composer */
+.wa-box { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 60px); align-items: start; }
+.wa-box > * { min-width: 0; }
+.form { display: grid; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: grid; gap: 6px; }
+.field label { font-size: 13px; font-weight: 600; color: var(--on-paper-muted); }
+.field input, .field select, .field textarea { width: 100%; border-radius: 14px; border: 1px solid rgba(42, 18, 25, .14); background: #fff; color: var(--on-paper); padding: 14px 16px; font: inherit; font-size: 16px; color-scheme: light; }
+.field textarea { min-height: 130px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--crimson); box-shadow: 0 0 0 4px rgba(214, 40, 57, .12); }
+.field .err { color: #b3122f; font-size: 13px; min-height: 0; }
+.phone-mock { border-radius: 40px; background: #0b1410; padding: 14px; max-width: 380px; margin-inline: auto; width: 100%; box-shadow: 0 50px 100px -40px rgba(42, 18, 25, .7); border: 6px solid #241318; }
+.phone-top { display: flex; align-items: center; gap: 10px; padding: 12px 10px; color: #e9edef; background: #1f2c34; border-radius: 26px 26px 0 0; }
+.phone-top .av { width: 36px; height: 36px; border-radius: 50%; background: var(--grad-gold); display: grid; place-items: center; color: #4a1500; font-weight: 800; font-size: 13px; }
+.phone-top b { display: block; font-size: 14.5px; }
+.phone-top small { color: #8696a0; font-size: 12px; }
+.phone-chat { min-height: 340px; padding: 16px 12px; background: #0b141a; background-image: radial-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px); background-size: 14px 14px; border-radius: 0 0 26px 26px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; }
+.wa-bubble { align-self: flex-end; max-width: 88%; background: #005c4b; color: #e9edef; padding: 9px 12px 18px; border-radius: 10px 10px 2px 10px; font-size: 14px; position: relative; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.45; }
+.wa-bubble time { position: absolute; right: 8px; bottom: 3px; font-size: 10.5px; color: #8fb8ae; }
+.wa-bubble.empty { opacity: .5; font-style: italic; }
+.copy-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 6px; font-size: 14px; color: var(--on-paper-muted); }
+.copy-row code { font-family: var(--mono); background: #fff; padding: 6px 10px; border-radius: 8px; color: var(--on-paper); user-select: all; }
+.copy-row button { border: 1px solid rgba(42, 18, 25, .18); background: transparent; border-radius: 99px; padding: 6px 12px; cursor: pointer; color: var(--on-paper); font-size: 13px; }
+@media (max-width: 860px) { .wa-box, .form-row { grid-template-columns: 1fr; } }
+
+.contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.c-card { padding: 28px; border-radius: 22px; border: 1px solid var(--line); text-decoration: none; display: grid; gap: 8px; transition: border-color .3s, transform .3s; }
+.c-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+.c-card small { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.c-card b { font-family: var(--display); font-size: 24px; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.c-card span { color: var(--muted); font-size: 14.5px; }
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+    .mock { transform: none; }
+}
+
+</style>
+</head>
+<body data-page="home">
+    <div id="site-nav"></div>
+    <main>
+<div class="route" data-route="home" id="page-home">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
+            <div class="wrap hero-grid">
+                <div>
+                    <span class="eyebrow">HR · Payroll · Welfare · Tax</span>
+                    <h1 data-split="load" style="margin-top: 22px;">Your whole team, run from <span class="serif">one</span> screen.</h1>
+                    <p class="lede" data-reveal>Attendance, leave, salaries, advances, incentives, staff welfare and income tax, all in one dashboard. Built by We Create in Chennai, already running at a business hotel, and shaped around the way <em>your</em> business already works.</p>
+                    <div class="hero-ctas" data-reveal>
+                        <a class="btn btn-primary" href="#features" data-magnetic>See everything it does <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="btn btn-ghost" href="#whatsapp" data-magnetic>Talk to Vignesh</a>
+                    </div>
+                    <div class="hero-badges" data-reveal>
+                        <span><i></i> Supported 24/7</span>
+                        <span>PF · ESI · PT · TDS built in</span>
+                        <span>Works on phone &amp; computer</span>
+                    </div>
+                </div>
+
+                <div class="mock-stage" data-cursor="Live">
+                    <div class="mock" aria-label="Preview of the dashboard We Create built for STAY BAY Business Hotels, with sample figures">
+                        <div class="mock-top"><span class="m-logo">SBY</span><b>STAY BAY</b><span class="m-fy">FY 2026-27</span></div>
+                        <div class="mock-tabs"><span class="on">Dashboard</span><span>Attendance</span><span>Leave &amp; OT</span><span>Payroll</span><span>Welfare</span><span>Tax</span><span>Reports</span></div>
+                        <div class="mock-kpis">
+                            <div class="mock-kpi"><b>₹3,07,500</b><small>Gross salary</small><em style="color:#b8901f;">8 employees</em></div>
+                            <div class="mock-kpi"><b>₹2,61,940</b><small>Net salary</small><em style="color:#059669;">₹1,78,200 paid</em></div>
+                            <div class="mock-kpi"><b>96%</b><small>Attendance</small><em style="color:#0284c7;">FY so far</em></div>
+                            <div class="mock-kpi"><b>3</b><small>Pending</small><em style="color:#d62839;">Needs approval</em></div>
+                        </div>
+                        <div class="mock-row">
+                            <div class="mock-card">
+                                <h5>Payroll trend</h5>
+                                <div class="bars"><i style="--h:58%"></i><i style="--h:62%"></i><i style="--h:60%"></i><i style="--h:66%"></i><i style="--h:64%"></i><i style="--h:70%"></i><i style="--h:94%"></i><i class="proj" style="--h:72%"></i><i class="proj" style="--h:72%"></i><i class="proj" style="--h:74%"></i></div>
+                                <div class="bar-labels"><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span></div>
+                            </div>
+                            <div class="mock-card">
+                                <h5>Needs attention</h5>
+                                <div class="mock-alert"><b>2</b>Leave requests</div>
+                                <div class="mock-alert"><b>1</b>Advance to approve</div>
+                                <div class="mock-alert"><b>₹</b>Sep payroll: review</div>
+                            </div>
+                        </div>
+                        <div class="mock-float f1"><span class="dot">✓</span><div><b>Payslips sent</b><br><small style="color: var(--muted);">8 PDFs · 2 seconds</small></div></div>
+                        <div class="mock-float f2"><span class="dot">🎂</span><div><b>Karthik's birthday</b><br><small style="color: var(--muted);">Today</small></div></div>
+                        <span class="client-tag">Client · STAY BAY Business Hotels</span><span class="sample-tag">Sample data</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARQUEE -->
+        <div class="marquee" aria-label="What the dashboard covers">
+            <div class="marquee-track">
+                <span>Daily attendance</span><span>Night shifts</span><span>Leave balances</span><span>Overtime</span><span>5-step payroll</span><span>Payslip PDFs</span><span>Salary advances</span><span>Incentives</span><span>Increments</span><span>Family welfare</span><span>Form 130 / 16</span><span>Audit log</span>
+                <span>Daily attendance</span><span>Night shifts</span><span>Leave balances</span><span>Overtime</span><span>5-step payroll</span><span>Payslip PDFs</span><span>Salary advances</span><span>Incentives</span><span>Increments</span><span>Family welfare</span><span>Form 130 / 16</span><span>Audit log</span>
+            </div>
+        </div>
+
+        <!-- STATEMENT -->
+        <section class="statement pad">
+            <div class="wrap">
+                <span class="eyebrow" style="margin-bottom: 30px;">The month-end problem</span>
+                <p data-words="register,calculator,excel,rarely">Every month-end, someone sits with a register, a calculator and three Excel sheets, hoping the numbers match. They rarely do.</p>
+                <p data-words="arithmetic,records,attention" style="margin-top: 50px;">Our dashboard does the arithmetic, keeps every record and tells you what needs your attention today.</p>
+            </div>
+        </section>
+
+        <!-- HORIZONTAL STORY -->
+        <section class="hstory" id="story">
+            <div class="wrap hstory-head">
+                <div style="display: grid; gap: 18px;">
+                    <span class="eyebrow">Case study · STAY BAY Business Hotels</span>
+                    <h2 class="t-l" data-split>From the first check-in to the last payslip.</h2>
+                </div>
+                <div style="display: grid; gap: 18px; justify-items: end;">
+                    <p>How a real month runs at our client's hotel, step by step. Use the arrows, drag, or swipe sideways. Go back any time.</p>
+                    <div class="hnav">
+                        <span class="hbar" aria-hidden="true"><i></i></span>
+                        <button type="button" class="hbtn" data-h="prev" aria-label="Previous step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+                        <button type="button" class="hbtn" data-h="next" aria-label="Next step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+                    </div>
+                </div>
+            </div>
+            <div class="hscroll" tabindex="0" role="region" aria-label="A month at STAY BAY, scroll sideways">
+            <div class="htrack">
+                <article class="hpanel">
+                    <div class="time"><span>Day 1 · 07:02 AM</span><span>Attendance</span></div>
+                    <h3>Mark today in under a minute.</h3>
+                    <p>Pick a status and drag across the calendar, or enter check-in and check-out times. Late arrivals, early exits and overtime are worked out instantly, even for night shifts that end the next morning.</p>
+                    <div class="ui">
+                        <div class="ui-row"><b>Selvi R · Evening</b><span class="chip ok">In 2:58 PM</span></div>
+                        <div class="ui-row"><b>Ravi Kumar · Night</b><span class="chip info">11 PM → 7 AM</span></div>
+                        <div class="ui-row"><b>Murugan S · Morning</b><span class="chip warn">Late 18 min</span></div>
+                    </div>
+                </article>
+                <article class="hpanel">
+                    <div class="time"><span>Day 9 · 10:30 AM</span><span>Leave</span></div>
+                    <h3>Leave approved, balance updated.</h3>
+                    <p>Requests show the days and the balance left. Approving writes the leave into attendance on its own. Overlaps, over-quota requests and leave in a closed month are blocked.</p>
+                    <div class="ui">
+                        <div class="ui-row"><b>Casual Leave · 2 days</b><span class="chip ok">Approved</span></div>
+                        <div class="ui-row"><span>CL balance</span><b>8 of 12 left</b></div>
+                        <div class="ui-row"><span>Sick Leave</span><b>11 of 12 left</b></div>
+                    </div>
+                </article>
+                <article class="hpanel">
+                    <div class="time"><span>Day 17 · 11:40 PM</span><span>Overtime</span></div>
+                    <h3>Banquet ran late? Overtime is ready.</h3>
+                    <p>Extra hours from the register become an overtime entry waiting for approval. Hourly wage × hours × your rate. Once you approve it, it goes into that month's salary.</p>
+                    <div class="ui">
+                        <div class="ui-row"><span>Balaji · 2.5 h × 2</span><b>₹605</b></div>
+                        <div class="ui-row"><span>Status</span><span class="chip warn">Pending approval</span></div>
+                    </div>
+                </article>
+                <article class="hpanel">
+                    <div class="time"><span>Day 30 · 06:00 PM</span><span>Payroll</span></div>
+                    <h3>Five clear steps. No surprises.</h3>
+                    <p>Draft, review, approve, pay, lock. Approving freezes the figures. Paying everyone locks the month, so nobody can quietly change attendance afterwards. Reopening needs a written reason.</p>
+                    <div class="ui">
+                        <div class="steps-ui"><span class="done">✓ DRAFT</span><span class="done">✓ REVIEW</span><span class="now">3 APPROVED</span><span>4 PAID</span><span>5 LOCKED</span></div>
+                        <div class="ui-row"><span>Net payable · 8 staff</span><b>₹2,61,940</b></div>
+                    </div>
+                </article>
+                <article class="hpanel">
+                    <div class="time"><span>Day 1 · next month</span><span>Payslips &amp; tax</span></div>
+                    <h3>Payslips, tax certificates, reports.</h3>
+                    <p>Branded payslip PDFs with salary in words. Form 130 / 16 for the year. 19 reports you can export to Excel or PDF, from the salary register to missing documents.</p>
+                    <div class="ui">
+                        <div class="ui-row"><b>Payslip_SBY004_Karthik.pdf</b><span class="chip ok">Ready</span></div>
+                        <div class="ui-row"><b>Salary Register · Sep</b><span class="chip info">Excel</span></div>
+                        <div class="ui-row"><b>Form 130 · TY 2026-27</b><span class="chip info">PDF</span></div>
+                    </div>
+                </article>
+                <article class="hpanel final">
+                    <div class="time"><span>Every day after</span><span>You</span></div>
+                    <h3>And you get your evenings back.</h3>
+                    <p>Every change is recorded with who, when, old value, new value and reason. You always know what happened, without asking anyone.</p>
+                    <a class="btn btn-ghost" href="#features" style="align-self: flex-start; color: #fff; border-color: rgba(255,255,255,.4);">Explore all features</a>
+                </article>
+            </div>
+            </div>
+        </section>
+
+        <!-- NUMBERS -->
+        <section class="pad">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">What's inside</span>
+                        <h2 class="t-l" data-split>Built out, not bolted on.</h2>
+                    </div>
+                    <p>These are the actual parts of the dashboard We Create built for STAY BAY Business Hotels, our client, running there today.</p>
+                </div>
+                <div class="numbers">
+                    <div class="num-cell" data-reveal><b data-count="11">11</b><span>Sections, from attendance to the audit log</span></div>
+                    <div class="num-cell" data-reveal><b data-count="19">19</b><span>Ready reports, exportable to Excel and PDF</span></div>
+                    <div class="num-cell" data-reveal><b data-count="5">5</b><span>Payroll steps with approval and month lock</span></div>
+                    <div class="num-cell" data-reveal><b data-count="8">8</b><span>Welfare schemes tracked for staff and families</span></div>
+                    <div class="num-cell" data-reveal><b data-count="4">4</b><span>Statutory deductions handled: PF, ESI, PT and TDS</span></div>
+                    <div class="num-cell" data-reveal><b data-count="24" data-suffix="/7">24/7</b><span>Support from the person who built it</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEFORE / AFTER -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Before &amp; after</span>
+                        <h2 class="t-l" data-split>Drag to see the difference.</h2>
+                    </div>
+                    <p>Left: how most businesses still run payroll. Right: the same month in a We Create dashboard.</p>
+                </div>
+                <div class="compare" data-reveal data-cursor="Drag">
+                    <div class="cmp-side cmp-old">
+                        <h3>Payroll, the old way</h3>
+                        <ul>
+                            <li>Count present days from the register</li>
+                            <li class="strike">Find who took leave… ask the supervisor</li>
+                            <li>Work out LOP with a calculator</li>
+                            <li>PF 12%… of basic or gross?</li>
+                            <li>Advance balance? Check the diary</li>
+                            <li>Type 8 payslips in Word</li>
+                            <li class="strike">Who changed Ravi's attendance??</li>
+                        </ul>
+                    </div>
+                    <div class="cmp-side cmp-new">
+                        <h3>With <span class="gold-text">We Create</span></h3>
+                        <ul>
+                            <li>Paid days counted from attendance</li>
+                            <li>Approved leave already in the calendar</li>
+                            <li>LOP calculated to the rupee</li>
+                            <li>PF, ESI, PT and TDS by your rules</li>
+                            <li>Advance instalment deducted, stops at zero</li>
+                            <li>Branded payslip PDFs in one click</li>
+                            <li>Every change in the audit log</li>
+                        </ul>
+                    </div>
+                    <div class="cmp-handle" aria-hidden="true"></div>
+                    <span class="cmp-tag l">Before</span><span class="cmp-tag r">After</span>
+                    <input type="range" id="cmpRange" min="0" max="100" value="50" aria-label="Compare before and after">
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEFITS -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Why owners like it</span>
+                        <h2 class="t-l" data-split>Less admin. More business.</h2>
+                    </div>
+                </div>
+                <div class="benefits">
+                    <div class="benefit" data-reveal>
+                        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+                        <h3>Hours back every month</h3>
+                        <p>Month-end payroll that took days takes one sitting. Pay, payslips and reports come out of the same screen.</p>
+                    </div>
+                    <div class="benefit" data-reveal>
+                        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+                        <h3>Compliance done right</h3>
+                        <p>PF, ESI, professional tax and TDS are worked out by your rules. Form 130 / 16 is ready at year end.</p>
+                    </div>
+                    <div class="benefit" data-reveal>
+                        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="M20.5 18.5L22 20"/></svg></div>
+                        <h3>Nothing hidden</h3>
+                        <p>Who changed what, when and why. The audit log can't be edited or deleted, not even by the Owner.</p>
+                    </div>
+                    <div class="benefit" data-reveal>
+                        <div class="ico"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+                        <h3>Staff who feel looked after</h3>
+                        <p>Correct pay on time, clear payslips, incentives, birthdays remembered and welfare support for their families.</p>
+                    </div>
+                    <div class="benefit" data-reveal>
+                        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div>
+                        <h3>One look, full picture</h3>
+                        <p>Who is present, who is on leave, what's waiting for you and what you'll pay this month, the moment you open it.</p>
+                    </div>
+                    <div class="benefit" data-reveal>
+                        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.5 3.2-5.5 6.5-5.5s6 2 6.5 5.5"/><path d="M17 11l2 2 4-4"/></svg></div>
+                        <h3>The right access for each person</h3>
+                        <p>Managers run the day-to-day. Only the Owner approves salary advances. Every action checks who is asking.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INDUSTRIES TEASER -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Not just hotels</span>
+                        <h2 class="t-l" data-split>Any team that clocks in can use this.</h2>
+                    </div>
+                    <a class="btn btn-ghost" href="#industries" data-magnetic>All industries</a>
+                </div>
+                <div class="ind-grid">
+                    <a class="ind-card" href="#hospitality" data-tilt="6" data-cursor="Open">
+                        <span class="glow"></span><span class="flag">Live today</span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M8 56V20l24-12 24 12v36"/><path d="M8 56h48M24 56V40h16v16M20 26h4M30 26h4M40 26h4M20 33h4M40 33h4"/></svg></span>
+                        <h3>Hospitality</h3>
+                        <p>Hotels, resorts, restaurants and service apartments. Rotating shifts, night duty, holiday work and tips-heavy teams.</p>
+                    </a>
+                    <a class="ind-card" href="#manufacturing" data-tilt="6" data-cursor="Open">
+                        <span class="glow"></span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M6 56V30l14 8V30l14 8V30l14 8V12h10v44z"/><path d="M6 56h52M16 48h6M28 48h6M40 48h6"/></svg></span>
+                        <h3>Manufacturing</h3>
+                        <p>Three-shift plants, piece rates, contract labour, OT at double rate and PF / ESI for large teams.</p>
+                    </a>
+                    <a class="ind-card" href="#more" data-tilt="6" data-cursor="Open">
+                        <span class="glow"></span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M10 32h44M32 10c7 7 7 37 0 44M32 10c-7 7-7 37 0 44"/></svg></span>
+                        <h3>And more</h3>
+                        <p>Retail, clinics, schools, construction, logistics and professional firms. If you have staff, we can shape it for you.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUILDER TEASER -->
+        <section style="padding-bottom: clamp(80px, 10vw, 140px);">
+            <div class="builder" data-reveal>
+                <div class="builder-in">
+                    <div>
+                        <span class="eyebrow">Who builds it</span>
+                        <h2 class="t-m" style="margin-top: 18px;">Built by someone who has actually filed TDS returns.</h2>
+                        <p>I'm Vignesh Annamalai, founder of We Create and a commerce student at Loyola College, Chennai, with internships at two CA firms. I know payroll and compliance from the inside, so the dashboard gets the numbers right before it looks good.</p>
+                        <div class="hero-ctas"><a class="btn btn-primary" href="#about" data-magnetic>Meet Vignesh</a><a class="btn btn-ghost" href="#contact">Ask a question</a></div>
+                    </div>
+                    <svg viewBox="0 0 200 200" aria-hidden="true" style="width: min(260px, 100%); justify-self: center;">
+                        <circle cx="100" cy="100" r="96" fill="#7d0b22"/>
+                        <path d="M45 200c4-40 28-60 55-60s51 20 55 60z" fill="#3a2a26"/>
+                        <circle cx="100" cy="92" r="46" fill="#dba17b"/>
+                        <path d="M54 82c0-30 20-46 46-46s46 16 46 46c-10-8-30-12-46-12s-36 4-46 12z" fill="#d62839"/>
+                        <path d="M140 80c14 0 24 4 26 9-10 2-20 1-28-2z" fill="#b51e2e"/>
+                        <circle cx="100" cy="52" r="6" fill="#f2c94c"/>
+                        <circle cx="84" cy="94" r="4.5" fill="#241318"/><circle cx="116" cy="94" r="4.5" fill="#241318"/>
+                        <path d="M82 112c10 10 26 10 36 0" stroke="#241318" stroke-width="4" fill="#fff" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-band pad">
+            <span class="orbit" aria-hidden="true"></span><span class="orbit o2" aria-hidden="true"></span>
+            <div class="wrap" style="position: relative;">
+                <span class="eyebrow">Your turn</span>
+                <h2 style="margin-top: 24px;">Built your way.<br><span class="gold-text">Here 24/7.</span></h2>
+                <p>Your logo, your leave rules, your salary structure, your reports. Tell us how you work and we'll build the dashboard around it, then stay on call whenever you need us.</p>
+                <div class="hero-ctas">
+                    <a class="btn btn-wa" href="#whatsapp" data-magnetic>Message on WhatsApp</a>
+                    <a class="btn btn-ghost" href="#contact" data-magnetic>Ask the assistant</a>
+                </div>
+            </div>
+        </section>
+    </div>
+<div class="route" data-route="features" id="page-features" hidden>
+        <section class="page-hero">
+            <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
+            <div class="wrap" style="position: relative;">
+                <span class="eyebrow">Features</span>
+                <h1 data-split="load">Everything your HR desk does.<br><span class="gold-text">Done for you.</span></h1>
+                <p class="lede" data-reveal>This is the dashboard we built for our client, STAY BAY Business Hotels, and the starting point for yours. Eleven sections that share one set of data. Mark a leave and payroll already knows. Approve an incentive and it's on the payslip. Scroll through them one by one.</p>
+            </div>
+        </section>
+
+        <section style="padding-bottom: clamp(60px, 8vw, 120px);">
+            <div class="wrap stack">
+
+                <article class="stack-card" style="--i: 0;">
+                    <div>
+                        <span class="idx">Section 01 · Dashboard</span>
+                        <h3>Your morning in one glance.</h3>
+                        <p>Open it and you see the day: who is in, who is off and what's waiting for you.</p>
+                        <ul>
+                            <li>Today's strip: total, present, absent, on leave, late, weekly off, holiday</li>
+                            <li>This month's gross, deductions, net and pending payments</li>
+                            <li>"Needs attention": every pending approval with a button that takes you there</li>
+                            <li>Payroll trend, attendance mix, birthdays, work anniversaries and holidays</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>dashboard · today</span></div>
+                        <div class="ui-row"><span>Present</span><b>6 / 8</b></div>
+                        <div class="ui-row"><span>On leave</span><span class="chip info">Selvi R · CL</span></div>
+                        <div class="ui-row"><span>Late</span><span class="chip warn">Murugan S · 18 min</span></div>
+                        <div class="ui-row"><span>Waiting for you</span><span class="chip bad">2 leave · 1 advance</span></div>
+                        <div class="ui-row"><span>🎂 Today</span><b>Karthik turns 36</b></div>
+                    </div>
+                </article>
+
+                <article class="stack-card" style="--i: 1;">
+                    <div>
+                        <span class="idx">Section 02 · Employees</span>
+                        <h3>Every record, never lost.</h3>
+                        <p>A full profile for each person with ten tabs, from personal details to every payslip and every change ever made.</p>
+                        <ul>
+                            <li>Auto employee IDs, departments, designations and shifts</li>
+                            <li>PAN, Aadhaar, IFSC, UAN, ESI and mobile checked as you type</li>
+                            <li>Upload Aadhaar, PAN, bank proof, letters and photos (PDF, JPG, PNG)</li>
+                            <li>Sensitive numbers masked until you choose to reveal them</li>
+                            <li>Resigned staff keep their history; records are never deleted</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>employee · SBY004</span></div>
+                        <div class="ui-row"><b>Karthik · Manager, Front Office</b><span class="chip ok">Active</span></div>
+                        <div class="ui-row"><span>PAN</span><b style="font-family: var(--mono);">••••••234F</b></div>
+                        <div class="ui-row"><span>Bank</span><b>ICICI ••••4821</b></div>
+                        <div class="ui-row"><span>Documents</span><span class="chip ok">Aadhaar · PAN · Bank ✓</span></div>
+                        <div class="ui-row"><span>Joined</span><b>11 Feb 2019 · 7 yrs 7 mo</b></div>
+                    </div>
+                </article>
+
+                <article class="stack-card" style="--i: 2;">
+                    <div>
+                        <span class="idx">Section 03 · Attendance</span>
+                        <h3>Paint a month in seconds.</h3>
+                        <p>Three ways to mark: a daily register with times, a weekly log, and a monthly calendar you can click and drag across.</p>
+                        <ul>
+                            <li>Check-in and check-out with late, early and overtime worked out</li>
+                            <li>Night shifts past midnight handled correctly</li>
+                            <li>Keyboard shortcuts, fill-unmarked, Sundays to weekly off, undo</li>
+                            <li>Tamil Nadu government holidays pre-loaded; holiday work earns comp off or extra pay</li>
+                            <li>Weekly-off balance with carry-forward inside the year</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>attendance · October</span></div>
+                        <div class="cal">
+                            <i class="hd"></i><i class="hd">Mo</i><i class="hd">Tu</i><i class="hd">We</i><i class="hd">Th</i><i class="hd">Fr</i><i class="hd">Sa</i><i class="hd">Su</i>
+                            <b>Karthik</b><i class="s-P">P</i><i class="s-P">P</i><i class="s-H">H</i><i class="s-P">P</i><i class="s-HD">HD</i><i class="s-P">P</i><i class="s-WO">WO</i>
+                            <b>Selvi R</b><i class="s-P">P</i><i class="s-L">CL</i><i class="s-H">H</i><i class="s-P">P</i><i class="s-P">P</i><i class="s-P">P</i><i class="s-WO">WO</i>
+                            <b>Ravi Kumar</b><i class="s-P">P</i><i class="s-P">P</i><i class="s-WH">WH</i><i class="s-A">A</i><i class="s-P">P</i><i class="s-P">P</i><i class="s-P">P</i>
+                            <b>Murugan S</b><i class="s-P">P</i><i class="s-P">P</i><i class="s-H">H</i><i class="s-P">P</i><i class="s-P">P</i><i class="s-WO">WO</i><i class="s-P">P</i>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="stack-card" style="--i: 3;">
+                    <div>
+                        <span class="idx">Section 04 · Leave &amp; Overtime</span>
+                        <h3>Requests in, approvals out.</h3>
+                        <p>Leave types, yearly quotas, balances and overtime approvals in one place.</p>
+                        <ul>
+                            <li>Casual, sick, earned, loss-of-pay and any types you add</li>
+                            <li>Approving leave writes it into attendance automatically</li>
+                            <li>Stops overlaps, over-quota requests and leave in a locked month</li>
+                            <li>Overtime from the register waits for approval, paid at your rate</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>leave &amp; overtime</span></div>
+                        <div class="ui-row"><b>Selvi R · CL · 1 day</b><span class="chip warn">Pending</span></div>
+                        <div class="ui-row"><b>Balaji · SL · 2 days</b><span class="chip ok">Approved</span></div>
+                        <div class="ui-row"><b>Ravi Kumar · OT 3 h × 2</b><span class="chip ok">₹363</span></div>
+                        <div class="ui-row"><span>CL balance · Karthik</span><b>8 of 12</b></div>
+                    </div>
+                </article>
+
+                <article class="stack-card" style="--i: 4;">
+                    <div>
+                        <span class="idx">Section 05 · Payroll</span>
+                        <h3>Gross − deductions = net. Every time.</h3>
+                        <p>A five-step workflow that freezes approved figures and locks paid months, so the numbers you approved are the numbers that get paid.</p>
+                        <ul>
+                            <li>Basic, HRA, conveyance, special allowance, OT, incentives, Diwali bonus</li>
+                            <li>LOP, PF, ESI, professional tax, TDS and advance recovery</li>
+                            <li>Same employee can never be paid twice for a month</li>
+                            <li>Branded payslip PDFs with net pay in words</li>
+                            <li>Reopen with a written reason; the original stays in history</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>payslip · Sep 2026</span></div>
+                        <div class="slip">
+                            <div><h6>Earnings</h6><p><span>Basic</span><b>13,500</b></p><p><span>HRA</span><b>5,400</b></p><p><span>Special</span><b>8,100</b></p><p><span>Incentive</span><b>4,000</b></p></div>
+                            <div><h6>Deductions</h6><p><span>PF</span><b>1,620</b></p><p><span>PT</span><b>200</b></p><p><span>TDS</span><b>0</b></p><p><span>Advance</span><b>5,000</b></p></div>
+                        </div>
+                        <div class="net"><span>Net salary</span><b>₹24,180</b></div>
+                    </div>
+                </article>
+
+                <article class="stack-card" style="--i: 5;">
+                    <div>
+                        <span class="idx">Section 06 · Advances &amp; Loans</span>
+                        <h3>Advances that collect themselves.</h3>
+                        <p>Managers request. Only the Owner approves. Recovery comes out of salary each month and stops on its own at zero.</p>
+                        <ul>
+                            <li>Advance or loan with amount, monthly instalment and start month</li>
+                            <li>"Awaiting Owner approval" shown until a decision is made</li>
+                            <li>Early lump-sum settlements and a full history with running balance</li>
+                            <li>Recovery never takes net pay below zero</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>advances</span></div>
+                        <div class="ui-row"><b>Balaji · ₹8,000 request</b><span class="chip warn">Awaiting Owner</span></div>
+                        <div class="ui-row"><b>Karthik · ₹20,000 advance</b><span class="chip ok">Active</span></div>
+                        <div class="ui-row"><span>Recovered</span><b>₹10,000 · ₹5,000/mo</b></div>
+                        <div class="ui-row"><span>Outstanding</span><b>₹10,000</b></div>
+                    </div>
+                </article>
+
+                <article class="stack-card" style="--i: 6;">
+                    <div>
+                        <span class="idx">Section 07 · Increments &amp; Incentives</span>
+                        <h3>Reward people properly.</h3>
+                        <p>Every raise with its reason and effective month. Incentives that land on the right payslip once approved.</p>
+                        <ul>
+                            <li>Raises apply from the chosen month; paid months stay untouched</li>
+                            <li>Incentive types: performance, attendance, sales, guest feedback, referral</li>
+                            <li>Recommended by, approved by, and status on every entry</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>increments &amp; incentives</span></div>
+                        <div class="ui-row"><b>Selvi R · Annual appraisal</b><span class="chip ok">+₹2,000/mo</span></div>
+                        <div class="ui-row"><b>Karthik · Guest score 4.8/5</b><span class="chip ok">+₹4,000</span></div>
+                        <div class="ui-row"><b>Murugan S · Full attendance</b><span class="chip warn">Pending</span></div>
+                    </div>
+                </article>
+
+                <article class="stack-card" style="--i: 7;">
+                    <div>
+                        <span class="idx">Section 08 · Family &amp; Welfare</span>
+                        <h3>Care you can account for.</h3>
+                        <p>Family details for insurance and emergencies, plus eight welfare schemes with budgets and a ledger.</p>
+                        <ul>
+                            <li>Medical, children's education, marriage gift, maternity, bereavement</li>
+                            <li>Festival gifts, emergency aid, group insurance and accident cover</li>
+                            <li>Requested → approved → paid, for every benefit</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>welfare ledger</span></div>
+                        <div class="ui-row"><b>Balaji · Medical (Father)</b><span class="chip warn">₹15,000 requested</span></div>
+                        <div class="ui-row"><b>Karthik · Education (Daughter)</b><span class="chip ok">₹12,000 paid</span></div>
+                        <div class="ui-row"><b>Team · Deepavali sweets</b><span class="chip ok">₹4,000 paid</span></div>
+                    </div>
+                </article>
+
+                <article class="stack-card" style="--i: 8;">
+                    <div>
+                        <span class="idx">Section 09 · Salary &amp; Tax</span>
+                        <h3>New regime or old? It tells you.</h3>
+                        <p>Salary structure, CTC, a full income-tax computation for the year and the tax certificate as a PDF.</p>
+                        <ul>
+                            <li>New vs old regime side by side, cheaper one highlighted</li>
+                            <li>HRA, 80C, 80D, home-loan interest and NPS declarations</li>
+                            <li>TDS spread over the remaining months automatically</li>
+                            <li>Form 130 (formerly Form 16) under the Income-tax Act, 2025</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>tax · FY 2026-27</span></div>
+                        <div class="ui-row"><span>Taxable income · New</span><b>₹10,85,000</b></div>
+                        <div class="ui-row"><span>Tax · New regime</span><span class="chip ok">₹0 (rebate)</span></div>
+                        <div class="ui-row"><span>Tax · Old regime (₹9.9 L taxable)</span><b>₹1,14,920</b></div>
+                        <div class="ui-row"><span>Certificate</span><span class="chip info">Form 130 PDF</span></div>
+                    </div>
+                </article>
+
+                <article class="stack-card" style="--i: 9;">
+                    <div>
+                        <span class="idx">Section 10 · Reports</span>
+                        <h3>19 reports. Excel or PDF.</h3>
+                        <p>Filter, search, sort and export. Totals at the bottom of every report.</p>
+                        <ul>
+                            <li>Attendance: daily, monthly, employee, department, late, OT, leave, absenteeism</li>
+                            <li>Payroll: monthly, salary register, department, deductions, advances, incentives, payments</li>
+                            <li>Employees: master, active, resigned, department-wise, missing documents</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>reports</span></div>
+                        <div class="ui-row"><b>Salary Register · Sep 2026</b><span class="chip info">CSV · PDF</span></div>
+                        <div class="ui-row"><b>Late Report · Front Office</b><span class="chip info">CSV · PDF</span></div>
+                        <div class="ui-row"><b>Missing Documents</b><span class="chip warn">2 employees</span></div>
+                    </div>
+                </article>
+
+                <article class="stack-card" style="--i: 10;">
+                    <div>
+                        <span class="idx">Section 11 · Settings, Security &amp; Audit</span>
+                        <h3>Your rules. Your record.</h3>
+                        <p>Change how the business runs without touching code, and keep a permanent trail of every change.</p>
+                        <ul>
+                            <li>Hotel logo, departments, shifts, holidays, leave and payroll rules</li>
+                            <li>Owner and Manager roles; staff can request access from the sign-in page</li>
+                            <li>Hashed passwords, lockout after failed attempts, auto sign-out when idle</li>
+                            <li>Backup and restore in one click; weekly backup reminder</li>
+                            <li>Read-only audit log, exportable to Excel and PDF</li>
+                        </ul>
+                    </div>
+                    <div class="win" data-reveal>
+                        <div class="win-bar"><i></i><i></i><i></i><span>audit log</span></div>
+                        <div class="ui-row"><span>Manager · 10:42</span><b>Attendance: A → P</b></div>
+                        <div class="ui-row"><span>Owner · 18:05</span><b>Payroll approved · Sep</b></div>
+                        <div class="ui-row"><span>Manager · 18:20</span><span class="chip bad">Blocked: approve advance</span></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Basic / Advanced -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap mode-demo">
+                <div>
+                    <span class="eyebrow">Basic or Advanced</span>
+                    <h2 class="t-l" data-split style="margin-top: 18px;">Simple when you want it. Powerful when you need it.</h2>
+                    <p class="lede" style="margin-top: 22px;">One slider switches the whole dashboard. Basic keeps the seven everyday tabs and one-click pay. Advanced adds approvals, reports, settings and the manual. Both use the same data, and each user's choice is remembered.</p>
+                </div>
+                <div data-reveal>
+                    <div class="toggle" role="group" aria-label="Try the Basic and Advanced switch">
+                        <button type="button" data-mode="basic">Basic</button>
+                        <button type="button" class="track" id="modeTrack" role="switch" aria-checked="true" aria-label="Advanced version"><i></i></button>
+                        <button type="button" data-mode="advanced" class="on">Advanced</button>
+                    </div>
+                    <div class="tabs-demo" id="tabsDemo">
+                        <span>Dashboard</span><span>Attendance</span><span>Salary Payments</span><span>Increments</span><span>Welfare</span><span>Employees</span><span>Salary &amp; Tax</span>
+                        <span class="adv">Leave &amp; Overtime</span><span class="adv">Reports</span><span class="adv">Settings</span><span class="adv">User Manual</span>
+                    </div>
+                    <p id="modeLabel" style="margin-top: 18px; color: var(--muted);"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Safe by design</span>
+                        <h2 class="t-l" data-split>Your data stays yours.</h2>
+                    </div>
+                    <p>The current version keeps everything on your own device. Want it in the cloud, shared across branches? We can build that too.</p>
+                </div>
+                <div class="sec-grid">
+                    <div class="sec-item" data-reveal><span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><h4>Hashed passwords</h4><p>Passwords are never stored, only salted PBKDF2 hashes. Accounts lock after repeated wrong attempts.</p></div>
+                    <div class="sec-item" data-reveal><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h4>Auto sign-out</h4><p>Leave the desk and the dashboard signs itself out after the idle time you set.</p></div>
+                    <div class="sec-item" data-reveal><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></span><h4>One-click backup</h4><p>Download everything, documents included, and restore it on any computer.</p></div>
+                    <div class="sec-item" data-reveal><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span><h4>Permanent audit trail</h4><p>Nobody can edit or delete an audit entry. Not even the Owner.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-band pad">
+            <span class="orbit" aria-hidden="true"></span><span class="orbit o2" aria-hidden="true"></span>
+            <div class="wrap" style="position: relative;">
+                <span class="eyebrow">See it live</span>
+                <h2 style="margin-top: 24px;">Want a<br><span class="gold-text">walkthrough?</span></h2>
+                <p>Get a live demo on your phone or laptop with your own departments and salary rules. Message any time, day or night.</p>
+                <div class="hero-ctas">
+                    <a class="btn btn-wa" href="#whatsapp" data-magnetic>Book a demo on WhatsApp</a>
+                    <a class="btn btn-ghost" href="#industries" data-magnetic>Is it right for my industry?</a>
+                </div>
+            </div>
+        </section>
+    </div>
+<div class="route" data-route="industries" id="page-industries" hidden>
+        <section class="page-hero">
+            <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
+            <div class="wrap" style="position: relative;">
+                <span class="eyebrow">Industries</span>
+                <h1 data-split="load">Born in a hotel.<br><span class="gold-text">Built for any team.</span></h1>
+                <p class="lede" data-reveal>Our first dashboard runs STAY BAY Business Hotels in Chennai. The same engine of attendance, payroll, compliance and approvals fits any business with shifts, salaries and staff to look after. We shape it to your industry and your way of working.</p>
+            </div>
+        </section>
+
+        <section style="padding-bottom: clamp(80px, 10vw, 140px);">
+            <div class="wrap">
+                <div class="ind-grid">
+                    <a class="ind-card" id="hospitality" href="#whatsapp" data-tilt="5" data-cursor="Talk">
+                        <span class="glow"></span><span class="flag">Live today</span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M8 56V20l24-12 24 12v36"/><path d="M8 56h48M24 56V40h16v16M20 26h4M30 26h4M40 26h4M20 33h4M40 33h4"/></svg></span>
+                        <h3>Hospitality</h3>
+                        <p>Hotels, resorts, restaurants, cafés and service apartments. Morning, evening and night shifts, holiday work, banquet overtime and festival bonuses, all running today at STAY BAY Business Hotels.</p>
+                        <div class="tags"><span>Rotating shifts</span><span>Night duty</span><span>Comp offs</span><span>Diwali bonus</span></div>
+                    </a>
+                    <a class="ind-card" id="manufacturing" href="#whatsapp" data-tilt="5" data-cursor="Talk">
+                        <span class="glow"></span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M6 56V30l14 8V30l14 8V30l14 8V12h10v44z"/><path d="M6 56h52M16 48h6M28 48h6M40 48h6"/></svg></span>
+                        <h3>Manufacturing</h3>
+                        <p>Three-shift plants and workshops. Shift-wise attendance, double-rate overtime, piece-rate or production incentives, contract labour, canteen deductions and PF / ESI for large headcounts.</p>
+                        <div class="tags"><span>3 shifts</span><span>Piece rate</span><span>Contract labour</span><span>Factory OT</span></div>
+                    </a>
+                    <a class="ind-card" href="#whatsapp" data-tilt="5" data-cursor="Talk">
+                        <span class="glow"></span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M10 22h44l-4 34H14z"/><path d="M22 22v-6a10 10 0 0 1 20 0v6"/></svg></span>
+                        <h3>Retail &amp; Showrooms</h3>
+                        <p>Multiple stores, weekly offs on different days, sales targets and commission on the payslip.</p>
+                        <div class="tags"><span>Multi-branch</span><span>Sales incentive</span><span>Weekly offs</span></div>
+                    </a>
+                    <a class="ind-card" href="#whatsapp" data-tilt="5" data-cursor="Talk">
+                        <span class="glow"></span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><rect x="10" y="10" width="44" height="44" rx="8"/><path d="M32 20v24M20 32h24"/></svg></span>
+                        <h3>Clinics &amp; Hospitals</h3>
+                        <p>Round-the-clock duty rosters, on-call allowances, nursing shifts and staff health cover.</p>
+                        <div class="tags"><span>24h rosters</span><span>On-call pay</span><span>Duty swaps</span></div>
+                    </a>
+                    <a class="ind-card" href="#whatsapp" data-tilt="5" data-cursor="Talk">
+                        <span class="glow"></span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M4 26l28-14 28 14-28 14z"/><path d="M14 31v13c5 5 13 7 18 7s13-2 18-7V31"/></svg></span>
+                        <h3>Schools &amp; Colleges</h3>
+                        <p>Teaching and non-teaching staff, academic-year leave, vacation pay and staff children's education aid.</p>
+                        <div class="tags"><span>Academic year</span><span>Vacation rules</span><span>Education aid</span></div>
+                    </a>
+                    <a class="ind-card" href="#whatsapp" data-tilt="5" data-cursor="Talk">
+                        <span class="glow"></span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M8 54h48M14 54V28h14v26M28 36h22v18"/><path d="M34 12l14 10-14 10"/></svg></span>
+                        <h3>Construction</h3>
+                        <p>Site-wise attendance, daily-wage workers, advances that are common on site and safety welfare.</p>
+                        <div class="tags"><span>Site-wise</span><span>Daily wages</span><span>Advances</span></div>
+                    </a>
+                    <a class="ind-card" href="#whatsapp" data-tilt="5" data-cursor="Talk">
+                        <span class="glow"></span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><rect x="4" y="18" width="34" height="26" rx="2"/><path d="M38 26h12l10 10v8H38z"/><circle cx="16" cy="48" r="5"/><circle cx="48" cy="48" r="5"/></svg></span>
+                        <h3>Logistics &amp; Transport</h3>
+                        <p>Drivers and helpers on trips, trip allowances, night halts and fuel advances, settled monthly.</p>
+                        <div class="tags"><span>Trip allowance</span><span>Night halt</span><span>Fuel advance</span></div>
+                    </a>
+                    <a class="ind-card" href="#whatsapp" data-tilt="5" data-cursor="Talk">
+                        <span class="glow"></span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><rect x="10" y="20" width="44" height="32" rx="4"/><path d="M24 20v-6h16v6M10 34h44"/></svg></span>
+                        <h3>CA &amp; Professional Firms</h3>
+                        <p>Article assistants and staff, stipends, busy-season overtime and compliance calendars.</p>
+                        <div class="tags"><span>Stipends</span><span>Busy season</span><span>Compliance</span></div>
+                    </a>
+                </div>
+                <p class="lede" style="margin-top: 36px;" data-reveal>Don't see your industry? If your team clocks in and gets paid, it fits. <a href="#whatsapp" style="color: var(--gold);">Tell us how you work →</a></p>
+            </div>
+        </section>
+
+        <!-- Your wishes -->
+        <section class="paper-sec pad">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Built your way</span>
+                        <h2 class="t-l" data-split>We build it exactly the way you want it.</h2>
+                    </div>
+                    <p>No forcing your business into someone else's software. You tell us how things work, and the dashboard follows your rules.</p>
+                </div>
+                <div class="wishes">
+                    <div class="wish" data-reveal><b>Your brand</b><span>Your name, logo and colours on the screen, payslips and reports.</span></div>
+                    <div class="wish" data-reveal><b>Your rules</b><span>Weekly offs, half-day cuts, OT rate, holiday pay and leave quotas set your way.</span></div>
+                    <div class="wish" data-reveal><b>Your salary structure</b><span>Basic, HRA, allowances, bonus and deductions as your accountant does them.</span></div>
+                    <div class="wish" data-reveal><b>Your reports</b><span>The exact columns your auditor or bank asks for, in Excel or PDF.</span></div>
+                    <div class="wish" data-reveal><b>Your language</b><span>Labels and payslips in Tamil or English, whatever your team reads easily.</span></div>
+                    <div class="wish" data-reveal><b>Your approvals</b><span>Who can see what and who signs off: Owner, Manager, HR, accounts.</span></div>
+                    <div class="wish" data-reveal><b>Your branches</b><span>One location or many, with a combined view for the owner.</span></div>
+                    <div class="wish" data-reveal><b>Your features</b><span>Need something new? We add it. The dashboard grows with you.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section class="pad">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">How we work</span>
+                        <h2 class="t-l" data-split>From first chat to go-live.</h2>
+                    </div>
+                    <p>Five steps, in this order. You see progress at every stage and nothing goes live until you're happy.</p>
+                </div>
+                <div class="process">
+                    <span class="fill" aria-hidden="true"></span>
+                    <div class="p-step" data-reveal><span class="n">01</span><h4>Listen</h4><p>A call or visit to understand your shifts, salary rules, approvals and the reports you need.</p></div>
+                    <div class="p-step" data-reveal><span class="n">02</span><h4>Design</h4><p>You see the screens with your own departments and branding before anything is built.</p></div>
+                    <div class="p-step" data-reveal><span class="n">03</span><h4>Build</h4><p>We build it and check every rupee against your last month's manual payroll.</p></div>
+                    <div class="p-step" data-reveal><span class="n">04</span><h4>Train</h4><p>Your manager and accountant learn it hands-on, with a built-in user manual to keep.</p></div>
+                    <div class="p-step" data-reveal><span class="n">05</span><h4>Support</h4><p>Questions, changes or a late-night payroll emergency. We're on call 24/7.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 24/7 -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap support-big">
+                <div class="clock" aria-hidden="true"><span class="hand"></span><b>24/7</b></div>
+                <div>
+                    <span class="eyebrow">Always on</span>
+                    <h2 class="t-l" data-split style="margin-top: 18px;">Payroll doesn't keep office hours. Neither do we.</h2>
+                    <p class="lede" style="margin-top: 22px;">Salary day on a Sunday? A new joiner at midnight? Message on WhatsApp any time and you'll hear back from the person who built your dashboard, not a call centre.</p>
+                    <div class="hero-ctas"><a class="btn btn-wa" href="#whatsapp" data-magnetic>Message now</a><a class="btn btn-ghost" href="#about">Who'll answer?</a></div>
+                </div>
+            </div>
+        </section>
+    </div>
+<div class="route" data-route="about" id="page-about" hidden>
+        <section class="page-hero" style="padding-bottom: 0;">
+            <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
+            <div class="wrap about-hero" style="position: relative;">
+                <div style="padding-bottom: clamp(40px, 6vw, 90px);">
+                    <span class="eyebrow">About me</span>
+                    <h1 data-split="load">Hi, I'm<br><span class="gold-text">Vignesh.</span></h1>
+                    <p class="lede" data-reveal>I'm the founder of We Create and a commerce student at Loyola College, Chennai. I build business dashboards. I've filed TDS returns, prepared financial statements and designed salary computation sheets at CA firms. Now I put that knowledge into software that business owners actually enjoy using.</p>
+                    <div class="hero-ctas" data-reveal>
+                        <a class="btn btn-wa" href="#whatsapp" data-magnetic>Say hello on WhatsApp</a>
+                        <a class="btn btn-ghost" href="https://www.linkedin.com/in/vignesh-27478223a" target="_blank" rel="noopener" data-magnetic>LinkedIn</a>
+                    </div>
+                </div>
+
+                <div class="caricature-wrap" data-cursor="Hi!">
+                    <div class="speech">Vanakkam! 🙏<br>Let's build yours.</div>
+                    <svg class="caricature" viewBox="0 0 400 560" role="img" aria-labelledby="caricTitle">
+                        <title id="caricTitle">Caricature of Vignesh in a red cap and dark T-shirt, hands in his pockets, standing at a wall in front of misty green tea hills</title>
+                        <defs>
+                            <clipPath id="arch"><path d="M20 560V220A180 180 0 0 1 380 220V560Z"/></clipPath>
+                            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7f858a"/><stop offset=".55" stop-color="#b9bfc1"/><stop offset="1" stop-color="#d6dad8"/></linearGradient>
+                            <linearGradient id="tee" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#43312b"/><stop offset="1" stop-color="#2e211d"/></linearGradient>
+                            <linearGradient id="jeans" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7fa6c9"/><stop offset=".5" stop-color="#a9c6e0"/><stop offset="1" stop-color="#7fa6c9"/></linearGradient>
+                            <radialGradient id="face" cx=".45" cy=".42" r=".7"><stop offset="0" stop-color="#ebb790"/><stop offset=".7" stop-color="#dba17b"/><stop offset="1" stop-color="#c98e69"/></radialGradient>
+                            <linearGradient id="skinArm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d69b75"/><stop offset="1" stop-color="#c98e69"/></linearGradient>
+                            <linearGradient id="cap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8323a"/><stop offset="1" stop-color="#c11a22"/></linearGradient>
+                        </defs>
+
+                        <!-- scene -->
+                        <g clip-path="url(#arch)">
+                            <rect x="0" y="0" width="400" height="560" fill="url(#sky)"/>
+                            <g class="cloud"><ellipse cx="110" cy="120" rx="80" ry="22" fill="#eef0ef" opacity=".55"/><ellipse cx="150" cy="108" rx="50" ry="18" fill="#f5f6f5" opacity=".5"/></g>
+                            <g class="cloud c2"><ellipse cx="300" cy="170" rx="90" ry="20" fill="#eef0ef" opacity=".5"/></g>
+                            <path d="M0 300C60 270 120 285 170 278S300 262 400 286V560H0Z" fill="#6f8b6a" opacity=".7"/>
+                            <path d="M0 330C50 300 110 300 150 318S250 290 300 300 380 310 400 304V560H0Z" fill="#5f9a3c"/>
+                            <path d="M0 362C70 336 120 350 180 352S300 330 400 346V560H0Z" fill="#7cb446"/>
+                            <path d="M0 362C70 336 120 350 180 352S300 330 400 346" fill="none" stroke="#6aa13a" stroke-width="3" stroke-dasharray="2 9" opacity=".8"/>
+                            <path d="M0 400C80 380 160 392 220 388S330 378 400 392V560H0Z" fill="#8fc552"/>
+                            <path d="M0 418C90 404 180 412 250 408S350 402 400 410" fill="none" stroke="#7eb446" stroke-width="3" stroke-dasharray="3 8"/>
+                            <path d="M300 300c-8-30 6-46 20-48 16 2 26 20 18 46z" fill="#3f5f34"/>
+                            <rect x="316" y="296" width="5" height="22" fill="#4a3a2c"/>
+                            <!-- wall -->
+                            <rect x="0" y="458" width="400" height="110" fill="#a7a299"/>
+                            <rect x="0" y="452" width="400" height="12" fill="#bab5ac"/>
+                            <rect x="58" y="452" width="12" height="110" fill="#8e8980"/>
+                            <g fill="#8a857c" opacity=".55"><circle cx="30" cy="490" r="1.6"/><circle cx="95" cy="510" r="1.4"/><circle cx="130" cy="480" r="1.8"/><circle cx="280" cy="500" r="1.5"/><circle cx="340" cy="482" r="1.8"/><circle cx="365" cy="525" r="1.4"/><circle cx="300" cy="540" r="1.6"/><circle cx="40" cy="535" r="1.5"/></g>
+                        </g>
+
+                        <!-- legs (jeans) -->
+                        <path d="M164 420h72l-4 140h-26l-6-112-6 112h-26z" fill="url(#jeans)"/>
+                        <path d="M200 430v20" stroke="#6b90b3" stroke-width="2"/>
+                        <path d="M172 470c6 10 8 30 6 50M226 480c-4 14-4 30-2 44" stroke="#c6dbee" stroke-width="3" fill="none" opacity=".6"/>
+
+                        <!-- arms (hands into pockets) -->
+                        <path d="M140 316C124 352 124 392 168 424" stroke="url(#skinArm)" stroke-width="22" fill="none" stroke-linecap="round"/>
+                        <path d="M260 316C276 352 276 392 232 424" stroke="url(#skinArm)" stroke-width="22" fill="none" stroke-linecap="round"/>
+                        <rect x="256" y="386" width="20" height="13" rx="3" fill="#1b1b1b" transform="rotate(-38 266 392)"/>
+                        <circle cx="266" cy="392" r="3.2" fill="#c9c9c9"/>
+
+                        <!-- torso (oversized tee) -->
+                        <path d="M150 290C170 280 230 280 250 290L282 318 268 352 252 344 250 432H150L148 344 132 352 118 318Z" fill="url(#tee)"/>
+                        <path d="M182 288c6 10 30 10 36 0" stroke="#2a1d19" stroke-width="5" fill="none" stroke-linecap="round"/>
+                        <!-- shirt print (abstract) -->
+                        <path d="M178 330c10-14 34-14 44 0 6 16 2 40-22 46-24-6-28-30-22-46z" fill="#c9a37c" opacity=".85"/>
+                        <path d="M194 346c2 10 10 10 12 0" stroke="#43312b" stroke-width="3" fill="none"/>
+                        <path d="M196 352l4 18 4-18" fill="#e6cfae"/>
+                        <rect x="180" y="384" width="40" height="7" rx="2" fill="#e9dfd0" opacity=".85"/>
+                        <rect x="184" y="396" width="32" height="4" rx="2" fill="#e9dfd0" opacity=".6"/>
+                        <!-- pockets where hands go -->
+                        <path d="M160 420c6 6 14 8 20 6M240 420c-6 6-14 8-20 6" stroke="#5c7f9f" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+                        <!-- neck -->
+                        <path d="M186 254h28v30c0 8-28 8-28 0z" fill="#c98e69"/>
+                        <path d="M186 268c8 6 20 6 28 0" stroke="#b27a57" stroke-width="3" fill="none" opacity=".6"/>
+
+                        <!-- HEAD (big, bobbling) -->
+                        <g class="head">
+                            <!-- ears -->
+                            <ellipse cx="119" cy="194" rx="13" ry="19" fill="#d79d77"/>
+                            <ellipse cx="121" cy="195" rx="6" ry="10" fill="#c48862"/>
+                            <ellipse cx="281" cy="194" rx="13" ry="19" fill="#d79d77"/>
+                            <ellipse cx="279" cy="195" rx="6" ry="10" fill="#c48862"/>
+                            <!-- face: slightly rounder at the cheeks, softer jaw -->
+                            <path d="M118 176C118 118 156 96 200 96S282 118 282 176C282 238 248 278 200 278S118 238 118 176Z" fill="url(#face)"/>
+                            <!-- hair below the cap, with sideburns -->
+                            <path d="M118 150c0 14 2 26 6 38l4-30c4-10 8-16 14-20zM282 150c0 14-2 26-6 38l-4-30c-4-10-8-16-14-20z" fill="#1d1412"/>
+                            <path d="M124 186c2 10 4 16 6 20M276 186c-2 10-4 16-6 20" stroke="#2a1d18" stroke-width="5" stroke-linecap="round" opacity=".85"/>
+                            <!-- cap -->
+                            <path d="M112 156C112 92 154 64 200 64S288 92 288 156C262 140 232 134 200 134S138 140 112 156Z" fill="url(#cap)"/>
+                            <path d="M150 80c14-10 30-14 50-14" stroke="#ff6b6b" stroke-width="5" fill="none" stroke-linecap="round" opacity=".35"/>
+                            <path d="M200 66v68" stroke="#a5141b" stroke-width="2" opacity=".5"/>
+                            <circle cx="200" cy="66" r="5" fill="#b8161e"/>
+                            <path d="M108 160C130 140 170 132 200 132S270 140 292 160C290 168 284 172 276 170 254 160 228 156 200 156S146 160 124 170C116 172 110 168 108 160Z" fill="#a8141c"/>
+                            <path d="M194 92h14l-1 14-6 6-6-6z" fill="#f4c430"/>
+                            <path d="M199 97l3 3 2-4" stroke="#1d1412" stroke-width="1.6" fill="none"/>
+                            <!-- soft shadow from the brim -->
+                            <path d="M126 170c22-10 48-14 74-14s52 4 74 14c-20 2-48 0-74 0s-54 2-74 0z" fill="#b97a58" opacity=".35"/>
+                            <!-- brows: thick, natural arch -->
+                            <path d="M148 182c8-9 24-11 36-6" stroke="#1d1412" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+                            <path d="M216 176c12-5 28-3 36 6" stroke="#1d1412" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+                            <!-- eyes: smiling, slightly narrowed -->
+                            <g class="blink">
+                                <path d="M156 204c4-9 22-9 26 0-4 5-22 5-26 0z" fill="#fff"/>
+                                <path d="M218 204c4-9 22-9 26 0-4 5-22 5-26 0z" fill="#fff"/>
+                                <circle cx="170" cy="202" r="6" fill="#3a2418"/>
+                                <circle cx="230" cy="202" r="6" fill="#3a2418"/>
+                                <circle cx="170" cy="202" r="3" fill="#120a07"/>
+                                <circle cx="230" cy="202" r="3" fill="#120a07"/>
+                                <circle cx="172" cy="200" r="1.7" fill="#fff"/>
+                                <circle cx="232" cy="200" r="1.7" fill="#fff"/>
+                            </g>
+                            <path d="M155 201c6-8 22-10 28-1M217 200c6-9 22-7 28 1" stroke="#1d1412" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+                            <path d="M160 212c6 3 14 3 20 0M220 212c6 3 14 3 20 0" stroke="#c0815d" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <!-- nose -->
+                            <path d="M200 206c0 10-4 18-8 22" stroke="#bf7f5b" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M189 230c4 4 18 4 22 0" stroke="#a96d4b" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- cheeks -->
+                            <ellipse cx="148" cy="232" rx="13" ry="8" fill="#e8806a" opacity=".3"/>
+                            <ellipse cx="252" cy="232" rx="13" ry="8" fill="#e8806a" opacity=".3"/>
+                            <!-- warm smile with teeth -->
+                            <path d="M168 242C178 262 222 262 232 242C214 248 186 248 168 242Z" fill="#fff" stroke="#7a3b2a" stroke-width="3.5" stroke-linejoin="round"/>
+                            <path d="M176 250c14 6 34 6 48 0" stroke="#efe3dc" stroke-width="1.6" fill="none"/>
+                            <path d="M166 240c-2-3-4-4-6-4M234 240c2-3 4-4 6-4" stroke="#a96d4b" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+                            <!-- light stubble along the jaw -->
+                            <path d="M146 250c18 26 90 26 108 0" stroke="#3a2a22" stroke-width="7" fill="none" opacity=".08" stroke-linecap="round"/>
+                        </g>
+                    </svg>
+                    <figure class="photo-chip" id="photoChip" style="margin: 0;">
+                        <img src="assets/img/vignesh.jpg" alt="Photo of Vignesh in the tea hills" onerror="document.getElementById('photoChip').remove()">
+                        <span>the real me ✌️</span>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story -->
+        <section class="pad">
+            <div class="wrap story">
+                <div class="sticky-col">
+                    <span class="eyebrow">My story</span>
+                    <h2 class="t-l" data-split style="margin-top: 18px;">Why a commerce student builds software.</h2>
+                </div>
+                <div class="story-text" data-reveal>
+                    <p>At CA firms I saw the same thing again and again. Businesses had good people and honest intentions, but their records lived in registers, diaries and scattered Excel sheets. Month-end meant late nights, guesswork and the occasional angry employee whose pay came out wrong.</p>
+                    <p>I spent my internships filing TDS and TCS returns, preparing financial statements from scratch, scrutinising ledgers and designing income-tax salary computation worksheets. I learned exactly where the numbers go wrong, and why.</p>
+                    <p>So when STAY BAY Business Hotels needed a better way to run HR and payroll, I built one: attendance, leave, overtime, a five-step payroll, advances, incentives, welfare, tax certificates, reports and an audit trail, all in one screen. It runs the hotel today.</p>
+                    <p>That became We Create. Now I build the same kind of dashboard for other businesses, shaped around their rules and not mine. And because I built it, I'm the one who answers when you message, at any hour.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="pad">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">What I bring</span>
+                        <h2 class="t-l" data-split>Accounts brain. Builder's hands.</h2>
+                    </div>
+                </div>
+                <div class="skills" data-reveal>
+                    <span>Payroll &amp; salary computation</span><span>TDS &amp; TCS returns</span><span>GST returns</span><span>PF · ESI · Professional tax</span><span>Income-tax regimes</span><span>Financial statements</span><span>Ledger scrutiny</span><span>Audit methodology</span><span>MCA compliance</span><span>Tally Prime</span><span>Advanced Excel</span><span>Data analysis</span><span>Dashboard design</span><span>HTML · CSS · JavaScript</span><span>PDF payslips &amp; reports</span><span>Team coordination</span>
+                </div>
+                <p class="lede" style="margin-top: 40px;" data-reveal>Outside work I co-head the Elder &amp; Differently Abled outreach team at Loyola's Department of Service Learning, and volunteer with NHRD Chennai, Maatram Foundation, the Loyola Student Council and the Rotaract Club of Loyola College.</p>
+            </div>
+        </section>
+
+        <!-- Promises -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="benefits three">
+                    <div class="benefit" data-reveal>
+                        <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div>
+                        <h3>You talk to me</h3>
+                        <p>No sales team, no ticket queue. The person who builds your dashboard is the person who answers.</p>
+                    </div>
+                    <div class="benefit" data-reveal>
+                        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg></div>
+                        <h3>Your wishes, built</h3>
+                        <p>Every screen, rule and report is shaped to how you run your business. Change your mind later? We change it too.</p>
+                    </div>
+                    <div class="benefit" data-reveal>
+                        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+                        <h3>Available 24/7</h3>
+                        <p>Salary day, festival day or midnight. Message on WhatsApp and you'll get a reply.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <p class="quote" data-reveal>“Good software should make the owner's evening <em>shorter</em>, not their to-do list longer.”</p>
+                <p style="margin-top: 20px; color: var(--muted);">Vignesh Annamalai</p>
+            </div>
+        </section>
+
+        <section class="cta-band pad">
+            <span class="orbit" aria-hidden="true"></span><span class="orbit o2" aria-hidden="true"></span>
+            <div class="wrap" style="position: relative;">
+                <h2>Let's build<br><span class="gold-text">yours.</span></h2>
+                <p>Tell me about your business in a WhatsApp message. I'll reply with how the dashboard would work for you.</p>
+                <div class="hero-ctas">
+                    <a class="btn btn-wa" href="#whatsapp" data-magnetic>Write to me on WhatsApp</a>
+                    <a class="btn btn-ghost" href="#features" data-magnetic>See the features</a>
+                </div>
+            </div>
+        </section>
+    </div>
+<div class="route" data-route="contact" id="page-contact" hidden>
+        <section class="page-hero" style="padding-bottom: clamp(40px, 5vw, 70px);">
+            <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
+            <div class="wrap" style="position: relative;">
+                <span class="eyebrow">Contact · Online 24/7</span>
+                <h1 data-split="load">Ask anything.<br><span class="gold-text">Get an answer.</span></h1>
+                <p class="lede" data-reveal>Tap a common question for an instant reply, or type your own. When you're ready, send Vignesh a WhatsApp message straight from this page.</p>
+            </div>
+        </section>
+
+        <!-- Chat -->
+        <section style="padding-bottom: clamp(80px, 10vw, 140px);">
+            <div class="wrap chat-layout">
+                <div class="faq-col" data-reveal>
+                    <h3>Frequently asked</h3>
+                    <p>Tap a question and the answer appears in the chat.</p>
+                    <div class="faq-list" id="faqList"></div>
+                </div>
+                <div class="chat" id="chat" data-reveal>
+                    <div class="chat-head">
+                        <span class="av">WC</span>
+                        <div><b>We Create Assistant</b><small>Typically replies instantly</small></div>
+                        <button type="button" class="reset" id="chatReset">Start over</button>
+                    </div>
+                    <div class="chat-body" id="chatBody" aria-live="polite"></div>
+                    <form class="chat-input" id="chatForm" autocomplete="off">
+                        <input id="chatText" type="text" placeholder="Type your question…" aria-label="Your question" maxlength="300">
+                        <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l16-8-6 16-2-7z"/></svg></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- WhatsApp composer -->
+        <section class="paper-sec pad" id="whatsapp">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">WhatsApp</span>
+                        <h2 class="t-l" data-split>Write your message. We'll open WhatsApp.</h2>
+                    </div>
+                    <p>Fill in a few details and watch your message appear on the phone. Press send and WhatsApp opens with everything ready to go to Vignesh.</p>
+                </div>
+                <div class="wa-box">
+                    <form class="form" id="waForm" novalidate>
+                        <div class="form-row">
+                            <div class="field"><label for="wa_name">Your name</label><input id="wa_name" type="text" autocomplete="name" placeholder="e.g. Priya Raman"><span class="err"></span></div>
+                            <div class="field"><label for="wa_biz">Business name <span style="font-weight: 400;">(optional)</span></label><input id="wa_biz" type="text" autocomplete="organization" placeholder="e.g. Hotel Sea Breeze"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="field"><label for="wa_ind">Industry</label>
+                                <select id="wa_ind"><option value="">Choose one</option><option>Hospitality</option><option>Manufacturing</option><option>Retail</option><option>Healthcare</option><option>Education</option><option>Construction</option><option>Logistics</option><option>Professional services</option><option>Other</option></select>
+                            </div>
+                            <div class="field"><label for="wa_need">I'm interested in</label>
+                                <select id="wa_need"><option value="">Choose one</option><option>A live demo</option><option>A dashboard for my business</option><option>A custom website or dashboard</option><option>Pricing</option><option>Support for my existing dashboard</option></select>
+                            </div>
+                        </div>
+                        <div class="field"><label for="wa_msg">Your message</label><textarea id="wa_msg" placeholder="e.g. We have 40 staff across two shifts and do payroll in Excel. Can you show me how this would work for us?"></textarea><span class="err"></span></div>
+                        <div class="hero-ctas" style="margin-top: 4px;">
+                            <a class="btn btn-wa" id="waSend" href="#" target="_blank" rel="noopener" data-magnetic>
+                                <svg viewBox="0 0 32 32" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.3.6 4.5 1.8 6.4L3 29l7.2-2c1.8 1 3.8 1.5 5.8 1.5 7 0 12.7-5.6 12.7-12.6S23 3 16 3z"/></svg>
+                                Send on WhatsApp
+                            </a>
+                        </div>
+                        <div class="copy-row">WhatsApp not opening? Message <code>+91 94885 22465</code> <button type="button" id="waCopy">Copy number</button></div>
+                    </form>
+                    <div class="phone-mock" data-reveal aria-label="Preview of your WhatsApp message">
+                        <div class="phone-top"><span class="av">VA</span><div><b>Vignesh Annamalai</b><small>online</small></div></div>
+                        <div class="phone-chat"><div class="wa-bubble empty" id="waPreview"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Direct -->
+        <section class="pad">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Other ways</span>
+                        <h2 class="t-l" data-split>Prefer to call?</h2>
+                    </div>
+                    <span class="avail"><i></i> Available 24/7, every day</span>
+                </div>
+                <div class="contact-cards">
+                    <a class="c-card" href="tel:+919488522465" data-reveal><small>Call</small><b>+91 94885 22465</b><span>Any time. If I miss it, I'll call you back.</span></a>
+                    <a class="c-card" href="https://wa.me/919488522465" target="_blank" rel="noopener" data-reveal><small>WhatsApp</small><b>Chat directly</b><span>Fastest way to reach me.</span></a>
+                    <a class="c-card" href="mailto:itsvigneshannamalai@gmail.com" data-reveal><small>Email</small><b>itsvigneshannamalai@gmail.com</b><span>For proposals and documents.</span></a>
+                    <a class="c-card" href="https://www.linkedin.com/in/vignesh-27478223a" target="_blank" rel="noopener" data-reveal><small>LinkedIn</small><b>Vignesh Annamalai</b><span>Connect professionally.</span></a>
+                </div>
+            </div>
+        </section>
+    </div>
+    </main>
+    <div id="site-footer"></div>
+    <script>
+        // Questions shown on the left of the chat. "keys" match words people type; "next" suggests follow-up questions.
+        const WA = 'https://wa.me/919488522465?text=';
+        window.SITE_FAQ = [
+            { id: 'what', q: 'What does the dashboard do?', keys: ['what', 'does', 'feature', 'do', 'about', 'module', 'dashboard'],
+              a: 'It runs your whole HR desk in one place: <b>attendance</b> (with check-in times and night shifts), <b>leave &amp; overtime</b>, a <b>5-step payroll</b> with payslip PDFs, <b>salary advances</b>, <b>increments &amp; incentives</b>, <b>staff welfare</b>, <b>income tax &amp; Form 130/16</b>, <b>19 reports</b> and a permanent <b>audit log</b>. <a href="#features">See every feature →</a>', next: ['custom', 'industries', 'demo'] },
+            { id: 'price', q: 'How much does it cost?', keys: ['cost', 'price', 'pricing', 'charge', 'fee', 'rate', 'budget', 'how much', 'rs', '₹'],
+              a: 'It depends on your team size, the modules you need and how much customisation you want, so every quote is made for you. Share a few details on WhatsApp and Vignesh will send a clear quote with no hidden extras. <a href="#whatsapp">Ask for a quote →</a>', next: ['custom', 'time'] },
+            { id: 'custom', q: 'Can it be customised for my business?', keys: ['custom', 'change', 'modify', 'my business', 'tailor', 'personal', 'logo', 'brand', 'own rules'],
+              a: 'Yes, completely. We build it the way you want it: your logo and colours, your salary structure, leave rules, weekly offs, overtime rate, approval levels and the exact reports you need. Need something new later? We add it.', next: ['time', 'price'] },
+            { id: 'industries', q: 'Is it only for hotels?', keys: ['hotel', 'only', 'industry', 'industries', 'manufactur', 'factory', 'retail', 'shop', 'clinic', 'hospital', 'school', 'college'],
+              a: 'No. Our first client is STAY BAY Business Hotels, but it works for any team with shifts and salaries: <b>manufacturing</b>, retail, clinics and hospitals, schools, construction, logistics and professional firms. <a href="#industries">See industries →</a>', next: ['custom', 'demo'] },
+            { id: 'time', q: 'How long does it take to set up?', keys: ['long', 'time', 'days', 'weeks', 'setup', 'set up', 'start', 'when', 'ready', 'deliver'],
+              a: 'The ready version can be set up with your employees in a few days. A fully customised build usually takes a few weeks, depending on what you need. You see the screens before anything goes live, and we check the payroll against your last manual month.', next: ['train', 'price'] },
+            { id: 'compliance', q: 'Does it calculate PF, ESI, PT and TDS?', keys: ['pf', 'esi', 'tds', 'tax', 'professional tax', 'pt', 'compliance', 'form 16', 'form 130', 'statutory', 'regime'],
+              a: 'Yes. PF (with the wage ceiling), ESI (with the wage limit), professional tax and monthly TDS are worked out by the rules you set. It compares the new and old tax regimes for each employee and produces the yearly tax certificate (Form 130 / Form 16) as a PDF.', next: ['data', 'what'] },
+            { id: 'data', q: 'Is my data safe?', keys: ['safe', 'secure', 'security', 'data', 'privacy', 'password', 'hack', 'backup', 'lost'],
+              a: 'Passwords are stored only as secure hashes, accounts lock after wrong attempts, the dashboard signs out when idle, and every change is in an audit log nobody can edit. The current version keeps data on your own device, with one-click backup and restore. A cloud version shared across branches can be built on request.', next: ['phone', 'support'] },
+            { id: 'phone', q: 'Does it work on mobile?', keys: ['mobile', 'phone', 'android', 'iphone', 'tablet', 'laptop', 'computer', 'app', 'install'],
+              a: 'Yes. It runs in the browser on any phone, tablet or computer, and there is nothing to install. Managers can mark attendance from a phone at the front desk or on the factory floor.', next: ['data', 'train'] },
+            { id: 'train', q: 'Will you train my staff?', keys: ['train', 'training', 'learn', 'teach', 'manual', 'how to use', 'difficult', 'easy'],
+              a: 'Yes. Your manager and accountant get hands-on training, and there is a built-in user manual with step-by-step guides. There is also a <b>Basic</b> mode with only the everyday screens, so nobody gets lost.', next: ['support', 'demo'] },
+            { id: 'support', q: 'What support do I get?', keys: ['support', 'help', 'problem', 'issue', 'bug', '24', 'available', 'night', 'sunday', 'contact'],
+              a: 'Support is available <b>24/7</b>, directly from Vignesh, the person who built it. Payroll problems don\'t wait for office hours and neither do we. Message on WhatsApp any time.', next: ['demo', 'price'] },
+            { id: 'demo', q: 'Can I see a live demo?', keys: ['demo', 'see', 'show', 'trial', 'try', 'example', 'sample', 'walkthrough'],
+              a: 'Of course. We\'ll show it on your phone or laptop with sample data shaped like your business. <a href="' + WA + encodeURIComponent('Hi Vignesh! I\'d like a live demo of the We Create dashboard.') + '" target="_blank" rel="noopener">Book a demo on WhatsApp →</a>', next: ['price', 'time'] },
+            { id: 'who', q: 'Who builds it?', keys: ['who', 'vignesh', 'developer', 'built', 'company', 'team', 'you'],
+              a: 'Vignesh Annamalai, founder of We Create and a commerce student at Loyola College, Chennai, with internships at two CA firms filing TDS returns and designing salary computation sheets. He knows payroll from the inside. <a href="#about">Meet Vignesh →</a>', next: ['support', 'demo'] }
+        ];
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+/* We Create — shared site behaviour */
+(() => {
+    const CONTACT = {
+        name: 'Vignesh Annamalai',
+        phone: '+91 94885 22465',
+        wa: '919488522465',
+        email: 'itsvigneshannamalai@gmail.com',
+        linkedin: 'https://www.linkedin.com/in/vignesh-27478223a'
+    };
+    window.SITE_CONTACT = CONTACT;
+    const waLink = text => `https://wa.me/${CONTACT.wa}${text ? '?text=' + encodeURIComponent(text) : ''}`;
+    window.waLink = waLink;
+
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasGsap = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+    const root = document.documentElement;
+    if (reduced) root.classList.add('reduced');
+    const page = document.body.dataset.page || 'home';
+    const arrow = '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+    const waIcon = '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.3.6 4.5 1.8 6.4L3 29l7.2-2c1.8 1 3.8 1.5 5.8 1.5 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.3 1.1 1.2-4.1-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.5C5.3 9.8 10.1 5.1 16 5.1s10.6 4.7 10.6 10.5S21.9 26.1 16 26.1zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.6-1.6-1-.8-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.4z"/></svg>';
+
+    // ---------- shared chrome ----------
+    const routes = [...document.querySelectorAll('.route')];
+    const SPA = routes.length > 0;
+    const go = (key, file, hash) => SPA ? '#' + (hash || key) : file + (hash ? '#' + hash : '');
+    const links = [['home', 'index.html', 'Home'], ['features', 'features.html', 'Features'], ['industries', 'industries.html', 'Industries'], ['about', 'about.html', 'About me'], ['contact', 'contact.html', 'Contact']];
+    const navEl = document.getElementById('site-nav');
+    if (navEl) {
+        navEl.outerHTML = `
+        <div class="progress" id="progress"></div>
+        <header class="nav" id="nav">
+            <div class="wrap nav-in">
+                <a class="brand" href="${go('home', 'index.html')}" aria-label="We Create home">
+                    <span class="brand-mark">WC</span>
+                    <span><b>We Create</b><small>Business dashboards · Chennai</small></span>
+                </a>
+                <nav aria-label="Main"><ul class="nav-links">${links.map(([k, h, l]) => `<li><a href="${go(k, h)}" data-k="${k}" class="${k === page ? 'active' : ''}">${l}</a></li>`).join('')}</ul></nav>
+                <div class="nav-cta">
+                    <a class="btn btn-primary" href="${go('contact', 'contact.html', 'whatsapp')}" data-magnetic>Book a demo ${arrow}</a>
+                    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
+                </div>
+            </div>
+        </header>
+        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+            <nav aria-label="Mobile">${links.map(([k, h, l], i) => `<a class="big" href="${go(k, h)}"><span>0${i + 1}</span>${l}</a>`).join('')}</nav>
+            <div class="meta"><span class="avail"><i></i> Available 24/7</span><span>${CONTACT.phone}</span><span>${CONTACT.email}</span></div>
+        </div>`;
+    }
+    const footEl = document.getElementById('site-footer');
+    if (footEl) {
+        footEl.outerHTML = `
+        <footer class="footer">
+            <div class="wrap">
+                <div class="foot-grid">
+                    <div>
+                        <div class="foot-big">Your business, your rules.<br><span class="gold-text">We build it around them.</span></div>
+                        <span class="avail"><i></i> Online now · available 24/7</span>
+                    </div>
+                    <div>
+                        <h4>Explore</h4>
+                        <ul>${links.map(([k, h, l]) => `<li><a href="${go(k, h)}">${l}</a></li>`).join('')}</ul>
+                    </div>
+                    <div>
+                        <h4>Talk to ${CONTACT.name.split(' ')[0]}</h4>
+                        <ul>
+                            <li><a href="${waLink('Hi Vignesh, I saw your website and would like to know more.')}" target="_blank" rel="noopener">WhatsApp · ${CONTACT.phone}</a></li>
+                            <li><a href="tel:${CONTACT.phone.replace(/\s/g, '')}">Call · ${CONTACT.phone}</a></li>
+                            <li><a href="mailto:${CONTACT.email}">${CONTACT.email}</a></li>
+                            <li><a href="${CONTACT.linkedin}" target="_blank" rel="noopener">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="foot-bottom">
+                    <span>© ${new Date().getFullYear()} We Create · Founded by ${CONTACT.name}, Chennai</span>
+                    <span>Hospitality · Manufacturing · Retail · Healthcare · Education · and more</span>
+                </div>
+            </div>
+        </footer>
+        <a class="wa-float" href="${waLink('Hi Vignesh, I saw your website and would like a demo of the dashboard.')}" target="_blank" rel="noopener" aria-label="Message on WhatsApp">${waIcon}<span class="wa-tip">Chat on WhatsApp</span></a>`;
+    }
+    document.body.insertAdjacentHTML('beforeend', '<div class="curtain" id="curtain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>');
+
+    // mobile menu
+    const burger = document.getElementById('burger');
+    burger?.addEventListener('click', () => {
+        const open = document.body.classList.toggle('menu-open');
+        burger.setAttribute('aria-expanded', String(open));
+        document.getElementById('mobileMenu').setAttribute('aria-hidden', String(!open));
+    });
+
+    // ---------- page transitions ----------
+    const curtain = document.getElementById('curtain');
+    document.addEventListener('click', e => {
+        const a = e.target.closest('a[href]');
+        if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
+        const href = a.getAttribute('href');
+        if (!/^[\w-]+\.html(#[\w-]+)?$/.test(href)) return;
+        const [file, hash] = href.split('#');
+        if (file === location.pathname.split('/').pop() || (file === 'index.html' && /\/$/.test(location.pathname))) {
+            if (hash) { e.preventDefault(); scrollToId(hash); document.body.classList.remove('menu-open'); }
+            return;
+        }
+        if (reduced) return;
+        e.preventDefault();
+        curtain.classList.remove('out');
+        curtain.classList.add('in');
+        setTimeout(() => { location.href = href; }, 620);
+    });
+    window.addEventListener('pageshow', () => {
+        if (curtain.classList.contains('in')) { curtain.classList.add('out'); curtain.classList.remove('in'); }
+    });
+
+    function scrollToId(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - 90, behavior: reduced ? 'auto' : 'smooth' });
+    }
+
+    // ---------- nav hide / progress ----------
+    const nav = document.getElementById('nav');
+    const progress = document.getElementById('progress');
+    let lastY = 0, ticking = false;
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(updateScroll);
+    }
+    function updateScroll() {
+        ticking = false;
+        const y = window.scrollY;
+        nav?.classList.toggle('solid', y > 40);
+        nav?.classList.toggle('hide', y > 300 && y > lastY && !document.body.classList.contains('menu-open'));
+        lastY = y;
+        const max = document.documentElement.scrollHeight - innerHeight;
+        if (progress) progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    }
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ---------- magnetic ----------
+    if (!reduced && matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('[data-magnetic]').forEach(el => {
+            el.addEventListener('pointermove', e => {
+                const r = el.getBoundingClientRect();
+                el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .25}px, ${(e.clientY - r.top - r.height / 2) * .35}px)`;
+            });
+            el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+        });
+    }
+
+    // ---------- tilt + glow ----------
+    if (!reduced && matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('[data-tilt]').forEach(el => {
+            const max = Number(el.dataset.tilt) || 8;
+            el.addEventListener('pointermove', e => {
+                const r = el.getBoundingClientRect();
+                const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+                el.style.transform = `perspective(900px) rotateY(${(px - .5) * max * 2}deg) rotateX(${(.5 - py) * max * 2}deg)`;
+                el.style.setProperty('--mx', px * 100 + '%');
+                el.style.setProperty('--my', py * 100 + '%');
+            });
+            el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+        });
+    }
+
+    // ---------- horizontal story: arrows, drag, keyboard ----------
+    document.querySelectorAll('.hscroll').forEach(box => {
+        const sec = box.closest('section');
+        const prev = sec.querySelector('[data-h="prev"]'), next = sec.querySelector('[data-h="next"]');
+        const bar = sec.querySelector('.hbar i');
+        const step = () => (box.querySelector('.hpanel')?.offsetWidth || 400) + 28;
+        const update = () => {
+            const max = box.scrollWidth - box.clientWidth;
+            if (prev) prev.disabled = box.scrollLeft <= 4;
+            if (next) next.disabled = box.scrollLeft >= max - 4;
+            if (bar) bar.style.width = (max > 0 ? Math.max(8, (box.scrollLeft / max) * 100) : 100) + '%';
+        };
+        prev?.addEventListener('click', () => box.scrollBy({ left: -step(), behavior: reduced ? 'auto' : 'smooth' }));
+        next?.addEventListener('click', () => box.scrollBy({ left: step(), behavior: reduced ? 'auto' : 'smooth' }));
+        box.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') { e.preventDefault(); next?.click(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prev?.click(); }
+        });
+        // drag with the mouse (touch already swipes natively)
+        let down = null;
+        box.addEventListener('pointerdown', e => {
+            if (e.pointerType !== 'mouse' || e.target.closest('a, button')) return;
+            down = { x: e.clientX, left: box.scrollLeft, moved: false };
+            box.classList.add('dragging');
+        });
+        addEventListener('pointermove', e => {
+            if (!down) return;
+            const dx = e.clientX - down.x;
+            if (Math.abs(dx) > 3) down.moved = true;
+            box.scrollLeft = down.left - dx;
+        });
+        addEventListener('pointerup', () => {
+            if (!down) return;
+            down = null;
+            box.classList.remove('dragging');
+        });
+        box.addEventListener('scroll', update, { passive: true });
+        addEventListener('resize', update);
+        update();
+    });
+
+    // ---------- before / after ----------
+    document.querySelectorAll('.compare').forEach(c => {
+        const input = c.querySelector('input');
+        const set = v => c.style.setProperty('--pos', v + '%');
+        input.addEventListener('input', () => set(input.value));
+        set(input.value);
+    });
+
+    // ---------- basic/advanced demo ----------
+    const modeTrack = document.getElementById('modeTrack');
+    if (modeTrack) {
+        const tabs = document.getElementById('tabsDemo');
+        const label = document.getElementById('modeLabel');
+        const setMode = adv => {
+            modeTrack.setAttribute('aria-checked', String(adv));
+            tabs.classList.toggle('basic', !adv);
+            document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', (b.dataset.mode === 'advanced') === adv));
+            label.textContent = adv ? 'Advanced: all 11 sections, the 5-step payroll approval, reports, settings and the audit log.' : 'Basic: the 7 everyday tabs with one-click Pay. Same data underneath.';
+        };
+        modeTrack.addEventListener('click', () => setMode(modeTrack.getAttribute('aria-checked') !== 'true'));
+        document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode === 'advanced')));
+        setMode(true);
+    }
+
+    // ---------- statement words ----------
+    document.querySelectorAll('[data-words]').forEach(p => {
+        const hl = (p.dataset.words || '').split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+        p.innerHTML = p.textContent.trim().split(/\s+/).map(w => `<span class="w${hl.includes(w.replace(/[^\w]/g, '').toLowerCase()) ? ' hl' : ''}">${w}</span>`).join(' ');
+    });
+
+    // ---------- GSAP motion ----------
+    // Everything below runs per "scope": the whole document on a normal page, or one page section
+    // the first time it is shown in the single-file (index.html only) build.
+    function counters(scope) {
+        scope.querySelectorAll('[data-count]').forEach(el => {
+            const to = Number(el.dataset.count);
+            const suffix = el.dataset.suffix ? `<sup>${el.dataset.suffix}</sup>` : '';
+            if (!hasGsap || reduced) { el.innerHTML = to + suffix; return; }
+            const o = { v: 0 };
+            gsap.to(o, { v: to, duration: 2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true }, onUpdate: () => { el.innerHTML = Math.round(o.v) + suffix; } });
+        });
+    }
+
+    function splitLines(scope) {
+        scope.querySelectorAll('[data-split]').forEach(el => {
+            const walk = node => {
+                [...node.childNodes].forEach(n => {
+                    if (n.nodeType === 3) {
+                        const frag = document.createDocumentFragment();
+                        n.textContent.split(/(\s+)/).forEach(part => {
+                            if (!part) return;
+                            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+                            const outer = document.createElement('span'); outer.className = 'split-line'; outer.style.display = 'inline-block';
+                            const inner = document.createElement('span'); inner.className = 'split-word'; inner.textContent = part;
+                            outer.appendChild(inner); frag.appendChild(outer);
+                        });
+                        n.replaceWith(frag);
+                    } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+                        if (n.classList.contains('split-line')) return;
+                        const outer = document.createElement('span'); outer.className = 'split-line'; outer.style.display = 'inline-block';
+                        n.replaceWith(outer); n.classList.add('split-word'); n.style.display = 'inline-block'; outer.appendChild(n);
+                    }
+                });
+            };
+            walk(el);
+        });
+    }
+
+    function motion(scope) {
+        const $ = sel => scope.querySelector(sel);
+        const $$ = sel => [...scope.querySelectorAll(sel)];
+
+        splitLines(scope);
+        $$('[data-split]').forEach(el => {
+            const words = el.querySelectorAll('.split-word');
+            gsap.from(words, { yPercent: 110, rotate: 4, duration: 1.1, ease: 'expo.out', stagger: .045, delay: el.dataset.split === 'load' ? .25 : 0,
+                scrollTrigger: el.dataset.split === 'load' ? null : { trigger: el, start: 'top 85%' } });
+        });
+
+        const reveals = $$('[data-reveal]');
+        if (reveals.length) ScrollTrigger.batch(reveals, {
+            start: 'top 88%',
+            onEnter: els => gsap.to(els, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', stagger: .08, overwrite: true })
+        });
+
+        // hero mock assembles
+        const mock = $('.mock');
+        if (mock) {
+            gsap.from(mock, { y: 120, rotateX: 30, opacity: 0, duration: 1.6, ease: 'expo.out', delay: .4 });
+            gsap.from($$('.mock-kpi, .mock-card'), { y: 40, opacity: 0, duration: 1, ease: 'expo.out', stagger: .07, delay: .9 });
+            gsap.from($$('.bars i'), { scaleY: 0, duration: 1, ease: 'expo.out', stagger: .05, delay: 1.3 });
+            gsap.from($$('.mock-float'), { scale: .5, opacity: 0, duration: .9, ease: 'back.out(2)', stagger: .2, delay: 1.8 });
+            const stage = $('.mock-stage');
+            if (matchMedia('(pointer: fine)').matches) stage.addEventListener('pointermove', e => {
+                const r = stage.getBoundingClientRect();
+                gsap.to(mock, { rotateY: -14 + ((e.clientX - r.left) / r.width - .5) * 16, rotateX: 8 - ((e.clientY - r.top) / r.height - .5) * 12, duration: .8, ease: 'power3.out' });
+            });
+        }
+
+        // statement scrub
+        $$('.statement').forEach(sec => {
+            const words = sec.querySelectorAll('.w');
+            ScrollTrigger.create({
+                trigger: sec, start: 'top 75%', end: 'bottom 55%', scrub: true,
+                onUpdate: self => {
+                    const n = Math.round(self.progress * words.length);
+                    if (n === sec._lit) return;
+                    sec._lit = n;
+                    words.forEach((w, i) => { w.style.opacity = i < n ? 1 : .14; });
+                }
+            });
+        });
+
+        $$('.hpanel .ui').forEach(ui => gsap.from(ui.children, { y: 24, opacity: 0, stagger: .08, ease: 'expo.out', duration: .9, scrollTrigger: { trigger: ui, start: 'top 90%' } }));
+
+        // stacked cards scale back
+        const cards = $$('.stack-card');
+        cards.forEach((card, i) => {
+            if (i === cards.length - 1 || innerWidth < 860) return;
+            gsap.to(card, { scale: .95, opacity: .55, ease: 'none', scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top 120px', scrub: true } });
+        });
+
+        // process line
+        const fill = $('.process .fill');
+        if (fill) gsap.to(fill, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: $('.process'), start: 'top 75%', end: 'bottom 50%', scrub: true } });
+
+        // big CTA type
+        $$('.cta-band h2').forEach(h => gsap.from(h, { scale: .85, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: h, start: 'top 85%' } }));
+
+        // caricature entrance
+        if ($('.caricature')) {
+            gsap.from($('.caricature'), { y: 80, opacity: 0, duration: 1.4, ease: 'expo.out', delay: .4 });
+            gsap.from($('.speech'), { scale: 0, transformOrigin: 'bottom right', duration: .8, ease: 'back.out(2.5)', delay: 1.4 });
+            if ($('.photo-chip')) gsap.from($('.photo-chip'), { rotate: -30, x: -60, opacity: 0, duration: 1.2, ease: 'expo.out', delay: 1.1 });
+        }
+        counters(scope);
+    }
+
+    // ---------- single-file build: one page section visible at a time ----------
+    const ROUTE_TITLES = { home: 'We Create', features: 'Features · We Create', industries: 'Industries · We Create', about: 'About Vignesh · We Create', contact: 'Contact · We Create' };
+    let currentRoute = null;
+    const animated = new Set();
+    const useMotion = hasGsap && !reduced;
+
+    function prepare(scope) {
+        if (useMotion) motion(scope);
+        else counters(scope);
+    }
+
+    function resolveHash() {
+        const id = decodeURIComponent(location.hash.slice(1));
+        if (!id) return { route: 'home' };
+        if (routes.some(r => r.dataset.route === id)) return { route: id };
+        const el = document.getElementById(id);
+        const host = el && el.closest('.route');
+        return host ? { route: host.dataset.route, el } : { route: 'home' };
+    }
+
+    function showRoute(first) {
+        const { route, el } = resolveHash();
+        const finish = () => {
+            if (route !== currentRoute) {
+                routes.forEach(r => { r.hidden = r.dataset.route !== route; });
+                currentRoute = route;
+                document.body.dataset.page = route;
+                document.title = ROUTE_TITLES[route] || 'We Create';
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.k === route));
+                window.scrollTo(0, 0);
+                const scope = routes.find(r => r.dataset.route === route);
+                if (!animated.has(route)) { animated.add(route); prepare(scope); }
+                if (hasGsap) ScrollTrigger.refresh();
+                dispatchEvent(new Event('resize'));
+            }
+            if (el) setTimeout(() => scrollToId(el.id), 60);
+            onScroll();
+        };
+        document.body.classList.remove('menu-open');
+        if (first || route === currentRoute || reduced) { finish(); return; }
+        curtain.classList.remove('out');
+        curtain.classList.add('in');
+        setTimeout(() => { finish(); curtain.classList.add('out'); curtain.classList.remove('in'); }, 560);
+    }
+
+    if (SPA) {
+        document.addEventListener('click', e => {
+            const a = e.target.closest('a[href^="#"]');
+            if (!a || e.metaKey || e.ctrlKey) return;
+            const href = a.getAttribute('href');
+            if (href.length < 2) return;
+            e.preventDefault();
+            if (href === location.hash) { showRoute(); return; }
+            history.pushState(null, '', href);
+            showRoute();
+        });
+        addEventListener('popstate', () => showRoute());
+    }
+
+    // ---------- preloader (first visit in a session only) ----------
+    function preloader(done) {
+        let seen = false;
+        try { seen = sessionStorage.getItem('sb-loaded') === '1'; sessionStorage.setItem('sb-loaded', '1'); } catch (e) { seen = true; }
+        if (seen || reduced || !hasGsap || /nointro/.test(location.search)) { done(); return; }
+        document.body.insertAdjacentHTML('afterbegin', '<div class="loader" id="loader"><div class="loader-inner"><div class="loader-count" id="loaderCount">0</div><div class="loader-word">Setting up your workspace</div><div class="loader-bar"><i id="loaderBar"></i></div></div></div>');
+        const o = { v: 0 };
+        gsap.to(o, { v: 100, duration: 1.4, ease: 'power2.inOut', onUpdate: () => {
+            document.getElementById('loaderCount').textContent = Math.round(o.v);
+            document.getElementById('loaderBar').style.width = o.v + '%';
+        }, onComplete: () => {
+            gsap.to('#loader', { yPercent: -100, duration: .9, ease: 'expo.inOut', onComplete: () => document.getElementById('loader').remove() });
+            setTimeout(done, 250);
+        } });
+    }
+
+    function start() {
+        if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+        if (useMotion) root.classList.add('js-ready');
+        if (SPA) { showRoute(true); return; }
+        prepare(document);
+        if (location.hash) setTimeout(() => scrollToId(location.hash.slice(1)), 300);
+        addEventListener('load', () => hasGsap && ScrollTrigger.refresh());
+    }
+    if (useMotion) preloader(start);
+    else start();
+
+    // ---------- chat (contact page) ----------
+    const chatBody = document.getElementById('chatBody');
+    if (chatBody) {
+        const FAQ = window.SITE_FAQ || [];
+        const time = () => new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+        const scroll = () => { chatBody.scrollTop = chatBody.scrollHeight; };
+        const add = (who, html) => {
+            const m = document.createElement('div');
+            m.className = 'msg ' + who;
+            m.innerHTML = html + `<time>${time()}</time>`;
+            chatBody.appendChild(m);
+            scroll();
+            return m;
+        };
+        let busy = false;
+        const reply = (html, quick = []) => {
+            busy = true;
+            const t = document.createElement('div');
+            t.className = 'msg bot typing';
+            t.innerHTML = '<i></i><i></i><i></i>';
+            chatBody.appendChild(t);
+            scroll();
+            setTimeout(() => {
+                t.remove();
+                const m = add('bot', html);
+                if (quick.length) {
+                    const q = document.createElement('div');
+                    q.className = 'quick';
+                    quick.forEach(id => {
+                        const f = FAQ.find(x => x.id === id);
+                        if (!f) return;
+                        const b = document.createElement('button');
+                        b.type = 'button';
+                        b.textContent = f.q;
+                        b.onclick = () => ask(f);
+                        q.appendChild(b);
+                    });
+                    m.insertBefore(q, m.querySelector('time'));
+                    scroll();
+                }
+                busy = false;
+            }, Math.min(1800, 600 + html.length * 6));
+        };
+        const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        function ask(f) {
+            if (busy) return;
+            add('me', esc(f.q));
+            document.querySelector(`.faq-q[data-id="${f.id}"]`)?.classList.add('asked');
+            reply(f.a, f.next || []);
+        }
+        function greet() {
+            chatBody.innerHTML = '';
+            add('bot', `Hi! I'm the We Create assistant. 👋<br>Tap a question on the left, or type your own below. For anything specific, I'll connect you with Vignesh on WhatsApp. He replies 24/7.`);
+            document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('asked'));
+        }
+        document.getElementById('faqList').innerHTML = FAQ.map(f => `<button type="button" class="faq-q" data-id="${f.id}">${esc(f.q)}</button>`).join('');
+        document.querySelectorAll('.faq-q').forEach(b => b.addEventListener('click', () => {
+            ask(FAQ.find(f => f.id === b.dataset.id));
+            if (innerWidth < 900) document.getElementById('chat').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }));
+        document.getElementById('chatReset').addEventListener('click', greet);
+        document.getElementById('chatForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const input = document.getElementById('chatText');
+            const text = input.value.trim();
+            if (!text || busy) return;
+            input.value = '';
+            add('me', esc(text));
+            const words = text.toLowerCase();
+            let best = null, score = 0;
+            FAQ.forEach(f => {
+                const s = f.keys.reduce((n, k) => n + (words.includes(k) ? k.length : 0), 0);
+                if (s > score) { score = s; best = f; }
+            });
+            if (/^(hi|hello|hey|vanakkam|good (morning|afternoon|evening))\b/.test(words) && score < 4) {
+                reply('Hello! 😊 What would you like to know: features, pricing, customisation or support?', ['what', 'price', 'custom', 'support']);
+            } else if (best && score >= 3) {
+                reply(best.a, best.next || []);
+            } else {
+                reply(`Good question. That needs a proper answer from Vignesh himself. <a href="${waLink('Hi Vignesh, I have a question: ' + text)}" target="_blank" rel="noopener">Send it to him on WhatsApp</a> and he'll get back to you, any time of day.`, ['what', 'custom']);
+            }
+        });
+        greet();
+    }
+
+    // ---------- WhatsApp composer ----------
+    const waForm = document.getElementById('waForm');
+    if (waForm) {
+        const f = id => document.getElementById(id);
+        const bubble = f('waPreview');
+        const build = () => {
+            const name = f('wa_name').value.trim(), biz = f('wa_biz').value.trim(), ind = f('wa_ind').value, need = f('wa_need').value, msg = f('wa_msg').value.trim();
+            const lines = [`Hi Vignesh! 👋`];
+            if (name) lines.push(`I'm ${name}${biz ? ` from ${biz}` : ''}${ind ? ` (${ind})` : ''}.`);
+            else if (biz) lines.push(`I'm from ${biz}${ind ? ` (${ind})` : ''}.`);
+            if (need) lines.push(`I'm interested in: ${need}.`);
+            if (msg) lines.push('', msg);
+            return lines.join('\n');
+        };
+        const update = () => {
+            const text = build();
+            const empty = !f('wa_name').value.trim() && !f('wa_msg').value.trim();
+            bubble.classList.toggle('empty', empty);
+            bubble.innerHTML = (empty ? 'Your message will appear here as you type…' : text.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]))) + `<time>${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })} ✓✓</time>`;
+            f('waSend').href = waLink(text);
+        };
+        waForm.addEventListener('input', update);
+        // The Send button is a real link to wa.me; it only checks the form before letting the click through.
+        f('waSend').addEventListener('click', e => {
+            update();
+            const errs = [];
+            if (!f('wa_name').value.trim()) errs.push(['wa_name', 'Please add your name so Vignesh knows who is writing.']);
+            if (f('wa_msg').value.trim().length < 5) errs.push(['wa_msg', 'Write a line or two about what you need.']);
+            document.querySelectorAll('.field .err').forEach(x => { x.textContent = ''; });
+            errs.forEach(([id, m]) => { f(id).closest('.field').querySelector('.err').textContent = m; });
+            if (errs.length) { e.preventDefault(); f(errs[0][0]).focus(); }
+        });
+        waForm.addEventListener('submit', e => { e.preventDefault(); f('waSend').click(); });
+        f('waCopy')?.addEventListener('click', () => {
+            const done = () => { f('waCopy').textContent = 'Copied'; setTimeout(() => { f('waCopy').textContent = 'Copy number'; }, 1600); };
+            navigator.clipboard?.writeText(CONTACT.phone).then(done, () => {});
+        });
+        update();
+    }
+})();
+
+    </script>
+</body>
+</html>
