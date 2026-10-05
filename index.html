@@ -118,7 +118,8 @@ body::after {
 .mobile-menu a.big { display: block; font-family: var(--display); font-size: clamp(44px, 12vw, 72px); font-weight: 700; text-decoration: none; letter-spacing: -.04em; line-height: 1.08; }
 .mobile-menu a.big span { font-family: var(--mono); font-size: 12px; color: var(--gold); vertical-align: top; margin-right: 10px; letter-spacing: .1em; }
 .mobile-menu .meta { color: var(--muted); font-size: 14px; display: grid; gap: 4px; }
-@media (max-width: 960px) { .nav-links, .nav-cta .btn { display: none; } .burger { display: block; } }
+@media (max-width: 1180px) { .nav-links, .nav-cta .btn { display: none; } .burger { display: block; } }
+.nav-links a { padding-inline: 14px; }
 
 /* ---------- buttons ---------- */
 .btn { position: relative; display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 999px; border: 1px solid transparent; font-weight: 600; font-size: 15.5px; text-decoration: none; cursor: pointer; overflow: hidden; isolation: isolate; transition: transform .25s, box-shadow .25s; white-space: nowrap; }
@@ -545,6 +546,91 @@ body::after {
 .c-card b { font-family: var(--display); font-size: 24px; letter-spacing: -.02em; overflow-wrap: anywhere; }
 .c-card span { color: var(--muted); font-size: 14.5px; }
 
+/* ---------- WORK: case studies ---------- */
+.case { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 80px); align-items: center; padding-block: clamp(60px, 8vw, 110px); border-top: 1px solid var(--line); }
+.case > * { min-width: 0; }
+.case.flip > :first-child { order: 2; }
+.case-tag { display: inline-flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.case-tag span { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 5px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); }
+.case-tag span.live { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.case-tag span.test { background: rgba(62, 207, 142, .14); color: var(--mint); border-color: rgba(62, 207, 142, .35); }
+.case h2 { font-size: clamp(38px, 5vw, 72px); margin: 18px 0 8px; }
+.case .who { color: var(--gold); font-weight: 600; margin-bottom: 18px; }
+.case p { color: var(--muted); }
+.case ul { list-style: none; padding: 0; margin: 22px 0 28px; display: grid; gap: 10px; }
+.case li { position: relative; padding-left: 22px; font-size: 15.5px; }
+.case li::before { content: ''; position: absolute; left: 2px; top: 9px; width: 7px; height: 7px; border-radius: 2px; background: var(--crimson); transform: rotate(45deg); }
+@media (max-width: 900px) { .case { grid-template-columns: 1fr; } .case.flip > :first-child { order: 0; } }
+
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.work-card { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 30px; min-height: 420px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--ink-2); text-decoration: none; overflow: hidden; transition: border-color .3s, transform .3s; }
+.work-card:hover { border-color: rgba(227, 185, 79, .45); transform: translateY(-6px); }
+.work-card .kind { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.work-card h3 { font-size: clamp(28px, 2.6vw, 38px); }
+.work-card p { color: var(--muted); font-size: 15.5px; }
+.work-card .more { margin-top: auto; font-weight: 600; display: inline-flex; gap: 8px; align-items: center; }
+.work-card .more svg { width: 18px; height: 18px; transition: transform .3s; }
+.work-card:hover .more svg { transform: translateX(5px); }
+.work-card .case-tag { margin-top: 4px; }
+.work-card.erp { background: var(--grad); border-color: transparent; }
+.work-card.erp p, .work-card.erp .kind { color: rgba(255, 255, 255, .88); }
+@media (max-width: 960px) { .work-grid { grid-template-columns: 1fr; } .work-card { min-height: 0; } }
+
+.machines { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.mc { background: #fff; border-radius: 12px; padding: 10px; border-top: 4px solid var(--mc, #10b981); font-size: 11.5px; display: grid; gap: 2px; }
+.mc b { font-size: 12.5px; }
+.mc span { color: var(--on-paper-muted); }
+.mini-bars { display: flex; align-items: flex-end; gap: 4px; height: 70px; padding: 8px 10px 0; background: #fff; border-radius: 12px; }
+.mini-bars i { flex: 1; background: linear-gradient(180deg, #d62839, #9c1830); border-radius: 3px 3px 0 0; height: var(--h); }
+
+/* ---------- ERP ---------- */
+.keys { display: flex; flex-wrap: wrap; gap: 10px; }
+.key { display: grid; gap: 4px; justify-items: center; padding: 14px 16px 10px; min-width: 104px; border-radius: 14px; background: var(--ink-2); border: 1px solid var(--line); border-bottom-width: 5px; transition: transform .15s, border-color .2s; }
+.key:hover { transform: translateY(3px); border-bottom-width: 2px; border-color: var(--gold); }
+.key b { font-family: var(--mono); font-size: 22px; color: var(--gold); }
+.key span { font-size: 12.5px; color: var(--muted); }
+.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.feat { padding: 28px; border-radius: 22px; border: 1px solid var(--line); background: var(--ink-2); display: grid; gap: 12px; align-content: start; }
+.feat h4 { font-size: 24px; }
+.feat p, .feat li { color: var(--muted); font-size: 15px; }
+.feat ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.feat .ico { width: 48px; height: 48px; border-radius: 14px; background: rgba(227, 185, 79, .1); color: var(--gold); display: grid; place-items: center; }
+@media (max-width: 960px) { .feat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .feat-grid { grid-template-columns: 1fr; } }
+
+.vs-wrap { overflow-x: auto; border-radius: 22px; border: 1px solid rgba(42, 18, 25, .1); background: #fff; }
+.vs { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 15px; color: var(--on-paper); }
+.vs th, .vs td { padding: 16px 20px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(42, 18, 25, .08); }
+.vs thead th { font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--on-paper-muted); background: var(--paper-2); }
+.vs thead th.us { background: var(--crimson); color: #fff; }
+.vs td:first-child { font-weight: 700; width: 24%; }
+.vs td.us { background: rgba(214, 40, 57, .05); }
+.vs .y { color: #047857; font-weight: 700; }
+.vs .n { color: #a3122a; font-weight: 700; }
+.vs .soon { display: inline-block; margin-top: 4px; font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 99px; background: rgba(245, 158, 11, .18); color: #92400e; }
+.vs-note { font-size: 13px; color: var(--on-paper-muted); margin-top: 14px; max-width: 90ch; }
+
+.cost { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: stretch; }
+.cost > * { min-width: 0; }
+.bill { border-radius: 22px; background: #fff; color: var(--on-paper); padding: 26px; display: grid; gap: 4px; font-variant-numeric: tabular-nums; }
+.bill h4 { font-size: 22px; margin-bottom: 10px; }
+.bill p { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px dashed rgba(42, 18, 25, .14); }
+.bill p.total { border: 0; font-weight: 800; font-size: 19px; padding-top: 14px; }
+.bill small { color: var(--on-paper-muted); }
+.ours { border-radius: 22px; background: var(--grad); color: #fff; padding: 26px; display: grid; gap: 12px; align-content: center; }
+.ours h4 { font-size: 26px; }
+.ours p { color: rgba(255, 255, 255, .9); }
+@media (max-width: 860px) { .cost { grid-template-columns: 1fr; } }
+
+.roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.road { padding: 26px; border-radius: 22px; border: 1px solid var(--line); display: grid; gap: 10px; align-content: start; }
+.road .when { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+.road h4 { font-size: 24px; }
+.road p { color: var(--muted); font-size: 15px; }
+.road.now { border-color: rgba(62, 207, 142, .45); background: rgba(62, 207, 142, .05); }
+.road.now .when { color: var(--mint); }
+@media (max-width: 860px) { .roadmap { grid-template-columns: 1fr; } }
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
@@ -562,11 +648,11 @@ body::after {
             <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
             <div class="wrap hero-grid">
                 <div>
-                    <span class="eyebrow">HR · Payroll · Welfare · Tax</span>
+                    <span class="eyebrow">Dashboards · ERP · Built your way</span>
                     <h1 data-split="load" style="margin-top: 22px;">Your whole team, run from <span class="serif">one</span> screen.</h1>
-                    <p class="lede" data-reveal>Attendance, leave, salaries, advances, incentives, staff welfare and income tax, all in one dashboard. Built by We Create in Chennai, already running at a business hotel, and shaped around the way <em>your</em> business already works.</p>
+                    <p class="lede" data-reveal>Attendance, payroll, production, stock, GST and accounts in one dashboard shaped around the way <em>your</em> business already works. Running today at a business hotel and a two-plant factory in Chennai, with our own ERP in testing.</p>
                     <div class="hero-ctas" data-reveal>
-                        <a class="btn btn-primary" href="#features" data-magnetic>See everything it does <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="btn btn-primary" href="#work" data-magnetic>See our work <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                         <a class="btn btn-ghost" href="#whatsapp" data-magnetic>Talk to Vignesh</a>
                     </div>
                     <div class="hero-badges" data-reveal>
@@ -610,8 +696,8 @@ body::after {
         <!-- MARQUEE -->
         <div class="marquee" aria-label="What the dashboard covers">
             <div class="marquee-track">
-                <span>Daily attendance</span><span>Night shifts</span><span>Leave balances</span><span>Overtime</span><span>5-step payroll</span><span>Payslip PDFs</span><span>Salary advances</span><span>Incentives</span><span>Increments</span><span>Family welfare</span><span>Form 130 / 16</span><span>Audit log</span>
-                <span>Daily attendance</span><span>Night shifts</span><span>Leave balances</span><span>Overtime</span><span>5-step payroll</span><span>Payslip PDFs</span><span>Salary advances</span><span>Incentives</span><span>Increments</span><span>Family welfare</span><span>Form 130 / 16</span><span>Audit log</span>
+                <span>Daily attendance</span><span>5-step payroll</span><span>Payslip PDFs</span><span>Production by machine</span><span>Stock costing</span><span>Orders &amp; dispatch</span><span>Quality checks</span><span>GSTR-1 &amp; 3B</span><span>Tally F-keys</span><span>Bill scanning</span><span>Form 130 / 16</span><span>Audit trail</span>
+                <span>Daily attendance</span><span>5-step payroll</span><span>Payslip PDFs</span><span>Production by machine</span><span>Stock costing</span><span>Orders &amp; dispatch</span><span>Quality checks</span><span>GSTR-1 &amp; 3B</span><span>Tally F-keys</span><span>Bill scanning</span><span>Form 130 / 16</span><span>Audit trail</span>
             </div>
         </div>
 
@@ -621,6 +707,42 @@ body::after {
                 <span class="eyebrow" style="margin-bottom: 30px;">The month-end problem</span>
                 <p data-words="register,calculator,excel,rarely">Every month-end, someone sits with a register, a calculator and three Excel sheets, hoping the numbers match. They rarely do.</p>
                 <p data-words="arithmetic,records,attention" style="margin-top: 50px;">Our dashboard does the arithmetic, keeps every record and tells you what needs your attention today.</p>
+            </div>
+        </section>
+
+        <!-- OUR WORK -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Our work</span>
+                        <h2 class="t-l" data-split>Two clients live. One product of our own.</h2>
+                    </div>
+                    <a class="btn btn-ghost" href="#work" data-magnetic>All our work</a>
+                </div>
+                <div class="work-grid">
+                    <a class="work-card" href="#stay-bay" data-reveal>
+                        <span class="kind">Hospitality · HR &amp; payroll</span>
+                        <h3>STAY BAY Business Hotels</h3>
+                        <p>Attendance for three shifts, a five-step payroll with payslips, advances, welfare and income tax for a Chennai business hotel.</p>
+                        <div class="case-tag"><span class="live">Live client</span></div>
+                        <span class="more">See the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </a>
+                    <a class="work-card" href="#eco-pack" data-reveal>
+                        <span class="kind">Manufacturing · factory dashboard</span>
+                        <h3>Eco Pack Pvt Ltd</h3>
+                        <p>Two plastic-packaging plants, Porur and Thirumazhisai: production by machine, stock costing, orders and dispatch, quality checks and payroll.</p>
+                        <div class="case-tag"><span class="live">Live client</span></div>
+                        <span class="more">See the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </a>
+                    <a class="work-card erp" href="#erp" data-reveal>
+                        <span class="kind">Our product · accounting &amp; GST</span>
+                        <h3>We Create ERP</h3>
+                        <p>Accounting, GST, TDS and audit for Indian businesses and CAs, with Tally keys, bill scanning and the law checked as you work.</p>
+                        <div class="case-tag"><span class="test" style="color: #fff;">In testing</span></div>
+                        <span class="more">Explore the ERP <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -824,11 +946,11 @@ body::after {
                         <h3>Hospitality</h3>
                         <p>Hotels, resorts, restaurants and service apartments. Rotating shifts, night duty, holiday work and tips-heavy teams.</p>
                     </a>
-                    <a class="ind-card" href="#manufacturing" data-tilt="6" data-cursor="Open">
-                        <span class="glow"></span>
+                    <a class="ind-card" href="#eco-pack" data-tilt="6" data-cursor="Open">
+                        <span class="glow"></span><span class="flag">Live today</span>
                         <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M6 56V30l14 8V30l14 8V30l14 8V12h10v44z"/><path d="M6 56h52M16 48h6M28 48h6M40 48h6"/></svg></span>
                         <h3>Manufacturing</h3>
-                        <p>Three-shift plants, piece rates, contract labour, OT at double rate and PF / ESI for large teams.</p>
+                        <p>Eco Pack runs two plastic-packaging plants on it: production by machine, stock costing, orders, quality checks and payroll for each plant.</p>
                     </a>
                     <a class="ind-card" href="#more" data-tilt="6" data-cursor="Open">
                         <span class="glow"></span>
@@ -837,6 +959,25 @@ body::after {
                         <p>Retail, clinics, schools, construction, logistics and professional firms. If you have staff, we can shape it for you.</p>
                     </a>
                 </div>
+            </div>
+        </section>
+
+        <!-- ERP TEASER -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">We Create ERP vs Zoho Books</span>
+                        <h2 class="t-l" data-split>Accounting without the add-ons.</h2>
+                    </div>
+                    <p>On Zoho Books, a 5-user business in two states pays ₹2,268 a month before it can file GST and scan bills. Our ERP puts every compliance feature in one plan.</p>
+                </div>
+                <div class="numbers">
+                    <div class="num-cell" data-reveal><b data-count="8">8</b><span>Voucher types on Tally's F-keys, so entry stays fast</span></div>
+                    <div class="num-cell" data-reveal><b data-count="1">1</b><span>Screen for a CA to see every client's filing status</span></div>
+                    <div class="num-cell" data-reveal><b data-count="61">61</b><span>Automated legal and accounting checks, all passing</span></div>
+                </div>
+                <div class="hero-ctas" data-reveal><a class="btn btn-primary" href="#vs-zoho" data-magnetic>See the full comparison</a><a class="btn btn-ghost" href="#erp">What the ERP does</a></div>
             </div>
         </section>
 
@@ -874,6 +1015,307 @@ body::after {
                 <div class="hero-ctas">
                     <a class="btn btn-wa" href="#whatsapp" data-magnetic>Message on WhatsApp</a>
                     <a class="btn btn-ghost" href="#contact" data-magnetic>Ask the assistant</a>
+                </div>
+            </div>
+        </section>
+    </div>
+<div class="route" data-route="work" id="page-work" hidden>
+        <section class="page-hero" style="padding-bottom: clamp(30px, 4vw, 50px);">
+            <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
+            <div class="wrap" style="position: relative;">
+                <span class="eyebrow">Our work</span>
+                <h1 data-split="load">Built for real<br><span class="gold-text">businesses.</span></h1>
+                <p class="lede" data-reveal>A hotel, a factory and an accounting product of our own. Each one was built around how that business actually runs, and each one is used every day.</p>
+            </div>
+        </section>
+
+        <!-- STAY BAY -->
+        <section id="stay-bay">
+            <div class="wrap case">
+                <div data-reveal>
+                    <div class="case-tag"><span class="live">Live client</span><span>Hospitality</span><span>Chennai</span></div>
+                    <h2>STAY BAY Business Hotels</h2>
+                    <div class="who">HR, payroll &amp; welfare suite</div>
+                    <p>A business hotel with morning, evening and night shifts needed attendance, leave, payroll, advances and tax to stop living in registers and Excel. We replaced all of it with one dashboard.</p>
+                    <ul>
+                        <li>Daily register with check-in times, including night shifts that end the next morning</li>
+                        <li>Five-step payroll (draft, review, approve, pay, lock) with branded payslip PDFs</li>
+                        <li>PF, ESI, professional tax and TDS, with Form 130 / 16 at year end</li>
+                        <li>Advances only the Owner can approve, incentives, family welfare and 19 reports</li>
+                        <li>An audit log nobody can edit, not even the Owner</li>
+                    </ul>
+                    <div class="hero-ctas"><a class="btn btn-primary" href="#features" data-magnetic>See every feature</a><a class="btn btn-ghost" href="#story">A month at STAY BAY</a></div>
+                </div>
+                <div class="win" data-reveal data-tilt="4">
+                    <div class="win-bar"><i></i><i></i><i></i><span>stay bay · payroll · Sep 2026</span></div>
+                    <div class="steps-ui"><span class="done">✓ DRAFT</span><span class="done">✓ REVIEW</span><span class="now">3 APPROVED</span><span>4 PAID</span><span>5 LOCKED</span></div>
+                    <div class="ui-row"><b>Karthik · Front Office</b><span class="chip ok">₹24,180</span></div>
+                    <div class="ui-row"><b>Selvi R · Front Office</b><span class="chip ok">₹18,640</span></div>
+                    <div class="ui-row"><b>Ravi Kumar · Security</b><span class="chip warn">1 day LOP</span></div>
+                    <div class="net"><span>Net payable · 8 staff</span><b>₹2,61,940</b></div>
+                    <span style="font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted);">Sample figures</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ECO PACK -->
+        <section id="eco-pack">
+            <div class="wrap case flip">
+                <div data-reveal>
+                    <div class="case-tag"><span class="live">Live client</span><span>Manufacturing</span><span>2 plants</span></div>
+                    <h2>Eco Pack Pvt Ltd</h2>
+                    <div class="who">Factory dashboard · plastic packaging since 1981</div>
+                    <p>Eco Pack makes LDPE, HDPE and PP packaging at two plants in Chennai: Porur and Thirumazhisai. Their dashboard follows a roll of film from raw granules to a paid invoice, with each plant's people and stock kept separate.</p>
+                    <ul>
+                        <li><b>Production:</b> every shift's output by machine; recording it adds finished goods and takes the raw material out of stores by each product's recipe</li>
+                        <li><b>Inventory &amp; costing:</b> weighted-average and FIFO stores ledger, machine-hour-rate product cost, reorder planner with EOQ and ABC</li>
+                        <li><b>Orders &amp; dispatch:</b> Order → In production → Ready → Dispatched → Paid, with CGST + SGST or IGST worked out by state</li>
+                        <li><b>Machines:</b> status cards, utilisation against two 8-hour shifts, full repair and service history</li>
+                        <li><b>Quality &amp; compliance:</b> thickness, GSM and seal checks that fail automatically outside tolerance, carry bags below 120 microns flagged, licence renewals 60 days ahead</li>
+                        <li><b>Attendance &amp; payroll</b> per plant, PIN sign-in and access set user by user</li>
+                    </ul>
+                    <div class="hero-ctas"><a class="btn btn-primary" href="#whatsapp" data-magnetic>Get one for your factory</a><a class="btn btn-ghost" href="#manufacturing">Manufacturing</a></div>
+                </div>
+                <div class="win" data-reveal data-tilt="4">
+                    <div class="win-bar"><i></i><i></i><i></i><span>eco pack · machines · Porur</span></div>
+                    <div class="machines">
+                        <div class="mc"><b>Extruder 1</b><span>Running · LDPE film</span></div>
+                        <div class="mc"><b>Extruder 2</b><span>Running · HM-HDPE</span></div>
+                        <div class="mc" style="--mc: #f59e0b;"><b>Printer</b><span>Service due in 3 days</span></div>
+                        <div class="mc"><b>Cutting 1</b><span>Running · carry bags</span></div>
+                        <div class="mc" style="--mc: #d62839;"><b>Cutting 2</b><span>Breakdown · 2.5 h lost</span></div>
+                        <div class="mc" style="--mc: #a8a29e;"><b>Bag sealer</b><span>Idle</span></div>
+                    </div>
+                    <div class="mini-bars" aria-label="Daily output, sample"><i style="--h:62%"></i><i style="--h:70%"></i><i style="--h:55%"></i><i style="--h:78%"></i><i style="--h:74%"></i><i style="--h:82%"></i><i style="--h:68%"></i><i style="--h:88%"></i><i style="--h:80%"></i><i style="--h:91%"></i></div>
+                    <div class="ui-row"><b>Order · 2,000 kg LDPE liners</b><span class="chip info">Ready to dispatch</span></div>
+                    <div class="ui-row"><b>HDPE granules</b><span class="chip warn">Reorder · 9 days left</span></div>
+                    <span style="font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted);">Sample figures</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ERP -->
+        <section id="erp-case" style="padding-bottom: clamp(80px, 10vw, 140px);">
+            <div class="wrap case">
+                <div data-reveal>
+                    <div class="case-tag"><span class="test">Our product · in testing</span><span>Accounting · GST · TDS</span></div>
+                    <h2>We Create ERP</h2>
+                    <div class="who">Built for Indian businesses and their CAs</div>
+                    <p>Our own accounting software, built to do everything Zoho Books does for an Indian business and fix where it falls short: Tally-speed entry, one view for a CA across every client, legal checks built in, and compliance included instead of sold by the tier.</p>
+                    <ul>
+                        <li>Invoices, bills, receipts and payments with the same F-keys as Tally</li>
+                        <li>Scan a bill photo and it reads the GSTINs, amounts and HSN for you</li>
+                        <li>GSTR-1, GSTR-3B, 2B matching, TDS under the Income-tax Act 2025</li>
+                        <li>61 of 61 automated legal and accounting checks passing</li>
+                    </ul>
+                    <div class="hero-ctas"><a class="btn btn-primary" href="#erp" data-magnetic>Explore We Create ERP</a><a class="btn btn-ghost" href="#vs-zoho">Compare with Zoho Books</a></div>
+                </div>
+                <div class="win" data-reveal data-tilt="4">
+                    <div class="win-bar"><i></i><i></i><i></i><span>we create erp · sales invoice · F8</span></div>
+                    <div class="ui-row"><span>Party</span><b>Sri Murugan Traders · 33AA…1Z5</b></div>
+                    <div class="ui-row"><span>LDPE liners · HSN 3923 · 18%</span><b>₹1,20,000</b></div>
+                    <div class="ui-row"><span>CGST 9% + SGST 9%</span><b>₹21,600</b></div>
+                    <div class="ui-row"><span>Audit trail</span><span class="chip ok">Hash-chained ✓</span></div>
+                    <div class="net"><span>Invoice total · INV/26-27/0142</span><b>₹1,41,600</b></div>
+                    <span style="font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted);">Sample entry</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-band pad">
+            <span class="orbit" aria-hidden="true"></span><span class="orbit o2" aria-hidden="true"></span>
+            <div class="wrap" style="position: relative;">
+                <span class="eyebrow">Next could be yours</span>
+                <h2 style="margin-top: 24px;">Your business,<br><span class="gold-text">your dashboard.</span></h2>
+                <p>Hotel, factory, shop, clinic or CA office. Tell us how you work and we'll build the screens around it, then stay on call 24/7.</p>
+                <div class="hero-ctas">
+                    <a class="btn btn-wa" href="#whatsapp" data-magnetic>Message on WhatsApp</a>
+                    <a class="btn btn-ghost" href="#industries" data-magnetic>Industries we build for</a>
+                </div>
+            </div>
+        </section>
+    </div>
+<div class="route" data-route="erp" id="page-erp" hidden>
+        <section class="page-hero">
+            <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
+            <div class="wrap" style="position: relative;">
+                <div class="case-tag"><span class="test">In testing · 61 of 61 checks passing</span><span>Our product</span></div>
+                <h1 data-split="load">We Create <span class="gold-text">ERP.</span></h1>
+                <p class="lede" data-reveal>Accounting, GST, TDS and audit for Indian businesses and the CAs who look after them. Everything you'd expect from Zoho Books, plus Tally-speed entry, one screen for every client, and the law checked before you save.</p>
+                <div class="hero-ctas" data-reveal>
+                    <a class="btn btn-primary" href="#vs-zoho" data-magnetic>Compare with Zoho Books</a>
+                    <a class="btn btn-wa" href="#whatsapp" data-magnetic>Join the pilot</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Numbers -->
+        <section style="padding-bottom: clamp(60px, 8vw, 110px);">
+            <div class="wrap">
+                <div class="numbers">
+                    <div class="num-cell" data-reveal><b data-count="8">8</b><span>Voucher types on Tally's own F-keys</span></div>
+                    <div class="num-cell" data-reveal><b data-count="20">20</b><span>Sections, from sales to the audit trail</span></div>
+                    <div class="num-cell" data-reveal><b data-count="61">61</b><span>Automated legal and accounting checks, all passing</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Keys -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Tally-speed entry</span>
+                        <h2 class="t-l" data-split>Your accountant already knows the keys.</h2>
+                    </div>
+                    <p>Most Indian accountants learned on Tally. We Create ERP uses the same shortcuts, so nobody has to retrain or reach for the mouse. Enter moves to the next field; Ctrl + S saves.</p>
+                </div>
+                <div class="keys" data-reveal>
+                    <div class="key"><b>F8</b><span>Sales invoice</span></div>
+                    <div class="key"><b>F9</b><span>Purchase bill</span></div>
+                    <div class="key"><b>F6</b><span>Receipt</span></div>
+                    <div class="key"><b>F5</b><span>Payment</span></div>
+                    <div class="key"><b>F7</b><span>Journal</span></div>
+                    <div class="key"><b>F4</b><span>Contra</span></div>
+                    <div class="key"><b>Ctrl+F8</b><span>Credit note</span></div>
+                    <div class="key"><b>Ctrl+F9</b><span>Debit note</span></div>
+                    <div class="key"><b>/</b><span>Search all</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">What it does</span>
+                        <h2 class="t-l" data-split>Enter it once. Everything else follows.</h2>
+                    </div>
+                    <p>Every entry posts double-entry by itself to the ledgers, GST, TDS, bills outstanding and stock.</p>
+                </div>
+                <div class="feat-grid">
+                    <div class="feat" data-reveal><span class="ico"><svg class="i-l" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg></span><h4>Scan a bill</h4><p>Take a photo or upload a PDF. It reads the GSTINs, invoice number, date, HSN, taxable value, GST and total, decides from the GSTINs whether it's a purchase or a sale, finds or creates the party, and attaches the file. You review and save.</p></div>
+                    <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span><h4>GST, done properly</h4><ul><li>CGST + SGST or IGST from place of supply</li><li>Exports and SEZ under LUT, reverse charge, blocked credit</li><li>GSTR-1 with portal JSON, GSTR-3B with Rule 88A set-off</li><li>GSTR-2B import and matching, IMS actions</li><li>E-invoice (INV-01) and e-way bill</li></ul></div>
+                    <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><h4>Statements an auditor accepts</h4><p>Profit &amp; Loss, Balance Sheet in Schedule III with previous-year figures, Cash Flow (indirect, AS 3), Trial Balance, Day Book, ledgers, ageing, registers, HSN summary and stock.</p></div>
+                    <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9 9h6M9 12h6M9 9c3 0 5 1 5 3s-2 3-5 3l5 4"/></svg></span><h4>TDS under the new Act</h4><p>Income-tax Act 2025 (section 393) with the old section numbers shown alongside, thresholds, 20% where there's no PAN, monthly deposit tracking and Form 140 data.</p></div>
+                    <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.5 3.2-5.5 6.5-5.5s6 2 6.5 5.5"/><path d="M17 11l2 2 4-4"/></svg></span><h4>A workspace for CAs</h4><p>Every client company and its filing status on one screen. Roles for owner, accountant and read-only auditor. Auditors raise queries on any voucher, and there's a compliance calendar and bank reconciliation.</p></div>
+                    <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span><h4>Basic or Advanced</h4><p>The same switch as our STAY BAY suite. Basic shows only invoices, receipts, payments, expenses and reports. Advanced opens everything else.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legal guards -->
+        <section class="paper-sec pad">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">The law, built in</span>
+                        <h2 class="t-l" data-split>It stops the mistake before you make it.</h2>
+                    </div>
+                    <p>Each rule below is checked every time someone saves. The key ones, like the cash limit, gap-free numbering, filed-period locks and tamper detection, have automated tests that must pass before any change is released.</p>
+                </div>
+                <div class="wishes">
+                    <div class="wish" data-reveal><b>Audit trail, always on</b><span>Every change is logged and hash-chained, so any tampering shows. It can't be switched off, as Rule 3(1) of the Companies (Accounts) Rules requires.</span></div>
+                    <div class="wish" data-reveal><b>No gaps, no deleting</b><span>Gap-free numbering in each financial year. Cancelling keeps the number, so the series is never broken.</span></div>
+                    <div class="wish" data-reveal><b>Locked when filed</b><span>Entries in a filed GST period, invoices with an IRN and anything before the lock date can't be changed.</span></div>
+                    <div class="wish" data-reveal><b>Cash limits</b><span>A cash receipt of ₹2 lakh or more is refused (section 269ST); a cash payment above ₹10,000 gets a warning.</span></div>
+                    <div class="wish" data-reveal><b>Deadlines watched</b><span>The 30-day e-invoice reporting limit, the credit-note time limit and MSME dues past 45 days are all flagged.</span></div>
+                    <div class="wish" data-reveal><b>Slips refused</b><span>Duplicate supplier bills, future-dated tax invoices, unbalanced journals and credit notes larger than the invoice are refused.</span></div>
+                    <div class="wish" data-reveal><b>Checked before filing</b><span>A pre-filing check lists everything to fix before you file a GST return.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Zoho comparison -->
+        <section class="paper-sec pad" id="vs-zoho" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">We Create ERP vs Zoho Books</span>
+                        <h2 class="t-l" data-split>Where we're more efficient.</h2>
+                    </div>
+                    <p>Zoho Books is a good product, and it's the one most Indian businesses compare us with. Here's an honest, point-by-point look.</p>
+                </div>
+                <div class="vs-wrap" data-reveal>
+                    <table class="vs">
+                        <thead><tr><th>What matters</th><th>Zoho Books (India)</th><th class="us">We Create ERP</th></tr></thead>
+                        <tbody>
+                            <tr><td>Staying GST-compliant</td><td>GST filing, e-invoicing and period locking start on the Standard plan, ₹749 a month; fixed assets and budgets need Premium at ₹2,999</td><td class="us"><span class="y">✓</span> Every compliance feature in one plan, priced per company</td></tr>
+                            <tr><td>Users and branches</td><td>3 users on Standard; each extra user ₹150 a month; each extra GSTIN ₹720 a month</td><td class="us"><span class="y">✓</span> No charge per user or per GSTIN</td></tr>
+                            <tr><td>Invoice limits</td><td>1,000 to 1,00,000 invoices a year, depending on the plan</td><td class="us"><span class="y">✓</span> No invoice cap</td></tr>
+                            <tr><td>Speed of entry</td><td>Form-based screens; no Tally-style F-key voucher entry</td><td class="us"><span class="y">✓</span> Tally's F-keys for all 8 voucher types; Enter to move, Ctrl + S to save</td></tr>
+                            <tr><td>Reading bills</td><td>Scanning is an add-on: 50 scans for ₹499 a month</td><td class="us"><span class="y">✓</span> Scan included; it also decides purchase or sale from the GSTINs and creates the party</td></tr>
+                            <tr><td>For CAs and auditors</td><td>Free accountant user inside each client's books; a view across all clients needs Zoho's separate Practice product</td><td class="us"><span class="y">✓</span> All clients and their filing status on one screen; auditor queries on any voucher</td></tr>
+                            <tr><td>Audit trail</td><td>Audit trail of changes</td><td class="us"><span class="y">✓</span> Always on and hash-chained, so tampering is visible; nothing can be deleted</td></tr>
+                            <tr><td>Legal checks while you work</td><td>Period locking (Standard and above)</td><td class="us"><span class="y">✓</span> ₹2 lakh cash rule, ₹10,000 cash warning, MSME 45-day dues, e-invoice 30-day limit, pre-filing health check</td></tr>
+                            <tr><td>GST returns</td><td>GSTR-1 and GSTR-3B filed directly; GSTR-2B reconciliation; IMS</td><td class="us"><span class="y">✓</span> GSTR-1 JSON, GSTR-3B with Rule 88A set-off, 2B matching, IMS<br><span class="soon">Direct filing comes with the server version</span></td></tr>
+                            <tr><td>Payroll and stock</td><td>Separate Zoho apps and subscriptions; warehouses need the Elite plan at ₹4,999</td><td class="us"><span class="y">✓</span> Stock in the same books<br><span class="soon">Payroll from our STAY BAY suite is coming</span></td></tr>
+                            <tr><td>Support</td><td>Support speed is the most common complaint in user reviews</td><td class="us"><span class="y">✓</span> Straight from the people who built it, 24/7 on WhatsApp</td></tr>
+                            <tr><td>Where Zoho is ahead today</td><td>Live bank feeds, phone apps and multi-computer cloud access, all available now</td><td class="us"><span class="soon">Coming with the server version</span> Today's test build runs in the browser, with backup and restore</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="vs-note">Zoho Books prices and limits are from Zoho's India pricing page (zoho.com/in/books/pricing), yearly billing, before GST, as checked in October 2026; support feedback is from reviews on G2 and Techjockey. Zoho and Zoho Books are trademarks of Zoho Corporation. We Create is not affiliated with Zoho.</p>
+            </div>
+        </section>
+
+        <!-- Cost example -->
+        <section class="pad">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">What it costs you</span>
+                        <h2 class="t-l" data-split>One small business, priced on Zoho Books.</h2>
+                    </div>
+                    <p>A trader with 5 staff using the books, offices in two states, GST filing, e-invoicing and bill scanning. These are Zoho's published prices.</p>
+                </div>
+                <div class="cost">
+                    <div class="bill" data-reveal>
+                        <h4>Zoho Books · per month</h4>
+                        <p><span>Standard plan (3 users, GST filing, e-invoicing)</span><b>₹749</b></p>
+                        <p><span>2 more users × ₹150</span><b>₹300</b></p>
+                        <p><span>Second GSTIN (another state)</span><b>₹720</b></p>
+                        <p><span>Bill scanning add-on (50 scans)</span><b>₹499</b></p>
+                        <p class="total"><span>Every month</span><span>₹2,268</span></p>
+                        <small>That's ₹27,216 a year, before GST, and it rises with every new user or state.</small>
+                    </div>
+                    <div class="ours" data-reveal>
+                        <h4>We Create ERP</h4>
+                        <p>One price for the company, with every user, every GSTIN, bill scanning and every compliance feature included. It doesn't go up when you hire someone or open a branch.</p>
+                        <a class="btn btn-ghost" href="#whatsapp" style="align-self: flex-start; color: #fff; border-color: rgba(255,255,255,.45);">Ask for a quote</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Where it's going</span>
+                        <h2 class="t-l" data-split>Tested first. Then live.</h2>
+                    </div>
+                    <p>We're testing every rule with real businesses before anyone's books depend on it.</p>
+                </div>
+                <div class="roadmap">
+                    <div class="road now" data-reveal><span class="when">Now · test build</span><h4>Everything on this page</h4><p>Runs in the browser with a sample company, 18 months of entries, backup and restore. All 61 automated checks pass.</p></div>
+                    <div class="road" data-reveal><span class="when">Next · server version</span><h4>Live and online</h4><p>Hosted in India with daily Indian backups, many users on many computers, and live GST, IRN and e-way bill filing through a licensed GST Suvidha Provider.</p></div>
+                    <div class="road" data-reveal><span class="when">Then</span><h4>One system for everything</h4><p>Payroll from our STAY BAY suite, warehouses, invoices and reminders on WhatsApp, and Tamil screens.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-band pad">
+            <span class="orbit" aria-hidden="true"></span><span class="orbit o2" aria-hidden="true"></span>
+            <div class="wrap" style="position: relative;">
+                <span class="eyebrow">Pilot</span>
+                <h2 style="margin-top: 24px;">Try it with<br><span class="gold-text">your books.</span></h2>
+                <p>We're looking for a few businesses and one CA firm to use We Create ERP alongside their current software and tell us what's missing.</p>
+                <div class="hero-ctas">
+                    <a class="btn btn-wa" href="#whatsapp" data-magnetic>Join the pilot on WhatsApp</a>
+                    <a class="btn btn-ghost" href="#work" data-magnetic>See our other work</a>
                 </div>
             </div>
         </section>
@@ -1188,7 +1630,7 @@ body::after {
             <div class="wrap" style="position: relative;">
                 <span class="eyebrow">Industries</span>
                 <h1 data-split="load">Born in a hotel.<br><span class="gold-text">Built for any team.</span></h1>
-                <p class="lede" data-reveal>Our first dashboard runs STAY BAY Business Hotels in Chennai. The same engine of attendance, payroll, compliance and approvals fits any business with shifts, salaries and staff to look after. We shape it to your industry and your way of working.</p>
+                <p class="lede" data-reveal>Our dashboards run STAY BAY Business Hotels and Eco Pack's two packaging plants in Chennai. The same engine of attendance, payroll, compliance and approvals fits any business with shifts, salaries and staff to look after. We shape it to your industry and your way of working.</p>
             </div>
         </section>
 
@@ -1202,12 +1644,12 @@ body::after {
                         <p>Hotels, resorts, restaurants, cafés and service apartments. Morning, evening and night shifts, holiday work, banquet overtime and festival bonuses, all running today at STAY BAY Business Hotels.</p>
                         <div class="tags"><span>Rotating shifts</span><span>Night duty</span><span>Comp offs</span><span>Diwali bonus</span></div>
                     </a>
-                    <a class="ind-card" id="manufacturing" href="#whatsapp" data-tilt="5" data-cursor="Talk">
-                        <span class="glow"></span>
+                    <a class="ind-card" id="manufacturing" href="#eco-pack" data-tilt="5" data-cursor="Open">
+                        <span class="glow"></span><span class="flag">Live today</span>
                         <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M6 56V30l14 8V30l14 8V30l14 8V12h10v44z"/><path d="M6 56h52M16 48h6M28 48h6M40 48h6"/></svg></span>
                         <h3>Manufacturing</h3>
-                        <p>Three-shift plants and workshops. Shift-wise attendance, double-rate overtime, piece-rate or production incentives, contract labour, canteen deductions and PF / ESI for large headcounts.</p>
-                        <div class="tags"><span>3 shifts</span><span>Piece rate</span><span>Contract labour</span><span>Factory OT</span></div>
+                        <p>Running today at Eco Pack, a plastic-packaging maker with two plants in Chennai. Production by machine and shift, raw-material stock with proper costing, orders to dispatch, machine breakdowns, quality checks and payroll for each plant.</p>
+                        <div class="tags"><span>Production</span><span>Stock costing</span><span>Machines</span><span>Quality</span><span>Multi-plant</span></div>
                     </a>
                     <a class="ind-card" href="#whatsapp" data-tilt="5" data-cursor="Talk">
                         <span class="glow"></span>
@@ -1459,7 +1901,7 @@ body::after {
                     <p>At CA firms I saw the same thing again and again. Businesses had good people and honest intentions, but their records lived in registers, diaries and scattered Excel sheets. Month-end meant late nights, guesswork and the occasional angry employee whose pay came out wrong.</p>
                     <p>I spent my internships filing TDS and TCS returns, preparing financial statements from scratch, scrutinising ledgers and designing income-tax salary computation worksheets. I learned exactly where the numbers go wrong, and why.</p>
                     <p>So when STAY BAY Business Hotels needed a better way to run HR and payroll, I built one: attendance, leave, overtime, a five-step payroll, advances, incentives, welfare, tax certificates, reports and an audit trail, all in one screen. It runs the hotel today.</p>
-                    <p>That became We Create. Now I build the same kind of dashboard for other businesses, shaped around their rules and not mine. And because I built it, I'm the one who answers when you message, at any hour.</p>
+                    <p>That became We Create. Eco Pack, a plastic-packaging maker with two plants, came next with a factory dashboard for production, stock, machines and quality. I'm also building We Create ERP, our own accounting and GST software, to give businesses and CAs something better than paying extra for every user and every add-on. Each one is shaped around the client's rules, not mine. And because I built it, I'm the one who answers when you message, at any hour.</p>
                 </div>
             </div>
         </section>
@@ -1576,7 +2018,7 @@ body::after {
                                 <select id="wa_ind"><option value="">Choose one</option><option>Hospitality</option><option>Manufacturing</option><option>Retail</option><option>Healthcare</option><option>Education</option><option>Construction</option><option>Logistics</option><option>Professional services</option><option>Other</option></select>
                             </div>
                             <div class="field"><label for="wa_need">I'm interested in</label>
-                                <select id="wa_need"><option value="">Choose one</option><option>A live demo</option><option>A dashboard for my business</option><option>A custom website or dashboard</option><option>Pricing</option><option>Support for my existing dashboard</option></select>
+                                <select id="wa_need"><option value="">Choose one</option><option>A live demo</option><option>We Create ERP (accounting &amp; GST)</option><option>A dashboard for my business</option><option>A custom website or dashboard</option><option>Pricing</option><option>Support for my existing dashboard</option></select>
                             </div>
                         </div>
                         <div class="field"><label for="wa_msg">Your message</label><textarea id="wa_msg" placeholder="e.g. We have 40 staff across two shifts and do payroll in Excel. Can you show me how this would work for us?"></textarea><span class="err"></span></div>
@@ -1628,7 +2070,7 @@ body::after {
             { id: 'custom', q: 'Can it be customised for my business?', keys: ['custom', 'change', 'modify', 'my business', 'tailor', 'personal', 'logo', 'brand', 'own rules'],
               a: 'Yes, completely. We build it the way you want it: your logo and colours, your salary structure, leave rules, weekly offs, overtime rate, approval levels and the exact reports you need. Need something new later? We add it.', next: ['time', 'price'] },
             { id: 'industries', q: 'Is it only for hotels?', keys: ['hotel', 'only', 'industry', 'industries', 'manufactur', 'factory', 'retail', 'shop', 'clinic', 'hospital', 'school', 'college'],
-              a: 'No. Our first client is STAY BAY Business Hotels, but it works for any team with shifts and salaries: <b>manufacturing</b>, retail, clinics and hospitals, schools, construction, logistics and professional firms. <a href="#industries">See industries →</a>', next: ['custom', 'demo'] },
+              a: 'No. STAY BAY Business Hotels is a hotel, and <b>Eco Pack</b> runs two plastic-packaging plants on our factory dashboard. It works for any team with shifts and salaries: manufacturing, retail, clinics and hospitals, schools, construction, logistics and professional firms. <a href="#industries">See industries →</a>', next: ['custom', 'demo'] },
             { id: 'time', q: 'How long does it take to set up?', keys: ['long', 'time', 'days', 'weeks', 'setup', 'set up', 'start', 'when', 'ready', 'deliver'],
               a: 'The ready version can be set up with your employees in a few days. A fully customised build usually takes a few weeks, depending on what you need. You see the screens before anything goes live, and we check the payroll against your last manual month.', next: ['train', 'price'] },
             { id: 'compliance', q: 'Does it calculate PF, ESI, PT and TDS?', keys: ['pf', 'esi', 'tds', 'tax', 'professional tax', 'pt', 'compliance', 'form 16', 'form 130', 'statutory', 'regime'],
@@ -1643,6 +2085,12 @@ body::after {
               a: 'Support is available <b>24/7</b>, directly from Vignesh, the person who built it. Payroll problems don\'t wait for office hours and neither do we. Message on WhatsApp any time.', next: ['demo', 'price'] },
             { id: 'demo', q: 'Can I see a live demo?', keys: ['demo', 'see', 'show', 'trial', 'try', 'example', 'sample', 'walkthrough'],
               a: 'Of course. We\'ll show it on your phone or laptop with sample data shaped like your business. <a href="' + WA + encodeURIComponent('Hi Vignesh! I\'d like a live demo of the We Create dashboard.') + '" target="_blank" rel="noopener">Book a demo on WhatsApp →</a>', next: ['price', 'time'] },
+            { id: 'clients', q: 'Who are your clients?', keys: ['client', 'clients', 'customer', 'who uses', 'eco pack', 'stay bay', 'work', 'portfolio', 'example'],
+              a: 'Two businesses run on our dashboards today: <b>STAY BAY Business Hotels</b> (HR, payroll and tax for a Chennai hotel) and <b>Eco Pack Pvt Ltd</b> (a factory dashboard for two plastic-packaging plants in Porur and Thirumazhisai). <a href="#work">See our work →</a>', next: ['erp', 'demo'] },
+            { id: 'erp', q: 'What is We Create ERP?', keys: ['erp', 'accounting', 'account', 'books', 'gst software', 'tally', 'invoice', 'billing', 'ledger'],
+              a: 'Our own accounting software for Indian businesses and CAs: invoices and bills on Tally\'s F-keys, bill scanning, GSTR-1 and 3B, TDS under the new Income-tax Act, Schedule III statements and an audit trail that can\'t be switched off. It\'s in testing now, with all 61 automated checks passing. <a href="#erp">Explore the ERP →</a>', next: ['zoho', 'demo'] },
+            { id: 'zoho', q: 'How is it better than Zoho Books?', keys: ['zoho', 'zoho books', 'better', 'compare', 'difference', 'vs', 'cheaper'],
+              a: 'Zoho Books charges for GST filing by plan (from ₹749 a month), plus ₹150 for each extra user, ₹720 for each extra GSTIN and ₹499 for bill scanning. We Create ERP puts every compliance feature in one plan, uses Tally\'s keys for faster entry, and gives CAs one screen for all their clients. Live GST filing arrives with our server version. <a href="#vs-zoho">See the full comparison →</a>', next: ['erp', 'price'] },
             { id: 'who', q: 'Who builds it?', keys: ['who', 'vignesh', 'developer', 'built', 'company', 'team', 'you'],
               a: 'Vignesh Annamalai, founder of We Create and a commerce student at Loyola College, Chennai, with internships at two CA firms filing TDS returns and designing salary computation sheets. He knows payroll from the inside. <a href="#about">Meet Vignesh →</a>', next: ['support', 'demo'] }
         ];
@@ -1675,7 +2123,7 @@ body::after {
     const routes = [...document.querySelectorAll('.route')];
     const SPA = routes.length > 0;
     const go = (key, file, hash) => SPA ? '#' + (hash || key) : file + (hash ? '#' + hash : '');
-    const links = [['home', 'index.html', 'Home'], ['features', 'features.html', 'Features'], ['industries', 'industries.html', 'Industries'], ['about', 'about.html', 'About me'], ['contact', 'contact.html', 'Contact']];
+    const links = [['home', 'index.html', 'Home'], ['work', 'work.html', 'Our work'], ['erp', 'erp.html', 'ERP'], ['features', 'features.html', 'HR & Payroll'], ['industries', 'industries.html', 'Industries'], ['about', 'about.html', 'About me'], ['contact', 'contact.html', 'Contact']];
     const navEl = document.getElementById('site-nav');
     if (navEl) {
         navEl.outerHTML = `
@@ -1724,7 +2172,7 @@ body::after {
                 </div>
                 <div class="foot-bottom">
                     <span>© ${new Date().getFullYear()} We Create · Founded by ${CONTACT.name}, Chennai</span>
-                    <span>Hospitality · Manufacturing · Retail · Healthcare · Education · and more</span>
+                    <span>Clients: STAY BAY Business Hotels · Eco Pack Pvt Ltd · Product: We Create ERP</span>
                 </div>
             </div>
         </footer>
@@ -1995,7 +2443,7 @@ body::after {
     }
 
     // ---------- single-file build: one page section visible at a time ----------
-    const ROUTE_TITLES = { home: 'We Create', features: 'Features · We Create', industries: 'Industries · We Create', about: 'About Vignesh · We Create', contact: 'Contact · We Create' };
+    const ROUTE_TITLES = { home: 'We Create', work: 'Our Work · We Create', erp: 'We Create ERP', features: 'HR & Payroll · We Create', industries: 'Industries · We Create', about: 'About Vignesh · We Create', contact: 'Contact · We Create' };
     let currentRoute = null;
     const animated = new Set();
     const useMotion = hasGsap && !reduced;
