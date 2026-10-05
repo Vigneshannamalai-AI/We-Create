@@ -766,6 +766,27 @@ body::after {
 .pick-new .btn { justify-self: start; }
 @media (max-width: 860px) { .chooser .ex-list { grid-template-columns: 1fr; display: grid; } .chooser .ex-btn span { display: block; } }
 
+/* ---------- project switcher on product pages ---------- */
+.work-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 26px; }
+.work-nav a { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: 1px solid var(--line); background: rgba(29, 14, 20, .6); text-decoration: none; font-weight: 600; font-size: 14px; color: var(--muted); transition: color .2s, border-color .2s, background .2s; }
+.work-nav a i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.work-nav a:hover { color: var(--fg); border-color: var(--c, var(--gold)); }
+.work-nav a[aria-current="page"] { color: var(--fg); border-color: var(--c); background: color-mix(in srgb, var(--c) 16%, transparent); }
+.work-nav .wn-all { border-style: dashed; }
+.work-next { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.wn-card { position: relative; display: grid; gap: 4px; padding: clamp(24px, 3vw, 38px); border-radius: 26px; border: 1px solid var(--line); background: var(--ink-2); text-decoration: none; overflow: hidden; transition: border-color .3s, transform .3s; }
+.wn-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, color-mix(in srgb, var(--c) 22%, transparent), transparent 70%); opacity: .7; }
+.wn-card > * { position: relative; }
+.wn-card:hover { border-color: var(--c); transform: translateY(-4px); }
+.wn-card small { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--c); }
+.wn-card b { font-family: var(--display); font-size: clamp(30px, 3.4vw, 46px); letter-spacing: -.035em; line-height: 1.05; }
+.wn-card span { color: var(--muted); }
+.wn-card svg { width: 30px; height: 30px; margin-top: 10px; transition: transform .3s; }
+.wn-card.next { text-align: right; justify-items: end; }
+.wn-card.next:hover svg { transform: translateX(6px); }
+.wn-card.prev:hover svg { transform: translateX(-6px); }
+@media (max-width: 640px) { .work-next { grid-template-columns: 1fr; } .wn-card.next { order: -1; } }
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
@@ -1329,6 +1350,7 @@ body::after {
         <section class="page-hero">
             <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
             <div class="wrap" style="position: relative;">
+                <div data-work-nav></div>
                 <div class="case-tag"><span class="test">In testing · 61 of 61 checks passing</span><span>Our product</span></div>
                 <h1 data-split="load">We Create <span class="gold-text">ERP.</span></h1>
                 <p class="lede" data-reveal>Accounting, GST, TDS and audit for Indian businesses and the CAs who look after them. Everything you'd expect from Zoho Books, plus Tally-speed entry, one screen for every client, and the law checked before you save.</p>
@@ -1473,7 +1495,7 @@ body::after {
                     <div class="ours" data-reveal>
                         <h4>We Create ERP</h4>
                         <p>One price for the company, with every user, every GSTIN, bill scanning and every compliance feature included. It doesn't go up when you hire someone or open a branch.</p>
-                        <a class="btn btn-ghost" href="#whatsapp" style="align-self: flex-start; color: #fff; border-color: rgba(255,255,255,.45);">Ask for a quote</a>
+                        <a class="btn btn-ghost" href="#whatsapp" style="justify-self: start; color: #fff; border-color: rgba(255,255,255,.45);">Ask for a quote</a>
                     </div>
                 </div>
             </div>
@@ -1497,6 +1519,8 @@ body::after {
             </div>
         </section>
 
+        <div data-work-next></div>
+
         <section class="cta-band pad">
             <span class="orbit" aria-hidden="true"></span><span class="orbit o2" aria-hidden="true"></span>
             <div class="wrap" style="position: relative;">
@@ -1514,6 +1538,7 @@ body::after {
         <section class="page-hero">
             <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
             <div class="wrap" style="position: relative;">
+                <div data-work-nav></div>
                 <span class="prod-tag"><i></i>Client · STAY BAY Business Hotels · Chennai</span>
                 <h1 data-split="load">HR &amp; payroll,<br><span class="acc-text">done for you.</span></h1>
                 <p class="lede" data-reveal>The dashboard We Create built for STAY BAY Business Hotels: attendance for three shifts, leave, a five-step payroll, advances, incentives, staff welfare and income tax, all sharing one set of data.</p>
@@ -1824,6 +1849,8 @@ body::after {
             </div>
         </section>
 
+        <div data-work-next></div>
+
         <section class="cta-band pad">
             <span class="orbit" aria-hidden="true"></span><span class="orbit o2" aria-hidden="true"></span>
             <div class="wrap" style="position: relative;">
@@ -1841,6 +1868,7 @@ body::after {
         <!-- HERO -->
         <section class="page-hero" style="padding-bottom: clamp(50px, 6vw, 80px);">
             <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
+            <div class="wrap" style="position: relative;"><div data-work-nav></div></div>
             <div class="wrap hero-grid" style="position: relative;">
                 <div>
                     <span class="prod-tag"><i></i>Client · Eco Pack Pvt Ltd · since 1981</span>
@@ -2192,6 +2220,8 @@ body::after {
                 </div>
             </div>
         </section>
+
+        <div data-work-next></div>
 
         <section class="cta-band pad">
             <span class="orbit" aria-hidden="true"></span><span class="orbit o2" aria-hidden="true"></span>
@@ -2763,6 +2793,32 @@ body::after {
         </footer>
         <a class="wa-float" href="${waLink('Hi Vignesh, I saw your website and would like a demo of the dashboard.')}" target="_blank" rel="noopener" aria-label="Message on WhatsApp">${waIcon}<span class="wa-tip">Chat on WhatsApp</span></a>`;
     }
+    // ---------- move between projects without going back to "Our work" ----------
+    const PROJECTS = [
+        { k: 'features', file: 'features.html', name: 'STAY BAY', what: 'HR & payroll dashboard', c: '#d62839' },
+        { k: 'ecopack', file: 'ecopack.html', name: 'Eco Pack', what: 'Factory dashboard', c: '#19a874' },
+        { k: 'erp', file: 'erp.html', name: 'We Create ERP', what: 'Accounting & GST', c: '#e3b94f' }
+    ];
+    const hostKey = el => (el.closest('.route') ? el.closest('.route').dataset.route : page);
+    document.querySelectorAll('[data-work-nav]').forEach(el => {
+        const cur = hostKey(el);
+        el.outerHTML = `<nav class="work-nav" aria-label="Our projects">
+            <a class="wn-all" href="${go('work', 'work.html')}">← Our work</a>
+            ${PROJECTS.map(p => `<a href="${go(p.k, p.file)}" style="--c: ${p.c};" ${p.k === cur ? 'aria-current="page"' : ''}><i></i>${p.name}</a>`).join('')}
+        </nav>`;
+    });
+    document.querySelectorAll('[data-work-next]').forEach(el => {
+        const cur = PROJECTS.findIndex(p => p.k === hostKey(el));
+        const prev = PROJECTS[(cur + PROJECTS.length - 1) % PROJECTS.length];
+        const next = PROJECTS[(cur + 1) % PROJECTS.length];
+        const card = (p, dir) => `<a class="wn-card ${dir}" href="${go(p.k, p.file)}" style="--c: ${p.c};">
+                <small>${dir === 'next' ? 'Next project' : 'Previous project'}</small>
+                <b>${p.name}</b><span>${p.what}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="${dir === 'next' ? 'M5 12h14M13 6l6 6-6 6' : 'M19 12H5M11 6l-6 6 6 6'}"/></svg>
+            </a>`;
+        el.outerHTML = `<section class="pad" style="padding-top: 0;"><div class="wrap work-next">${card(prev, 'prev')}${card(next, 'next')}</div></section>`;
+    });
+
     document.body.insertAdjacentHTML('beforeend', '<div class="curtain" id="curtain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>');
 
     // mobile menu
