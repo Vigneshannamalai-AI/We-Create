@@ -54,6 +54,7 @@ body {
     overflow-x: hidden;
 }
 img, svg { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
 ::selection { background: var(--crimson); color: #fff; }
@@ -631,6 +632,140 @@ body::after {
 .road.now .when { color: var(--mint); }
 @media (max-width: 860px) { .roadmap { grid-template-columns: 1fr; } }
 
+/* ---------- product themes ---------- */
+.theme-stay { --accent: #d62839; --accent-soft: rgba(214, 40, 57, .14); --accent-grad: linear-gradient(135deg, #7d0b22 0%, #b3122f 50%, #e04a5c 100%); }
+.theme-eco { --accent: #19a874; --accent-soft: rgba(25, 168, 116, .14); --accent-grad: linear-gradient(135deg, #063d2c 0%, #0b6e4f 55%, #18a06f 100%); }
+.theme-erp { --accent: #e3b94f; --accent-soft: rgba(227, 185, 79, .14); --accent-grad: linear-gradient(135deg, #2a1d05 0%, #6b4d0e 50%, #c9a227 100%); }
+.theme-eco .eyebrow, .theme-eco .acc { color: var(--accent); }
+.theme-eco .hero-glow i:nth-child(1) { background: radial-gradient(circle, #0b6e4f, transparent 65%); }
+.acc-text { color: var(--accent); }
+.prod-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; }
+.prod-tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+/* ---------- module explorer (click a section, its screen shows) ---------- */
+.explorer { display: grid; grid-template-columns: 290px 1fr; gap: 22px; align-items: start; }
+.explorer > * { min-width: 0; }
+.ex-list { display: grid; gap: 6px; position: sticky; top: 100px; }
+.ex-btn { display: grid; gap: 2px; text-align: left; width: 100%; padding: 13px 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--ink-2); cursor: pointer; transition: background .2s, border-color .2s, transform .2s; }
+.ex-btn b { font-family: var(--display); font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+.ex-btn span { font-size: 12.5px; color: var(--muted); }
+.ex-btn:hover { border-color: var(--accent, var(--gold)); transform: translateX(3px); }
+.ex-btn[aria-selected="true"] { background: var(--accent-grad, var(--grad)); border-color: transparent; color: #fff; }
+.ex-btn[aria-selected="true"] span { color: rgba(255, 255, 255, .85); }
+.ex-panel { border-radius: 28px; border: 1px solid var(--line); background: var(--ink-2); padding: clamp(22px, 3vw, 40px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 40px); align-items: start; min-height: 470px; }
+.ex-panel > * { min-width: 0; }
+.ex-panel:not([hidden]) { animation: exIn .35s ease both; }
+@keyframes exIn { from { opacity: 0; transform: translateY(10px); } }
+.ex-panel .idx { font-family: var(--mono); font-size: 12px; color: var(--accent, var(--gold)); letter-spacing: .14em; text-transform: uppercase; }
+.ex-panel h3 { font-size: clamp(30px, 3.2vw, 46px); margin: 12px 0 14px; }
+.ex-panel p { color: var(--muted); }
+.ex-panel ul { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 9px; }
+.ex-panel li { position: relative; padding-left: 20px; font-size: 15px; }
+.ex-panel li::before { content: ''; position: absolute; left: 1px; top: 8px; width: 7px; height: 7px; border-radius: 2px; background: var(--accent, var(--crimson)); transform: rotate(45deg); }
+@media (max-width: 1020px) { .ex-panel { grid-template-columns: 1fr; } }
+@media (max-width: 860px) {
+    .explorer { grid-template-columns: 1fr; }
+    .ex-list { position: static; display: flex; overflow-x: auto; gap: 8px; padding-bottom: 6px; scrollbar-width: none; }
+    .ex-list::-webkit-scrollbar { display: none; }
+    .ex-btn { flex: none; width: auto; padding: 10px 14px; }
+    .ex-btn span { display: none; }
+    .ex-panel { min-height: 0; }
+}
+
+/* ---------- Our work hub: one distinct panel per product ---------- */
+.hub { display: grid; gap: 26px; }
+.hub-panel { position: relative; overflow: hidden; border-radius: 34px; padding: clamp(26px, 4.5vw, 64px); display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(24px, 4vw, 60px); align-items: center; }
+.hub-panel > * { min-width: 0; position: relative; }
+.hub-panel.flip > :first-child { order: 2; }
+.hub-panel.stay { background: var(--accent-grad); color: #fff; }
+.hub-panel.eco { background: var(--accent-grad); color: #fff; }
+.hub-panel.erp { background: var(--ink-2); border: 1px solid rgba(227, 185, 79, .35); }
+.hub-panel::after { content: ''; position: absolute; width: 520px; height: 520px; right: -160px; top: -200px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .14), transparent 65%); pointer-events: none; }
+.hub-panel.erp::after { background: radial-gradient(circle, rgba(227, 185, 79, .18), transparent 65%); }
+.hub-kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; opacity: .85; }
+.hub-panel h2 { font-size: clamp(40px, 5.2vw, 80px); font-weight: 800; letter-spacing: -.045em; margin: 14px 0 6px; line-height: .95; }
+.hub-panel .what { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: clamp(22px, 2.2vw, 30px); opacity: .92; }
+.hub-panel p.desc { margin-top: 16px; opacity: .88; max-width: 52ch; }
+.hub-panel.erp p.desc, .hub-panel.erp .what { color: var(--muted); opacity: 1; }
+.hub-stats { display: flex; flex-wrap: wrap; gap: 26px; margin: 26px 0; }
+.hub-stats div b { display: block; font-family: var(--display); font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.hub-stats div span { font-size: 13px; opacity: .8; }
+.hub-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+.hub-chips span { font-size: 12.5px; padding: 6px 11px; border-radius: 99px; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .22); }
+.hub-panel.erp .hub-chips span { background: rgba(227, 185, 79, .08); border-color: rgba(227, 185, 79, .3); color: var(--fg); }
+.btn-light { background: #fff; color: var(--ink); }
+.btn-light::before { background: var(--gold); }
+.btn-outline-light { border-color: rgba(255, 255, 255, .45); color: #fff; }
+.btn-outline-light::before { background: #fff; }
+.btn-outline-light:hover { color: var(--ink); }
+.btn-gold { background: var(--gold); color: var(--ink); }
+.btn-gold::before { background: #fff; }
+@media (max-width: 900px) { .hub-panel { grid-template-columns: 1fr; } .hub-panel.flip > :first-child { order: 0; } }
+.jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.jump a { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 99px; border: 1px solid var(--line); text-decoration: none; font-weight: 600; transition: border-color .2s, background .2s; }
+.jump a:hover { border-color: var(--gold); background: rgba(227, 185, 79, .06); }
+.jump a i { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ---------- factory pieces (Eco Pack) ---------- */
+.plant-switch { display: inline-flex; gap: 4px; padding: 4px; border-radius: 99px; background: #fff; border: 1px solid rgba(42, 18, 25, .1); }
+.plant-switch button { border: 0; background: transparent; padding: 7px 14px; border-radius: 99px; font-weight: 700; font-size: 12.5px; color: var(--on-paper-muted); cursor: pointer; }
+.plant-switch button[aria-pressed="true"] { background: #0b6e4f; color: #fff; }
+.mlist { display: grid; gap: 7px; }
+.mrow { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; background: #fff; border-radius: 11px; padding: 9px 12px; font-size: 12.5px; }
+.mrow i { width: 10px; height: 10px; border-radius: 50%; background: var(--st, #10b981); box-shadow: 0 0 0 4px color-mix(in srgb, var(--st, #10b981) 18%, transparent); }
+.mrow b { font-weight: 600; }
+.mrow span { color: var(--on-paper-muted); font-size: 11.5px; }
+.flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+.flow::before { content: ''; position: absolute; top: 31px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--accent), var(--gold)); opacity: .5; }
+.flow-step { position: relative; display: grid; justify-items: center; text-align: center; gap: 10px; padding: 0 10px; }
+.flow-step .n { width: 62px; height: 62px; border-radius: 50%; background: var(--ink); border: 2px solid var(--accent); display: grid; place-items: center; font-family: var(--mono); color: var(--accent); font-weight: 600; position: relative; z-index: 1; }
+.flow-step h4 { font-size: 21px; }
+.flow-step p { color: var(--muted); font-size: 14.5px; }
+@media (max-width: 860px) { .flow { grid-template-columns: 1fr; gap: 22px; } .flow::before { display: none; } .flow-step { grid-template-columns: 62px 1fr; justify-items: start; text-align: left; align-items: center; } .flow-step p { grid-column: 2; } }
+.plants { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.plant { border-radius: 24px; padding: 28px; background: #fff; color: var(--on-paper); border-top: 6px solid var(--pc, #0b6e4f); display: grid; gap: 12px; align-content: start; }
+.plant h3 { font-size: 30px; }
+.plant .addr { color: var(--on-paper-muted); font-size: 14px; }
+.plant h5 { margin: 6px 0 0; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--on-paper-muted); font-weight: 500; }
+.plant ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+@media (max-width: 760px) { .plants { grid-template-columns: 1fr; } }
+.costsheet { display: grid; gap: 4px; font-variant-numeric: tabular-nums; }
+.costsheet p { display: flex; justify-content: space-between; gap: 10px; padding: 8px 12px; background: #fff; border-radius: 10px; font-size: 13px; }
+.costsheet p.tot { background: #0b6e4f; color: #fff; font-weight: 700; }
+.formula { font-family: var(--mono); font-size: 14px; padding: 14px 18px; border-radius: 14px; background: var(--paper-2); color: var(--on-paper); overflow-x: auto; }
+
+/* ---------- hero product showcase ---------- */
+.show { display: grid; gap: 16px; }
+.show-tabs { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.show-tabs button { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: 1px solid var(--line); background: rgba(29, 14, 20, .6); font-weight: 600; font-size: 13.5px; cursor: pointer; color: var(--muted); transition: color .2s, border-color .2s, background .2s; position: relative; overflow: hidden; }
+.show-tabs button i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.show-tabs button[aria-selected="true"] { color: var(--fg); border-color: var(--c); background: color-mix(in srgb, var(--c) 16%, transparent); }
+.show-tabs button[aria-selected="true"]::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--c); transform-origin: left; animation: showTimer var(--show-ms, 5s) linear both; }
+.show.paused .show-tabs button::after, .show.stopped .show-tabs button::after { animation: none; transform: scaleX(0); }
+@keyframes showTimer { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.show .mock:not([hidden]) { animation: exIn .45s ease both; }
+.ptag { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 99px; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; background: color-mix(in srgb, var(--c) 14%, white); color: color-mix(in srgb, var(--c) 75%, black); }
+.ptag i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+
+/* ---------- "what would it do for you" picker ---------- */
+.explorer.chooser { grid-template-columns: 1fr; }
+.chooser .ex-list { position: static; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.chooser .ex-btn { padding: 18px 20px; border-radius: 18px; }
+.chooser .ex-btn b { font-size: 19px; }
+.chooser .ex-panel { padding: 0; overflow: hidden; gap: 0; min-height: 0; align-items: stretch; border-radius: 28px; }
+.pick-old { padding: clamp(24px, 3.5vw, 46px); background: #e8dccb; color: #3b2a1e; font-family: 'Caveat', 'Comic Sans MS', cursive; background-image: repeating-linear-gradient(0deg, transparent 0 33px, rgba(60, 90, 160, .22) 33px 34px); }
+.pick-old h3 { font-family: 'Caveat', cursive; font-size: clamp(32px, 3.4vw, 46px); letter-spacing: 0; margin: 0 0 10px; }
+.pick-old ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-size: clamp(20px, 2vw, 26px); line-height: 1.32; }
+.pick-old li { padding-left: 0; }
+.pick-old li::before { content: none; }
+.pick-old li:nth-child(2n) { text-decoration: line-through; text-decoration-color: #c0392b; text-decoration-thickness: 2px; }
+.pick-new { padding: clamp(24px, 3.5vw, 46px); display: grid; gap: 14px; align-content: start; }
+.pick-new h3 { font-size: clamp(30px, 3vw, 42px); margin: 0; }
+.pick-new ul { margin: 0 0 8px; }
+.pick-new li::before { content: '✓' !important; background: none !important; transform: none !important; width: auto !important; height: auto !important; top: 0 !important; color: var(--mint); font-weight: 800; }
+.pick-new .btn { justify-self: start; }
+@media (max-width: 860px) { .chooser .ex-list { grid-template-columns: 1fr; display: grid; } .chooser .ex-btn span { display: block; } }
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
@@ -649,23 +784,29 @@ body::after {
             <div class="wrap hero-grid">
                 <div>
                     <span class="eyebrow">Dashboards · ERP · Built your way</span>
-                    <h1 data-split="load" style="margin-top: 22px;">Your whole team, run from <span class="serif">one</span> screen.</h1>
-                    <p class="lede" data-reveal>Attendance, payroll, production, stock, GST and accounts in one dashboard shaped around the way <em>your</em> business already works. Running today at a business hotel and a two-plant factory in Chennai, with our own ERP in testing.</p>
+                    <h1 data-split="load" style="margin-top: 22px;">Your business, run from <span class="serif">one</span> screen.</h1>
+                    <p class="lede" data-reveal>We build the software that runs a business: HR and payroll for a hotel, a factory dashboard for two plants, and our own accounting and GST ERP. Each one is shaped around the way <em>your</em> business already works.</p>
                     <div class="hero-ctas" data-reveal>
                         <a class="btn btn-primary" href="#work" data-magnetic>See our work <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                         <a class="btn btn-ghost" href="#whatsapp" data-magnetic>Talk to Vignesh</a>
                     </div>
                     <div class="hero-badges" data-reveal>
                         <span><i></i> Supported 24/7</span>
-                        <span>PF · ESI · PT · TDS built in</span>
-                        <span>Works on phone &amp; computer</span>
+                        <span>GST · PF · ESI · TDS built in</span>
+                        <span>2 businesses run on it daily</span>
                     </div>
                 </div>
 
-                <div class="mock-stage" data-cursor="Live">
-                    <div class="mock" aria-label="Preview of the dashboard We Create built for STAY BAY Business Hotels, with sample figures">
-                        <div class="mock-top"><span class="m-logo">SBY</span><b>STAY BAY</b><span class="m-fy">FY 2026-27</span></div>
-                        <div class="mock-tabs"><span class="on">Dashboard</span><span>Attendance</span><span>Leave &amp; OT</span><span>Payroll</span><span>Welfare</span><span>Tax</span><span>Reports</span></div>
+                <div class="mock-stage show" data-show>
+                    <div class="show-tabs" role="tablist" aria-label="Choose a product to preview">
+                        <button type="button" role="tab" data-show-btn="0" aria-selected="true" style="--c: #d62839;"><i></i>STAY BAY</button>
+                        <button type="button" role="tab" data-show-btn="1" aria-selected="false" style="--c: #19a874;"><i></i>Eco Pack</button>
+                        <button type="button" role="tab" data-show-btn="2" aria-selected="false" style="--c: #e3b94f;"><i></i>We Create ERP</button>
+                    </div>
+
+                    <div class="mock" data-show-screen="0" aria-label="Preview of the STAY BAY HR and payroll dashboard, sample figures">
+                        <div class="mock-top"><span class="m-logo">SBY</span><b>STAY BAY · HR &amp; Payroll</b><span class="m-fy">FY 2026-27</span></div>
+                        <div class="mock-tabs"><span class="on">Dashboard</span><span>Attendance</span><span>Leave &amp; OT</span><span>Payroll</span><span>Welfare</span><span>Tax</span></div>
                         <div class="mock-kpis">
                             <div class="mock-kpi"><b>₹3,07,500</b><small>Gross salary</small><em style="color:#b8901f;">8 employees</em></div>
                             <div class="mock-kpi"><b>₹2,61,940</b><small>Net salary</small><em style="color:#059669;">₹1,78,200 paid</em></div>
@@ -686,8 +827,59 @@ body::after {
                             </div>
                         </div>
                         <div class="mock-float f1"><span class="dot">✓</span><div><b>Payslips sent</b><br><small style="color: var(--muted);">8 PDFs · 2 seconds</small></div></div>
-                        <div class="mock-float f2"><span class="dot">🎂</span><div><b>Karthik's birthday</b><br><small style="color: var(--muted);">Today</small></div></div>
                         <span class="client-tag">Client · STAY BAY Business Hotels</span><span class="sample-tag">Sample data</span>
+                    </div>
+
+                    <div class="mock" data-show-screen="1" hidden aria-label="Preview of the Eco Pack factory dashboard, sample figures">
+                        <div class="mock-top" style="background: linear-gradient(135deg, #063d2c, #0b6e4f 55%, #18a06f);"><span class="m-logo">EP</span><b>ECO PACK · Factory</b><span class="m-fy">Both plants</span></div>
+                        <div class="mock-tabs"><span class="on" style="background: #0b6e4f;">Dashboard</span><span>Production</span><span>Inventory</span><span>Orders</span><span>Machines</span><span>Quality</span></div>
+                        <div class="mock-kpis">
+                            <div class="mock-kpi"><b>1,842 kg</b><small>Output today</small><em style="color:#059669;">2 plants</em></div>
+                            <div class="mock-kpi"><b>3.8%</b><small>Scrap</small><em style="color:#059669;">This month</em></div>
+                            <div class="mock-kpi"><b>6</b><small>Deliveries due</small><em style="color:#0284c7;">This week</em></div>
+                            <div class="mock-kpi"><b>1</b><small>Breakdown</small><em style="color:#d62839;">Blow moulding</em></div>
+                        </div>
+                        <div class="mock-row">
+                            <div class="mock-card">
+                                <h5>Daily production · kg</h5>
+                                <div class="bars"><i style="--h:62%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:70%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:55%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:78%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:74%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:82%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:68%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:88%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:80%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:91%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i></div>
+                                <div class="bar-labels"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+                            </div>
+                            <div class="mock-card">
+                                <h5>Needs attention</h5>
+                                <div class="mock-alert"><b>!</b>Blow moulding down</div>
+                                <div class="mock-alert"><b>4</b>Days of masterbatch</div>
+                                <div class="mock-alert"><b>41</b>Fire certificate</div>
+                            </div>
+                        </div>
+                        <div class="mock-float f1"><span class="dot">✓</span><div><b>Shopping bag · 127 µm</b><br><small style="color: var(--muted);">Quality check passed</small></div></div>
+                        <span class="client-tag">Client · Eco Pack Pvt Ltd</span><span class="sample-tag">Sample data</span>
+                    </div>
+
+                    <div class="mock" data-show-screen="2" hidden aria-label="Preview of We Create ERP, sample figures">
+                        <div class="mock-top" style="background: linear-gradient(135deg, #2a1d05, #6b4d0e 55%, #c9a227);"><span class="m-logo">WC</span><b>We Create ERP</b><span class="m-fy">FY 2026-27</span></div>
+                        <div class="mock-tabs"><span class="on" style="background: #6b4d0e;">Sales · F8</span><span>Purchases · F9</span><span>GST</span><span>TDS</span><span>Reports</span><span>Audit</span></div>
+                        <div class="mock-kpis">
+                            <div class="mock-kpi"><b>₹14.2 L</b><small>Sales this month</small><em style="color:#059669;">142 invoices</em></div>
+                            <div class="mock-kpi"><b>₹2.38 L</b><small>GST payable</small><em style="color:#b8901f;">GSTR-3B ready</em></div>
+                            <div class="mock-kpi"><b>₹3.1 L</b><small>Receivables</small><em style="color:#0284c7;">12 parties</em></div>
+                            <div class="mock-kpi"><b>0</b><small>Filing issues</small><em style="color:#059669;">Health check</em></div>
+                        </div>
+                        <div class="mock-row">
+                            <div class="mock-card">
+                                <h5>Sales by month</h5>
+                                <div class="bars"><i style="--h:52%; background: linear-gradient(180deg, #f0d27a, #b8901f);"></i><i style="--h:60%; background: linear-gradient(180deg, #f0d27a, #b8901f);"></i><i style="--h:58%; background: linear-gradient(180deg, #f0d27a, #b8901f);"></i><i style="--h:66%; background: linear-gradient(180deg, #f0d27a, #b8901f);"></i><i style="--h:71%; background: linear-gradient(180deg, #f0d27a, #b8901f);"></i><i style="--h:69%; background: linear-gradient(180deg, #f0d27a, #b8901f);"></i><i style="--h:84%; background: linear-gradient(180deg, #f0d27a, #b8901f);"></i><i style="--h:77%; background: linear-gradient(180deg, #f0d27a, #b8901f);"></i><i style="--h:88%; background: linear-gradient(180deg, #f0d27a, #b8901f);"></i><i style="--h:93%; background: linear-gradient(180deg, #f0d27a, #b8901f);"></i></div>
+                                <div class="bar-labels"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
+                            </div>
+                            <div class="mock-card">
+                                <h5>Compliance calendar</h5>
+                                <div class="mock-alert"><b>7</b>TDS deposit</div>
+                                <div class="mock-alert"><b>11</b>GSTR-1</div>
+                                <div class="mock-alert"><b>20</b>GSTR-3B</div>
+                            </div>
+                        </div>
+                        <div class="mock-float f1"><span class="dot">✓</span><div><b>Bill scanned</b><br><small style="color: var(--muted);">GSTIN, HSN and GST read</small></div></div>
+                        <span class="client-tag">Our product · in testing</span><span class="sample-tag">Sample data</span>
                     </div>
                 </div>
             </div>
@@ -704,9 +896,9 @@ body::after {
         <!-- STATEMENT -->
         <section class="statement pad">
             <div class="wrap">
-                <span class="eyebrow" style="margin-bottom: 30px;">The month-end problem</span>
-                <p data-words="register,calculator,excel,rarely">Every month-end, someone sits with a register, a calculator and three Excel sheets, hoping the numbers match. They rarely do.</p>
-                <p data-words="arithmetic,records,attention" style="margin-top: 50px;">Our dashboard does the arithmetic, keeps every record and tells you what needs your attention today.</p>
+                <span class="eyebrow" style="margin-bottom: 30px;">The problem we fix</span>
+                <p data-words="register,diary,excel,rarely">Attendance in a register. Stock in a diary. GST in three Excel sheets. Every month-end someone hopes the numbers match. They rarely do.</p>
+                <p data-words="arithmetic,record,attention" style="margin-top: 50px;">Our software does the arithmetic, keeps every record and tells you what needs your attention today.</p>
             </div>
         </section>
 
@@ -721,19 +913,19 @@ body::after {
                     <a class="btn btn-ghost" href="#work" data-magnetic>All our work</a>
                 </div>
                 <div class="work-grid">
-                    <a class="work-card" href="#stay-bay" data-reveal>
+                    <a class="work-card" href="#features" data-reveal>
                         <span class="kind">Hospitality · HR &amp; payroll</span>
                         <h3>STAY BAY Business Hotels</h3>
                         <p>Attendance for three shifts, a five-step payroll with payslips, advances, welfare and income tax for a Chennai business hotel.</p>
                         <div class="case-tag"><span class="live">Live client</span></div>
-                        <span class="more">See the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                        <span class="more">Open the dashboard page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                     </a>
-                    <a class="work-card" href="#eco-pack" data-reveal>
+                    <a class="work-card" href="#ecopack" data-reveal>
                         <span class="kind">Manufacturing · factory dashboard</span>
                         <h3>Eco Pack Pvt Ltd</h3>
                         <p>Two plastic-packaging plants, Porur and Thirumazhisai: production by machine, stock costing, orders and dispatch, quality checks and payroll.</p>
                         <div class="case-tag"><span class="live">Live client</span></div>
-                        <span class="more">See the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                        <span class="more">Open the dashboard page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                     </a>
                     <a class="work-card erp" href="#erp" data-reveal>
                         <span class="kind">Our product · accounting &amp; GST</span>
@@ -750,73 +942,82 @@ body::after {
         <section class="hstory" id="story">
             <div class="wrap hstory-head">
                 <div style="display: grid; gap: 18px;">
-                    <span class="eyebrow">Case study · STAY BAY Business Hotels</span>
-                    <h2 class="t-l" data-split>From the first check-in to the last payslip.</h2>
+                    <span class="eyebrow">One day, three products</span>
+                    <h2 class="t-l" data-split>A hotel, a factory and the accounts. Same day.</h2>
                 </div>
                 <div style="display: grid; gap: 18px; justify-items: end;">
-                    <p>How a real month runs at our client's hotel, step by step. Use the arrows, drag, or swipe sideways. Go back any time.</p>
+                    <p>Follow one working day across everything we've built. Use the arrows, drag, or swipe sideways. Go back any time.</p>
                     <div class="hnav">
                         <span class="hbar" aria-hidden="true"><i></i></span>
-                        <button type="button" class="hbtn" data-h="prev" aria-label="Previous step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-                        <button type="button" class="hbtn" data-h="next" aria-label="Next step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+                        <button type="button" class="hbtn" data-h="prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+                        <button type="button" class="hbtn" data-h="next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
                     </div>
                 </div>
             </div>
-            <div class="hscroll" tabindex="0" role="region" aria-label="A month at STAY BAY, scroll sideways">
+            <div class="hscroll" tabindex="0" role="region" aria-label="One working day across our three products, scroll sideways">
             <div class="htrack">
                 <article class="hpanel">
-                    <div class="time"><span>Day 1 · 07:02 AM</span><span>Attendance</span></div>
-                    <h3>Mark today in under a minute.</h3>
-                    <p>Pick a status and drag across the calendar, or enter check-in and check-out times. Late arrivals, early exits and overtime are worked out instantly, even for night shifts that end the next morning.</p>
+                    <div class="time"><span>07:02 AM</span><span class="ptag" style="--c: #d62839;"><i></i>STAY BAY</span></div>
+                    <h3>The hotel marks today in under a minute.</h3>
+                    <p>Check-in times for the morning shift go into the register. Late arrivals and overtime are worked out on the spot, even for the night shift that just ended.</p>
                     <div class="ui">
-                        <div class="ui-row"><b>Selvi R · Evening</b><span class="chip ok">In 2:58 PM</span></div>
+                        <div class="ui-row"><b>Selvi R · Morning</b><span class="chip ok">In 6:58 AM</span></div>
                         <div class="ui-row"><b>Ravi Kumar · Night</b><span class="chip info">11 PM → 7 AM</span></div>
                         <div class="ui-row"><b>Murugan S · Morning</b><span class="chip warn">Late 18 min</span></div>
                     </div>
                 </article>
                 <article class="hpanel">
-                    <div class="time"><span>Day 9 · 10:30 AM</span><span>Leave</span></div>
-                    <h3>Leave approved, balance updated.</h3>
-                    <p>Requests show the days and the balance left. Approving writes the leave into attendance on its own. Overlaps, over-quota requests and leave in a closed month are blocked.</p>
+                    <div class="time"><span>08:30 AM</span><span class="ptag" style="--c: #19a874;"><i></i>Eco Pack</span></div>
+                    <h3>The factory closes the night's production.</h3>
+                    <p>Shift B's output is saved machine by machine. Finished stock goes up and the granules used come out of stores by recipe, without anyone touching a stock book.</p>
                     <div class="ui">
-                        <div class="ui-row"><b>Casual Leave · 2 days</b><span class="chip ok">Approved</span></div>
-                        <div class="ui-row"><span>CL balance</span><b>8 of 12 left</b></div>
-                        <div class="ui-row"><span>Sick Leave</span><b>11 of 12 left</b></div>
+                        <div class="ui-row"><b>Air Bubble Roll</b><span class="chip ok">268 kg</span></div>
+                        <div class="ui-row"><span>Issued from stores</span><b>LDPE 194.3 · LLDPE 83.3 kg</b></div>
                     </div>
                 </article>
                 <article class="hpanel">
-                    <div class="time"><span>Day 17 · 11:40 PM</span><span>Overtime</span></div>
-                    <h3>Banquet ran late? Overtime is ready.</h3>
-                    <p>Extra hours from the register become an overtime entry waiting for approval. Hourly wage × hours × your rate. Once you approve it, it goes into that month's salary.</p>
+                    <div class="time"><span>11:15 AM</span><span class="ptag" style="--c: #19a874;"><i></i>Eco Pack</span></div>
+                    <h3>A batch fails quality, on its own.</h3>
+                    <p>A shopping bag tests at 118 microns. The rule says 120, so it fails automatically, before it can reach a customer.</p>
                     <div class="ui">
-                        <div class="ui-row"><span>Balaji · 2.5 h × 2</span><b>₹605</b></div>
-                        <div class="ui-row"><span>Status</span><span class="chip warn">Pending approval</span></div>
+                        <div class="ui-row"><span>Shopping Bag · batch 0415</span><span class="chip bad">118 µm · Fail</span></div>
+                        <div class="ui-row"><span>Shopping Bag · batch 0416</span><span class="chip ok">127 µm · Pass</span></div>
                     </div>
                 </article>
                 <article class="hpanel">
-                    <div class="time"><span>Day 30 · 06:00 PM</span><span>Payroll</span></div>
-                    <h3>Five clear steps. No surprises.</h3>
-                    <p>Draft, review, approve, pay, lock. Approving freezes the figures. Paying everyone locks the month, so nobody can quietly change attendance afterwards. Reopening needs a written reason.</p>
+                    <div class="time"><span>03:40 PM</span><span class="ptag" style="--c: #c9a227;"><i></i>We Create ERP</span></div>
+                    <h3>The accountant raises an invoice with F8.</h3>
+                    <p>Same key as Tally. CGST and SGST or IGST come from the place of supply, the ledgers post themselves, and the number is next in the series with no gaps.</p>
+                    <div class="ui">
+                        <div class="ui-row"><span>LDPE liners · HSN 3923</span><b>₹1,20,000</b></div>
+                        <div class="ui-row"><span>CGST 9% + SGST 9%</span><b>₹21,600</b></div>
+                        <div class="ui-row"><span>INV/26-27/0142</span><span class="chip ok">Saved · audit-logged</span></div>
+                    </div>
+                </article>
+                <article class="hpanel">
+                    <div class="time"><span>06:00 PM</span><span class="ptag" style="--c: #d62839;"><i></i>STAY BAY</span></div>
+                    <h3>The owner approves the hotel's payroll.</h3>
+                    <p>Draft, review, approve, pay, lock. The figures freeze once approved, and branded payslips go out in seconds.</p>
                     <div class="ui">
                         <div class="steps-ui"><span class="done">✓ DRAFT</span><span class="done">✓ REVIEW</span><span class="now">3 APPROVED</span><span>4 PAID</span><span>5 LOCKED</span></div>
                         <div class="ui-row"><span>Net payable · 8 staff</span><b>₹2,61,940</b></div>
                     </div>
                 </article>
                 <article class="hpanel">
-                    <div class="time"><span>Day 1 · next month</span><span>Payslips &amp; tax</span></div>
-                    <h3>Payslips, tax certificates, reports.</h3>
-                    <p>Branded payslip PDFs with salary in words. Form 130 / 16 for the year. 19 reports you can export to Excel or PDF, from the salary register to missing documents.</p>
+                    <div class="time"><span>Month end</span><span class="ptag" style="--c: #c9a227;"><i></i>We Create ERP</span></div>
+                    <h3>GST returns, checked before filing.</h3>
+                    <p>GSTR-1 and GSTR-3B build themselves from the books, with the Rule 88A set-off done. A pre-filing check lists anything to fix first.</p>
                     <div class="ui">
-                        <div class="ui-row"><b>Payslip_SBY004_Karthik.pdf</b><span class="chip ok">Ready</span></div>
-                        <div class="ui-row"><b>Salary Register · Sep</b><span class="chip info">Excel</span></div>
-                        <div class="ui-row"><b>Form 130 · TY 2026-27</b><span class="chip info">PDF</span></div>
+                        <div class="ui-row"><b>GSTR-1 · portal JSON</b><span class="chip ok">Ready</span></div>
+                        <div class="ui-row"><b>GSTR-3B · Rule 88A set-off</b><span class="chip ok">Ready</span></div>
+                        <div class="ui-row"><b>Pre-filing check</b><span class="chip ok">0 issues</span></div>
                     </div>
                 </article>
                 <article class="hpanel final">
                     <div class="time"><span>Every day after</span><span>You</span></div>
                     <h3>And you get your evenings back.</h3>
-                    <p>Every change is recorded with who, when, old value, new value and reason. You always know what happened, without asking anyone.</p>
-                    <a class="btn btn-ghost" href="#features" style="align-self: flex-start; color: #fff; border-color: rgba(255,255,255,.4);">Explore all features</a>
+                    <p>Every change in every product is recorded with who, when, the old value, the new value and the reason. You always know what happened.</p>
+                    <a class="btn btn-ghost" href="#work" style="align-self: flex-start; color: #fff; border-color: rgba(255,255,255,.4);">See all our work</a>
                 </article>
             </div>
             </div>
@@ -827,60 +1028,52 @@ body::after {
             <div class="wrap">
                 <div class="shead">
                     <div>
-                        <span class="eyebrow">What's inside</span>
+                        <span class="eyebrow">We Create in numbers</span>
                         <h2 class="t-l" data-split>Built out, not bolted on.</h2>
                     </div>
-                    <p>These are the actual parts of the dashboard We Create built for STAY BAY Business Hotels, our client, running there today.</p>
+                    <p>Real counts from the two client dashboards and our ERP as they run today.</p>
                 </div>
                 <div class="numbers">
-                    <div class="num-cell" data-reveal><b data-count="11">11</b><span>Sections, from attendance to the audit log</span></div>
-                    <div class="num-cell" data-reveal><b data-count="19">19</b><span>Ready reports, exportable to Excel and PDF</span></div>
-                    <div class="num-cell" data-reveal><b data-count="5">5</b><span>Payroll steps with approval and month lock</span></div>
-                    <div class="num-cell" data-reveal><b data-count="8">8</b><span>Welfare schemes tracked for staff and families</span></div>
-                    <div class="num-cell" data-reveal><b data-count="4">4</b><span>Statutory deductions handled: PF, ESI, PT and TDS</span></div>
+                    <div class="num-cell" data-reveal><b data-count="3">3</b><span>Products built: hotel HR &amp; payroll, a factory dashboard and our ERP</span></div>
+                    <div class="num-cell" data-reveal><b data-count="2">2</b><span>Businesses running on them every day, in Chennai</span></div>
+                    <div class="num-cell" data-reveal><b data-count="41">41</b><span>Sections across the three: 11 + 10 + 20</span></div>
+                    <div class="num-cell" data-reveal><b data-count="33">33</b><span>Ready reports in the two dashboards, all exportable to Excel and PDF</span></div>
+                    <div class="num-cell" data-reveal><b data-count="61">61</b><span>Automated legal and accounting checks in the ERP, all passing</span></div>
                     <div class="num-cell" data-reveal><b data-count="24" data-suffix="/7">24/7</b><span>Support from the person who built it</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- BEFORE / AFTER -->
+        <!-- PICKER -->
         <section class="pad" style="padding-top: 0;">
             <div class="wrap">
                 <div class="shead">
                     <div>
-                        <span class="eyebrow">Before &amp; after</span>
-                        <h2 class="t-l" data-split>Drag to see the difference.</h2>
+                        <span class="eyebrow">What would it do for you?</span>
+                        <h2 class="t-l" data-split>Pick your business. See your day change.</h2>
                     </div>
-                    <p>Left: how most businesses still run payroll. Right: the same month in a We Create dashboard.</p>
+                    <p>Choose the one closest to you. Each comes from a product we've already built.</p>
                 </div>
-                <div class="compare" data-reveal data-cursor="Drag">
-                    <div class="cmp-side cmp-old">
-                        <h3>Payroll, the old way</h3>
-                        <ul>
-                            <li>Count present days from the register</li>
-                            <li class="strike">Find who took leave… ask the supervisor</li>
-                            <li>Work out LOP with a calculator</li>
-                            <li>PF 12%… of basic or gross?</li>
-                            <li>Advance balance? Check the diary</li>
-                            <li>Type 8 payslips in Word</li>
-                            <li class="strike">Who changed Ravi's attendance??</li>
-                        </ul>
+                <div class="explorer chooser" data-reveal>
+                    <div class="ex-list" role="tablist" aria-label="Choose your business">
+                        <button type="button" class="ex-btn" role="tab" id="pick-1-tab" aria-controls="pick-1" aria-selected="true" style="--accent: #d62839; --accent-grad: linear-gradient(135deg, #7d0b22, #d62839);"><b>I run a hotel or service business</b><span>HR &amp; payroll · like STAY BAY</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="pick-2-tab" aria-controls="pick-2" aria-selected="false" style="--accent: #19a874; --accent-grad: linear-gradient(135deg, #063d2c, #0b6e4f 55%, #18a06f);"><b>I run a factory</b><span>Production &amp; stock · like Eco Pack</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="pick-3-tab" aria-controls="pick-3" aria-selected="false" style="--accent: #c9a227; --accent-grad: linear-gradient(135deg, #6b4d0e, #c9a227);"><b>I keep the books or I'm a CA</b><span>Accounts &amp; GST · We Create ERP</span></button>
                     </div>
-                    <div class="cmp-side cmp-new">
-                        <h3>With <span class="gold-text">We Create</span></h3>
-                        <ul>
-                            <li>Paid days counted from attendance</li>
-                            <li>Approved leave already in the calendar</li>
-                            <li>LOP calculated to the rupee</li>
-                            <li>PF, ESI, PT and TDS by your rules</li>
-                            <li>Advance instalment deducted, stops at zero</li>
-                            <li>Branded payslip PDFs in one click</li>
-                            <li>Every change in the audit log</li>
-                        </ul>
+                    <div>
+                        <div class="ex-panel" role="tabpanel" id="pick-1" aria-labelledby="pick-1-tab" style="--accent: #d62839;">
+                            <div class="pick-old"><h3>Payroll, today</h3><ul><li>Count present days from the register</li><li>Ask the supervisor who took leave</li><li>Work out loss of pay with a calculator</li><li>PF 12%… of basic or gross?</li><li>Type every payslip in Word</li></ul></div>
+                            <div class="pick-new"><h3>With We Create</h3><ul><li>Paid days counted from attendance</li><li>Approved leave already in the calendar</li><li>Loss of pay worked out to the rupee</li><li>PF, ESI, professional tax and TDS by your rules</li><li>Branded payslip PDFs in one click</li></ul><a class="btn btn-primary" href="#features" style="background: #d62839;">See the STAY BAY dashboard <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="pick-2" aria-labelledby="pick-2-tab" hidden style="--accent: #0b6e4f;">
+                            <div class="pick-old"><h3>The factory, today</h3><ul><li>Production written in a shift notebook</li><li>Granule stock counted by hand</li><li>"What does a kilo of bubble roll cost us?"</li><li>A breakdown, and nobody records the hours lost</li><li>Bag thickness checked… sometimes</li></ul></div>
+                            <div class="pick-new"><h3>With We Create</h3><ul><li>Shift output saved by machine; stock updates by recipe</li><li>Stores ledger valued at cost, both plants</li><li>A cost sheet with the margin on every product</li><li>Every breakdown logged with hours lost and cost</li><li>Bags under 120 microns fail automatically</li></ul><a class="btn btn-primary" href="#ecopack" style="background: #0b6e4f;">See the Eco Pack dashboard <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="pick-3" aria-labelledby="pick-3-tab" hidden style="--accent: #9a7417;">
+                            <div class="pick-old"><h3>The books, today</h3><ul><li>Type every bill in, line by line</li><li>Check GST on each invoice by hand</li><li>Pay extra for every user, GSTIN and scan</li><li>The CA logs in to each client one by one</li><li>A ₹2.5 lakh cash receipt slips through</li></ul></div>
+                            <div class="pick-new"><h3>With We Create</h3><ul><li>Scan the bill: GSTINs, HSN and amounts read for you</li><li>CGST + SGST or IGST from the place of supply</li><li>One plan with every compliance feature</li><li>Every client and filing status on one screen</li><li>Cash receipts of ₹2 lakh or more refused</li></ul><a class="btn btn-primary" href="#erp" style="background: #9a7417;">See We Create ERP <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+                        </div>
                     </div>
-                    <div class="cmp-handle" aria-hidden="true"></div>
-                    <span class="cmp-tag l">Before</span><span class="cmp-tag r">After</span>
-                    <input type="range" id="cmpRange" min="0" max="100" value="50" aria-label="Compare before and after">
                 </div>
             </div>
         </section>
@@ -898,17 +1091,17 @@ body::after {
                     <div class="benefit" data-reveal>
                         <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
                         <h3>Hours back every month</h3>
-                        <p>Month-end payroll that took days takes one sitting. Pay, payslips and reports come out of the same screen.</p>
+                        <p>Payroll, stock and GST work that took days takes one sitting. The reports come out of the same screen.</p>
                     </div>
                     <div class="benefit" data-reveal>
                         <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
                         <h3>Compliance done right</h3>
-                        <p>PF, ESI, professional tax and TDS are worked out by your rules. Form 130 / 16 is ready at year end.</p>
+                        <p>GST, PF, ESI, professional tax and TDS are worked out by your rules, and the law is checked as you work.</p>
                     </div>
                     <div class="benefit" data-reveal>
                         <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="M20.5 18.5L22 20"/></svg></div>
                         <h3>Nothing hidden</h3>
-                        <p>Who changed what, when and why. The audit log can't be edited or deleted, not even by the Owner.</p>
+                        <p>Who changed what, when and why, in every product. Nobody can edit or delete the audit log, not even the Owner.</p>
                     </div>
                     <div class="benefit" data-reveal>
                         <div class="ico"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
@@ -918,12 +1111,12 @@ body::after {
                     <div class="benefit" data-reveal>
                         <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div>
                         <h3>One look, full picture</h3>
-                        <p>Who is present, who is on leave, what's waiting for you and what you'll pay this month, the moment you open it.</p>
+                        <p>Who is in, what the machines made, what's waiting for you and what you owe, the moment you open it.</p>
                     </div>
                     <div class="benefit" data-reveal>
                         <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.5 3.2-5.5 6.5-5.5s6 2 6.5 5.5"/><path d="M17 11l2 2 4-4"/></svg></div>
                         <h3>The right access for each person</h3>
-                        <p>Managers run the day-to-day. Only the Owner approves salary advances. Every action checks who is asking.</p>
+                        <p>Managers and supervisors run the day-to-day. Money decisions stay with the Owner. Every action checks who is asking.</p>
                     </div>
                 </div>
             </div>
@@ -935,28 +1128,28 @@ body::after {
                 <div class="shead">
                     <div>
                         <span class="eyebrow">Not just hotels</span>
-                        <h2 class="t-l" data-split>Any team that clocks in can use this.</h2>
+                        <h2 class="t-l" data-split>Live in two industries. Ready for yours.</h2>
                     </div>
                     <a class="btn btn-ghost" href="#industries" data-magnetic>All industries</a>
                 </div>
                 <div class="ind-grid">
-                    <a class="ind-card" href="#hospitality" data-tilt="6" data-cursor="Open">
+                    <a class="ind-card" href="#features" data-tilt="6" data-cursor="Open">
                         <span class="glow"></span><span class="flag">Live today</span>
                         <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M8 56V20l24-12 24 12v36"/><path d="M8 56h48M24 56V40h16v16M20 26h4M30 26h4M40 26h4M20 33h4M40 33h4"/></svg></span>
                         <h3>Hospitality</h3>
                         <p>Hotels, resorts, restaurants and service apartments. Rotating shifts, night duty, holiday work and tips-heavy teams.</p>
                     </a>
-                    <a class="ind-card" href="#eco-pack" data-tilt="6" data-cursor="Open">
+                    <a class="ind-card" href="#ecopack" data-tilt="6" data-cursor="Open">
                         <span class="glow"></span><span class="flag">Live today</span>
                         <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M6 56V30l14 8V30l14 8V30l14 8V12h10v44z"/><path d="M6 56h52M16 48h6M28 48h6M40 48h6"/></svg></span>
                         <h3>Manufacturing</h3>
                         <p>Eco Pack runs two plastic-packaging plants on it: production by machine, stock costing, orders, quality checks and payroll for each plant.</p>
                     </a>
-                    <a class="ind-card" href="#more" data-tilt="6" data-cursor="Open">
-                        <span class="glow"></span>
-                        <span class="big-ico"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M10 32h44M32 10c7 7 7 37 0 44M32 10c-7 7-7 37 0 44"/></svg></span>
-                        <h3>And more</h3>
-                        <p>Retail, clinics, schools, construction, logistics and professional firms. If you have staff, we can shape it for you.</p>
+                    <a class="ind-card" href="#erp" data-tilt="6" data-cursor="Open">
+                        <span class="glow"></span><span class="flag" style="background: #3ecf8e;">In testing</span>
+                        <span class="big-ico"><svg viewBox="0 0 64 64"><rect x="10" y="20" width="44" height="32" rx="4"/><path d="M24 20v-6h16v6M10 34h44M30 40h4"/></svg></span>
+                        <h3>Accounts &amp; CA firms</h3>
+                        <p>Any business that keeps books, and the CAs who audit them. We Create ERP handles GST, TDS and statements for every industry.</p>
                     </a>
                 </div>
             </div>
@@ -1020,105 +1213,102 @@ body::after {
         </section>
     </div>
 <div class="route" data-route="work" id="page-work" hidden>
-        <section class="page-hero" style="padding-bottom: clamp(30px, 4vw, 50px);">
+        <section class="page-hero" style="padding-bottom: clamp(40px, 5vw, 70px);">
             <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
             <div class="wrap" style="position: relative;">
                 <span class="eyebrow">Our work</span>
-                <h1 data-split="load">Built for real<br><span class="gold-text">businesses.</span></h1>
-                <p class="lede" data-reveal>A hotel, a factory and an accounting product of our own. Each one was built around how that business actually runs, and each one is used every day.</p>
+                <h1 data-split="load">Three things<br><span class="gold-text">we've built.</span></h1>
+                <p class="lede" data-reveal>Two dashboards running real businesses every day, and an accounting product of our own. Each one has its own page with every section explained.</p>
+                <nav class="jump" aria-label="Jump to a project" data-reveal>
+                    <a href="#features"><i style="background: #d62839;"></i>STAY BAY · HR &amp; Payroll dashboard</a>
+                    <a href="#ecopack"><i style="background: #19a874;"></i>Eco Pack · Factory dashboard</a>
+                    <a href="#erp"><i style="background: #e3b94f;"></i>We Create ERP · Accounting &amp; GST</a>
+                </nav>
             </div>
         </section>
 
-        <!-- STAY BAY -->
-        <section id="stay-bay">
-            <div class="wrap case">
-                <div data-reveal>
-                    <div class="case-tag"><span class="live">Live client</span><span>Hospitality</span><span>Chennai</span></div>
-                    <h2>STAY BAY Business Hotels</h2>
-                    <div class="who">HR, payroll &amp; welfare suite</div>
-                    <p>A business hotel with morning, evening and night shifts needed attendance, leave, payroll, advances and tax to stop living in registers and Excel. We replaced all of it with one dashboard.</p>
-                    <ul>
-                        <li>Daily register with check-in times, including night shifts that end the next morning</li>
-                        <li>Five-step payroll (draft, review, approve, pay, lock) with branded payslip PDFs</li>
-                        <li>PF, ESI, professional tax and TDS, with Form 130 / 16 at year end</li>
-                        <li>Advances only the Owner can approve, incentives, family welfare and 19 reports</li>
-                        <li>An audit log nobody can edit, not even the Owner</li>
-                    </ul>
-                    <div class="hero-ctas"><a class="btn btn-primary" href="#features" data-magnetic>See every feature</a><a class="btn btn-ghost" href="#story">A month at STAY BAY</a></div>
-                </div>
-                <div class="win" data-reveal data-tilt="4">
-                    <div class="win-bar"><i></i><i></i><i></i><span>stay bay · payroll · Sep 2026</span></div>
-                    <div class="steps-ui"><span class="done">✓ DRAFT</span><span class="done">✓ REVIEW</span><span class="now">3 APPROVED</span><span>4 PAID</span><span>5 LOCKED</span></div>
-                    <div class="ui-row"><b>Karthik · Front Office</b><span class="chip ok">₹24,180</span></div>
-                    <div class="ui-row"><b>Selvi R · Front Office</b><span class="chip ok">₹18,640</span></div>
-                    <div class="ui-row"><b>Ravi Kumar · Security</b><span class="chip warn">1 day LOP</span></div>
-                    <div class="net"><span>Net payable · 8 staff</span><b>₹2,61,940</b></div>
-                    <span style="font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted);">Sample figures</span>
-                </div>
-            </div>
-        </section>
+        <section style="padding-bottom: clamp(80px, 10vw, 140px);">
+            <div class="wrap hub">
 
-        <!-- ECO PACK -->
-        <section id="eco-pack">
-            <div class="wrap case flip">
-                <div data-reveal>
-                    <div class="case-tag"><span class="live">Live client</span><span>Manufacturing</span><span>2 plants</span></div>
-                    <h2>Eco Pack Pvt Ltd</h2>
-                    <div class="who">Factory dashboard · plastic packaging since 1981</div>
-                    <p>Eco Pack makes LDPE, HDPE and PP packaging at two plants in Chennai: Porur and Thirumazhisai. Their dashboard follows a roll of film from raw granules to a paid invoice, with each plant's people and stock kept separate.</p>
-                    <ul>
-                        <li><b>Production:</b> every shift's output by machine; recording it adds finished goods and takes the raw material out of stores by each product's recipe</li>
-                        <li><b>Inventory &amp; costing:</b> weighted-average and FIFO stores ledger, machine-hour-rate product cost, reorder planner with EOQ and ABC</li>
-                        <li><b>Orders &amp; dispatch:</b> Order → In production → Ready → Dispatched → Paid, with CGST + SGST or IGST worked out by state</li>
-                        <li><b>Machines:</b> status cards, utilisation against two 8-hour shifts, full repair and service history</li>
-                        <li><b>Quality &amp; compliance:</b> thickness, GSM and seal checks that fail automatically outside tolerance, carry bags below 120 microns flagged, licence renewals 60 days ahead</li>
-                        <li><b>Attendance &amp; payroll</b> per plant, PIN sign-in and access set user by user</li>
-                    </ul>
-                    <div class="hero-ctas"><a class="btn btn-primary" href="#whatsapp" data-magnetic>Get one for your factory</a><a class="btn btn-ghost" href="#manufacturing">Manufacturing</a></div>
-                </div>
-                <div class="win" data-reveal data-tilt="4">
-                    <div class="win-bar"><i></i><i></i><i></i><span>eco pack · machines · Porur</span></div>
-                    <div class="machines">
-                        <div class="mc"><b>Extruder 1</b><span>Running · LDPE film</span></div>
-                        <div class="mc"><b>Extruder 2</b><span>Running · HM-HDPE</span></div>
-                        <div class="mc" style="--mc: #f59e0b;"><b>Printer</b><span>Service due in 3 days</span></div>
-                        <div class="mc"><b>Cutting 1</b><span>Running · carry bags</span></div>
-                        <div class="mc" style="--mc: #d62839;"><b>Cutting 2</b><span>Breakdown · 2.5 h lost</span></div>
-                        <div class="mc" style="--mc: #a8a29e;"><b>Bag sealer</b><span>Idle</span></div>
+                <!-- STAY BAY -->
+                <article class="hub-panel stay theme-stay" id="stay-bay" data-reveal>
+                    <div>
+                        <span class="hub-kicker">Client 01 · Hospitality · Chennai</span>
+                        <h2>STAY BAY Business Hotels</h2>
+                        <div class="what">HR, payroll &amp; welfare dashboard</div>
+                        <p class="desc">A business hotel with morning, evening and night shifts. Attendance, leave, salaries, advances and income tax moved out of registers and Excel into one screen.</p>
+                        <div class="hub-stats"><div><b>11</b><span>sections</span></div><div><b>19</b><span>reports</span></div><div><b>5</b><span>payroll steps</span></div></div>
+                        <div class="hub-chips"><span>Attendance</span><span>Leave &amp; overtime</span><span>Payroll</span><span>Advances</span><span>Incentives</span><span>Welfare</span><span>Salary &amp; tax</span><span>Audit log</span></div>
+                        <div class="hero-ctas" style="margin-top: 0;"><a class="btn btn-light" href="#features" data-magnetic>Open the STAY BAY page</a><a class="btn btn-ghost btn-outline-light" href="#story">A month at the hotel</a></div>
                     </div>
-                    <div class="mini-bars" aria-label="Daily output, sample"><i style="--h:62%"></i><i style="--h:70%"></i><i style="--h:55%"></i><i style="--h:78%"></i><i style="--h:74%"></i><i style="--h:82%"></i><i style="--h:68%"></i><i style="--h:88%"></i><i style="--h:80%"></i><i style="--h:91%"></i></div>
-                    <div class="ui-row"><b>Order · 2,000 kg LDPE liners</b><span class="chip info">Ready to dispatch</span></div>
-                    <div class="ui-row"><b>HDPE granules</b><span class="chip warn">Reorder · 9 days left</span></div>
-                    <span style="font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted);">Sample figures</span>
-                </div>
-            </div>
-        </section>
+                    <div class="win">
+                        <div class="win-bar"><i></i><i></i><i></i><span>payslip · Sep 2026</span></div>
+                        <div class="slip">
+                            <div><h6>Earnings</h6><p><span>Basic</span><b>13,500</b></p><p><span>HRA</span><b>5,400</b></p><p><span>Special</span><b>8,100</b></p><p><span>Incentive</span><b>4,000</b></p></div>
+                            <div><h6>Deductions</h6><p><span>PF</span><b>1,620</b></p><p><span>PT</span><b>200</b></p><p><span>TDS</span><b>0</b></p><p><span>Advance</span><b>5,000</b></p></div>
+                        </div>
+                        <div class="net"><span>Net salary</span><b>₹24,180</b></div>
+                        <span style="font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted);">Sample payslip</span>
+                    </div>
+                </article>
 
-        <!-- ERP -->
-        <section id="erp-case" style="padding-bottom: clamp(80px, 10vw, 140px);">
-            <div class="wrap case">
-                <div data-reveal>
-                    <div class="case-tag"><span class="test">Our product · in testing</span><span>Accounting · GST · TDS</span></div>
-                    <h2>We Create ERP</h2>
-                    <div class="who">Built for Indian businesses and their CAs</div>
-                    <p>Our own accounting software, built to do everything Zoho Books does for an Indian business and fix where it falls short: Tally-speed entry, one view for a CA across every client, legal checks built in, and compliance included instead of sold by the tier.</p>
-                    <ul>
-                        <li>Invoices, bills, receipts and payments with the same F-keys as Tally</li>
-                        <li>Scan a bill photo and it reads the GSTINs, amounts and HSN for you</li>
-                        <li>GSTR-1, GSTR-3B, 2B matching, TDS under the Income-tax Act 2025</li>
-                        <li>61 of 61 automated legal and accounting checks passing</li>
-                    </ul>
-                    <div class="hero-ctas"><a class="btn btn-primary" href="#erp" data-magnetic>Explore We Create ERP</a><a class="btn btn-ghost" href="#vs-zoho">Compare with Zoho Books</a></div>
-                </div>
-                <div class="win" data-reveal data-tilt="4">
-                    <div class="win-bar"><i></i><i></i><i></i><span>we create erp · sales invoice · F8</span></div>
-                    <div class="ui-row"><span>Party</span><b>Sri Murugan Traders · 33AA…1Z5</b></div>
-                    <div class="ui-row"><span>LDPE liners · HSN 3923 · 18%</span><b>₹1,20,000</b></div>
-                    <div class="ui-row"><span>CGST 9% + SGST 9%</span><b>₹21,600</b></div>
-                    <div class="ui-row"><span>Audit trail</span><span class="chip ok">Hash-chained ✓</span></div>
-                    <div class="net"><span>Invoice total · INV/26-27/0142</span><b>₹1,41,600</b></div>
-                    <span style="font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted);">Sample entry</span>
-                </div>
+                <!-- ECO PACK -->
+                <article class="hub-panel eco theme-eco flip" id="eco-pack" data-reveal>
+                    <div>
+                        <span class="hub-kicker">Client 02 · Manufacturing · 2 plants</span>
+                        <h2>Eco Pack Pvt Ltd</h2>
+                        <div class="what">Factory dashboard for plastic packaging</div>
+                        <p class="desc">Packaging makers since 1981, with plants at Porur and Thirumazhisai. Their dashboard follows every kilo from granules to the machines, the quality check, the lorry and the customer's payment.</p>
+                        <div class="hub-stats"><div><b>7</b><span>machines</span></div><div><b>12</b><span>products</span></div><div><b>14</b><span>reports</span></div></div>
+                        <div class="hub-chips"><span>Production</span><span>Stock costing</span><span>Orders &amp; dispatch</span><span>Machines</span><span>Quality</span><span>Licences</span><span>Payroll per plant</span><span>PIN access</span></div>
+                        <div class="hero-ctas" style="margin-top: 0;"><a class="btn btn-light" href="#ecopack" data-magnetic>Open the Eco Pack page</a><a class="btn btn-ghost btn-outline-light" href="#manufacturing">Manufacturing</a></div>
+                    </div>
+                    <div class="win" data-plants>
+                        <div class="win-bar"><i></i><i></i><i></i><span>eco pack · machines</span></div>
+                        <div class="plant-switch" role="group" aria-label="Choose plant">
+                            <button type="button" data-plant-btn="w-porur" aria-pressed="true">Porur</button>
+                            <button type="button" data-plant-btn="w-tmz" aria-pressed="false">Thirumazhisai</button>
+                        </div>
+                        <div class="mlist" data-plant="w-porur">
+                            <div class="mrow"><i></i><b>Blown Film Extruder 1</b><span>Shopping bags</span></div>
+                            <div class="mrow"><i></i><b>Air Bubble Film Plant</b><span>Bubble roll</span></div>
+                            <div class="mrow" style="--st: #f59e0b;"><i></i><b>Bag Making &amp; Sealing</b><span>Service due</span></div>
+                        </div>
+                        <div class="mlist" data-plant="w-tmz" hidden>
+                            <div class="mrow"><i></i><b>Blown Film Extruder 2</b><span>Garbage bags</span></div>
+                            <div class="mrow"><i></i><b>Injection Moulding 1 &amp; 2</b><span>Caps, tubs</span></div>
+                            <div class="mrow" style="--st: #d62839;"><i></i><b>Blow Moulding Machine</b><span>Breakdown</span></div>
+                        </div>
+                        <div class="ui-row"><b>Stretch Film · 1,200 kg</b><span class="chip ok">Ready to dispatch</span></div>
+                        <span style="font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted);">Sample · tap a plant to switch</span>
+                    </div>
+                </article>
+
+                <!-- ERP -->
+                <article class="hub-panel erp theme-erp" id="erp-product" data-reveal>
+                    <div>
+                        <span class="hub-kicker" style="color: var(--gold);">Our product · Accounting, GST &amp; TDS · in testing</span>
+                        <h2>We Create <span class="gold-text">ERP</span></h2>
+                        <div class="what">Books, GST and audit for businesses and their CAs</div>
+                        <p class="desc">Everything Zoho Books does for an Indian business, plus Tally-speed entry, one screen for a CA's every client, legal checks as you work, and compliance included instead of sold by the tier.</p>
+                        <div class="hub-stats"><div><b class="gold-text">8</b><span>Tally F-keys</span></div><div><b class="gold-text">20</b><span>sections</span></div><div><b class="gold-text">61/61</b><span>checks passing</span></div></div>
+                        <div class="hub-chips"><span>Sales &amp; purchases</span><span>Bill scanning</span><span>GSTR-1 &amp; 3B</span><span>2B matching</span><span>TDS</span><span>Schedule III</span><span>CA workspace</span><span>Audit trail</span></div>
+                        <div class="hero-ctas" style="margin-top: 0;"><a class="btn btn-gold" href="#erp" data-magnetic>Open the ERP page</a><a class="btn btn-ghost" href="#vs-zoho">Compare with Zoho Books</a></div>
+                    </div>
+                    <div style="display: grid; gap: 14px;">
+                        <div class="keys">
+                            <div class="key"><b>F8</b><span>Sales</span></div>
+                            <div class="key"><b>F9</b><span>Purchase</span></div>
+                            <div class="key"><b>F6</b><span>Receipt</span></div>
+                            <div class="key"><b>F5</b><span>Payment</span></div>
+                        </div>
+                        <div class="bill" style="padding: 20px;">
+                            <h4 style="font-size: 18px; margin-bottom: 4px;">Zoho Books for 5 users, 2 states</h4>
+                            <p><span>Plan + users + GSTIN + scanning</span><b>₹2,268/mo</b></p>
+                            <p class="total"><span>We Create ERP</span><span>All in one plan</span></p>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -1135,7 +1325,7 @@ body::after {
             </div>
         </section>
     </div>
-<div class="route" data-route="erp" id="page-erp" hidden>
+<div class="route theme-erp" data-route="erp" id="page-erp" hidden>
         <section class="page-hero">
             <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
             <div class="wrap" style="position: relative;">
@@ -1320,22 +1510,53 @@ body::after {
             </div>
         </section>
     </div>
-<div class="route" data-route="features" id="page-features" hidden>
+<div class="route theme-stay" data-route="features" id="page-features" hidden>
         <section class="page-hero">
             <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
             <div class="wrap" style="position: relative;">
-                <span class="eyebrow">Features</span>
-                <h1 data-split="load">Everything your HR desk does.<br><span class="gold-text">Done for you.</span></h1>
-                <p class="lede" data-reveal>This is the dashboard we built for our client, STAY BAY Business Hotels, and the starting point for yours. Eleven sections that share one set of data. Mark a leave and payroll already knows. Approve an incentive and it's on the payslip. Scroll through them one by one.</p>
+                <span class="prod-tag"><i></i>Client · STAY BAY Business Hotels · Chennai</span>
+                <h1 data-split="load">HR &amp; payroll,<br><span class="acc-text">done for you.</span></h1>
+                <p class="lede" data-reveal>The dashboard We Create built for STAY BAY Business Hotels: attendance for three shifts, leave, a five-step payroll, advances, incentives, staff welfare and income tax, all sharing one set of data.</p>
+                <div class="hero-ctas" data-reveal>
+                    <a class="btn btn-primary" href="#modules" data-magnetic>Explore the sections</a>
+                    <a class="btn btn-ghost" href="#whatsapp" data-magnetic>Get one for your business</a>
+                </div>
+                <div class="hub-stats" data-reveal style="margin-bottom: 0;">
+                    <div><b>11</b><span>sections</span></div>
+                    <div><b>19</b><span>reports</span></div>
+                    <div><b>5</b><span>payroll steps</span></div>
+                    <div><b>24/7</b><span>support</span></div>
+                </div>
             </div>
         </section>
 
-        <section style="padding-bottom: clamp(60px, 8vw, 120px);">
-            <div class="wrap stack">
-
-                <article class="stack-card" style="--i: 0;">
+        <section class="pad" style="padding-top: 0;" id="modules">
+            <div class="wrap">
+                <div class="shead">
                     <div>
-                        <span class="idx">Section 01 · Dashboard</span>
+                        <span class="eyebrow">The 11 sections</span>
+                        <h2 class="t-l" data-split>Pick a section. See its screen.</h2>
+                    </div>
+                    <p>Every section shares one set of data: mark a leave and payroll already knows; approve an incentive and it's on the payslip. Screens show sample figures.</p>
+                </div>
+                <div class="explorer" data-reveal>
+                    <div class="ex-list" role="tablist" aria-label="STAY BAY dashboard sections">
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-1-tab" aria-controls="stay-mod-1" aria-selected="true"><b>Dashboard</b><span>Your morning at a glance</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-2-tab" aria-controls="stay-mod-2" aria-selected="false"><b>Employees</b><span>Profiles, documents, history</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-3-tab" aria-controls="stay-mod-3" aria-selected="false"><b>Attendance</b><span>Register, weekly log, calendar</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-4-tab" aria-controls="stay-mod-4" aria-selected="false"><b>Leave &amp; Overtime</b><span>Requests, balances, approvals</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-5-tab" aria-controls="stay-mod-5" aria-selected="false"><b>Payroll</b><span>Five steps, payslip PDFs</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-6-tab" aria-controls="stay-mod-6" aria-selected="false"><b>Advances &amp; Loans</b><span>Owner-approved, auto-recovered</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-7-tab" aria-controls="stay-mod-7" aria-selected="false"><b>Increments &amp; Incentives</b><span>Raises and rewards</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-8-tab" aria-controls="stay-mod-8" aria-selected="false"><b>Family &amp; Welfare</b><span>Eight welfare schemes</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-9-tab" aria-controls="stay-mod-9" aria-selected="false"><b>Salary &amp; Tax</b><span>New vs old regime, Form 130</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-10-tab" aria-controls="stay-mod-10" aria-selected="false"><b>Reports</b><span>19 reports, Excel or PDF</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="stay-mod-11-tab" aria-controls="stay-mod-11" aria-selected="false"><b>Settings, Security &amp; Audit</b><span>Rules, roles, audit log</span></button>
+                    </div>
+                    <div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-1" aria-labelledby="stay-mod-1-tab">
+                        <div>
+                            <span class="idx">Section 01 · Dashboard</span>
                         <h3>Your morning in one glance.</h3>
                         <p>Open it and you see the day: who is in, who is off and what's waiting for you.</p>
                         <ul>
@@ -1344,8 +1565,8 @@ body::after {
                             <li>"Needs attention": every pending approval with a button that takes you there</li>
                             <li>Payroll trend, attendance mix, birthdays, work anniversaries and holidays</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>dashboard · today</span></div>
                         <div class="ui-row"><span>Present</span><b>6 / 8</b></div>
                         <div class="ui-row"><span>On leave</span><span class="chip info">Selvi R · CL</span></div>
@@ -1353,11 +1574,10 @@ body::after {
                         <div class="ui-row"><span>Waiting for you</span><span class="chip bad">2 leave · 1 advance</span></div>
                         <div class="ui-row"><span>🎂 Today</span><b>Karthik turns 36</b></div>
                     </div>
-                </article>
-
-                <article class="stack-card" style="--i: 1;">
-                    <div>
-                        <span class="idx">Section 02 · Employees</span>
+                    </div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-2" aria-labelledby="stay-mod-2-tab" hidden>
+                        <div>
+                            <span class="idx">Section 02 · Employees</span>
                         <h3>Every record, never lost.</h3>
                         <p>A full profile for each person with ten tabs, from personal details to every payslip and every change ever made.</p>
                         <ul>
@@ -1367,8 +1587,8 @@ body::after {
                             <li>Sensitive numbers masked until you choose to reveal them</li>
                             <li>Resigned staff keep their history; records are never deleted</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>employee · SBY004</span></div>
                         <div class="ui-row"><b>Karthik · Manager, Front Office</b><span class="chip ok">Active</span></div>
                         <div class="ui-row"><span>PAN</span><b style="font-family: var(--mono);">••••••234F</b></div>
@@ -1376,11 +1596,10 @@ body::after {
                         <div class="ui-row"><span>Documents</span><span class="chip ok">Aadhaar · PAN · Bank ✓</span></div>
                         <div class="ui-row"><span>Joined</span><b>11 Feb 2019 · 7 yrs 7 mo</b></div>
                     </div>
-                </article>
-
-                <article class="stack-card" style="--i: 2;">
-                    <div>
-                        <span class="idx">Section 03 · Attendance</span>
+                    </div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-3" aria-labelledby="stay-mod-3-tab" hidden>
+                        <div>
+                            <span class="idx">Section 03 · Attendance</span>
                         <h3>Paint a month in seconds.</h3>
                         <p>Three ways to mark: a daily register with times, a weekly log, and a monthly calendar you can click and drag across.</p>
                         <ul>
@@ -1390,8 +1609,8 @@ body::after {
                             <li>Tamil Nadu government holidays pre-loaded; holiday work earns comp off or extra pay</li>
                             <li>Weekly-off balance with carry-forward inside the year</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>attendance · October</span></div>
                         <div class="cal">
                             <i class="hd"></i><i class="hd">Mo</i><i class="hd">Tu</i><i class="hd">We</i><i class="hd">Th</i><i class="hd">Fr</i><i class="hd">Sa</i><i class="hd">Su</i>
@@ -1401,11 +1620,10 @@ body::after {
                             <b>Murugan S</b><i class="s-P">P</i><i class="s-P">P</i><i class="s-H">H</i><i class="s-P">P</i><i class="s-P">P</i><i class="s-WO">WO</i><i class="s-P">P</i>
                         </div>
                     </div>
-                </article>
-
-                <article class="stack-card" style="--i: 3;">
-                    <div>
-                        <span class="idx">Section 04 · Leave &amp; Overtime</span>
+                    </div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-4" aria-labelledby="stay-mod-4-tab" hidden>
+                        <div>
+                            <span class="idx">Section 04 · Leave &amp; Overtime</span>
                         <h3>Requests in, approvals out.</h3>
                         <p>Leave types, yearly quotas, balances and overtime approvals in one place.</p>
                         <ul>
@@ -1414,19 +1632,18 @@ body::after {
                             <li>Stops overlaps, over-quota requests and leave in a locked month</li>
                             <li>Overtime from the register waits for approval, paid at your rate</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>leave &amp; overtime</span></div>
                         <div class="ui-row"><b>Selvi R · CL · 1 day</b><span class="chip warn">Pending</span></div>
                         <div class="ui-row"><b>Balaji · SL · 2 days</b><span class="chip ok">Approved</span></div>
                         <div class="ui-row"><b>Ravi Kumar · OT 3 h × 2</b><span class="chip ok">₹363</span></div>
                         <div class="ui-row"><span>CL balance · Karthik</span><b>8 of 12</b></div>
                     </div>
-                </article>
-
-                <article class="stack-card" style="--i: 4;">
-                    <div>
-                        <span class="idx">Section 05 · Payroll</span>
+                    </div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-5" aria-labelledby="stay-mod-5-tab" hidden>
+                        <div>
+                            <span class="idx">Section 05 · Payroll</span>
                         <h3>Gross − deductions = net. Every time.</h3>
                         <p>A five-step workflow that freezes approved figures and locks paid months, so the numbers you approved are the numbers that get paid.</p>
                         <ul>
@@ -1436,8 +1653,8 @@ body::after {
                             <li>Branded payslip PDFs with net pay in words</li>
                             <li>Reopen with a written reason; the original stays in history</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>payslip · Sep 2026</span></div>
                         <div class="slip">
                             <div><h6>Earnings</h6><p><span>Basic</span><b>13,500</b></p><p><span>HRA</span><b>5,400</b></p><p><span>Special</span><b>8,100</b></p><p><span>Incentive</span><b>4,000</b></p></div>
@@ -1445,11 +1662,10 @@ body::after {
                         </div>
                         <div class="net"><span>Net salary</span><b>₹24,180</b></div>
                     </div>
-                </article>
-
-                <article class="stack-card" style="--i: 5;">
-                    <div>
-                        <span class="idx">Section 06 · Advances &amp; Loans</span>
+                    </div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-6" aria-labelledby="stay-mod-6-tab" hidden>
+                        <div>
+                            <span class="idx">Section 06 · Advances &amp; Loans</span>
                         <h3>Advances that collect themselves.</h3>
                         <p>Managers request. Only the Owner approves. Recovery comes out of salary each month and stops on its own at zero.</p>
                         <ul>
@@ -1458,19 +1674,18 @@ body::after {
                             <li>Early lump-sum settlements and a full history with running balance</li>
                             <li>Recovery never takes net pay below zero</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>advances</span></div>
                         <div class="ui-row"><b>Balaji · ₹8,000 request</b><span class="chip warn">Awaiting Owner</span></div>
                         <div class="ui-row"><b>Karthik · ₹20,000 advance</b><span class="chip ok">Active</span></div>
                         <div class="ui-row"><span>Recovered</span><b>₹10,000 · ₹5,000/mo</b></div>
                         <div class="ui-row"><span>Outstanding</span><b>₹10,000</b></div>
                     </div>
-                </article>
-
-                <article class="stack-card" style="--i: 6;">
-                    <div>
-                        <span class="idx">Section 07 · Increments &amp; Incentives</span>
+                    </div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-7" aria-labelledby="stay-mod-7-tab" hidden>
+                        <div>
+                            <span class="idx">Section 07 · Increments &amp; Incentives</span>
                         <h3>Reward people properly.</h3>
                         <p>Every raise with its reason and effective month. Incentives that land on the right payslip once approved.</p>
                         <ul>
@@ -1478,18 +1693,17 @@ body::after {
                             <li>Incentive types: performance, attendance, sales, guest feedback, referral</li>
                             <li>Recommended by, approved by, and status on every entry</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>increments &amp; incentives</span></div>
                         <div class="ui-row"><b>Selvi R · Annual appraisal</b><span class="chip ok">+₹2,000/mo</span></div>
                         <div class="ui-row"><b>Karthik · Guest score 4.8/5</b><span class="chip ok">+₹4,000</span></div>
                         <div class="ui-row"><b>Murugan S · Full attendance</b><span class="chip warn">Pending</span></div>
                     </div>
-                </article>
-
-                <article class="stack-card" style="--i: 7;">
-                    <div>
-                        <span class="idx">Section 08 · Family &amp; Welfare</span>
+                    </div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-8" aria-labelledby="stay-mod-8-tab" hidden>
+                        <div>
+                            <span class="idx">Section 08 · Family &amp; Welfare</span>
                         <h3>Care you can account for.</h3>
                         <p>Family details for insurance and emergencies, plus eight welfare schemes with budgets and a ledger.</p>
                         <ul>
@@ -1497,18 +1711,17 @@ body::after {
                             <li>Festival gifts, emergency aid, group insurance and accident cover</li>
                             <li>Requested → approved → paid, for every benefit</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>welfare ledger</span></div>
                         <div class="ui-row"><b>Balaji · Medical (Father)</b><span class="chip warn">₹15,000 requested</span></div>
                         <div class="ui-row"><b>Karthik · Education (Daughter)</b><span class="chip ok">₹12,000 paid</span></div>
                         <div class="ui-row"><b>Team · Deepavali sweets</b><span class="chip ok">₹4,000 paid</span></div>
                     </div>
-                </article>
-
-                <article class="stack-card" style="--i: 8;">
-                    <div>
-                        <span class="idx">Section 09 · Salary &amp; Tax</span>
+                    </div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-9" aria-labelledby="stay-mod-9-tab" hidden>
+                        <div>
+                            <span class="idx">Section 09 · Salary &amp; Tax</span>
                         <h3>New regime or old? It tells you.</h3>
                         <p>Salary structure, CTC, a full income-tax computation for the year and the tax certificate as a PDF.</p>
                         <ul>
@@ -1517,19 +1730,18 @@ body::after {
                             <li>TDS spread over the remaining months automatically</li>
                             <li>Form 130 (formerly Form 16) under the Income-tax Act, 2025</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>tax · FY 2026-27</span></div>
                         <div class="ui-row"><span>Taxable income · New</span><b>₹10,85,000</b></div>
                         <div class="ui-row"><span>Tax · New regime</span><span class="chip ok">₹0 (rebate)</span></div>
                         <div class="ui-row"><span>Tax · Old regime (₹9.9 L taxable)</span><b>₹1,14,920</b></div>
                         <div class="ui-row"><span>Certificate</span><span class="chip info">Form 130 PDF</span></div>
                     </div>
-                </article>
-
-                <article class="stack-card" style="--i: 9;">
-                    <div>
-                        <span class="idx">Section 10 · Reports</span>
+                    </div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-10" aria-labelledby="stay-mod-10-tab" hidden>
+                        <div>
+                            <span class="idx">Section 10 · Reports</span>
                         <h3>19 reports. Excel or PDF.</h3>
                         <p>Filter, search, sort and export. Totals at the bottom of every report.</p>
                         <ul>
@@ -1537,18 +1749,17 @@ body::after {
                             <li>Payroll: monthly, salary register, department, deductions, advances, incentives, payments</li>
                             <li>Employees: master, active, resigned, department-wise, missing documents</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>reports</span></div>
                         <div class="ui-row"><b>Salary Register · Sep 2026</b><span class="chip info">CSV · PDF</span></div>
                         <div class="ui-row"><b>Late Report · Front Office</b><span class="chip info">CSV · PDF</span></div>
                         <div class="ui-row"><b>Missing Documents</b><span class="chip warn">2 employees</span></div>
                     </div>
-                </article>
-
-                <article class="stack-card" style="--i: 10;">
-                    <div>
-                        <span class="idx">Section 11 · Settings, Security &amp; Audit</span>
+                    </div>
+                    <div class="ex-panel" role="tabpanel" id="stay-mod-11" aria-labelledby="stay-mod-11-tab" hidden>
+                        <div>
+                            <span class="idx">Section 11 · Settings, Security &amp; Audit</span>
                         <h3>Your rules. Your record.</h3>
                         <p>Change how the business runs without touching code, and keep a permanent trail of every change.</p>
                         <ul>
@@ -1558,14 +1769,16 @@ body::after {
                             <li>Backup and restore in one click; weekly backup reminder</li>
                             <li>Read-only audit log, exportable to Excel and PDF</li>
                         </ul>
-                    </div>
-                    <div class="win" data-reveal>
+                        </div>
+                        <div class="win">
                         <div class="win-bar"><i></i><i></i><i></i><span>audit log</span></div>
                         <div class="ui-row"><span>Manager · 10:42</span><b>Attendance: A → P</b></div>
                         <div class="ui-row"><span>Owner · 18:05</span><b>Payroll approved · Sep</b></div>
                         <div class="ui-row"><span>Manager · 18:20</span><span class="chip bad">Blocked: approve advance</span></div>
                     </div>
-                </article>
+                    </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1624,6 +1837,375 @@ body::after {
             </div>
         </section>
     </div>
+<div class="route theme-eco" data-route="ecopack" id="page-ecopack" hidden>
+        <!-- HERO -->
+        <section class="page-hero" style="padding-bottom: clamp(50px, 6vw, 80px);">
+            <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
+            <div class="wrap hero-grid" style="position: relative;">
+                <div>
+                    <span class="prod-tag"><i></i>Client · Eco Pack Pvt Ltd · since 1981</span>
+                    <h1 data-split="load" style="font-size: clamp(48px, 7vw, 108px);">From granules to a <span class="acc-text">paid invoice.</span></h1>
+                    <p class="lede" data-reveal>The factory dashboard We Create built for Eco Pack, a Chennai plastic-packaging maker with two plants. It follows every kilo from the raw-material store, through the machines and the quality check, to the lorry and the customer's payment.</p>
+                    <div class="hero-ctas" data-reveal>
+                        <a class="btn btn-primary" href="#eco-modules" data-magnetic style="background: #0b6e4f; box-shadow: 0 14px 34px -10px rgba(11, 110, 79, .7);">Explore the sections</a>
+                        <a class="btn btn-ghost" href="#whatsapp" data-magnetic>Get one for your factory</a>
+                    </div>
+                </div>
+                <div class="win" data-reveal data-plants>
+                    <div class="win-bar"><i></i><i></i><i></i><span>eco pack · machines · today</span></div>
+                    <div class="plant-switch" role="group" aria-label="Choose plant">
+                        <button type="button" data-plant-btn="porur" aria-pressed="true">Porur</button>
+                        <button type="button" data-plant-btn="tmz" aria-pressed="false">Thirumazhisai</button>
+                    </div>
+                    <div class="mlist" data-plant="porur">
+                        <div class="mrow"><i></i><b>Blown Film Extruder 1 (LD/LLD)</b><span>Running · shopping bags</span></div>
+                        <div class="mrow"><i></i><b>Air Bubble Film Plant</b><span>Running · bubble roll</span></div>
+                        <div class="mrow" style="--st: #f59e0b;"><i></i><b>Bag Making &amp; Sealing</b><span>Service due in 3 days</span></div>
+                    </div>
+                    <div class="mlist" data-plant="tmz" hidden>
+                        <div class="mrow"><i></i><b>Blown Film Extruder 2 (HM/HD)</b><span>Running · garbage bags</span></div>
+                        <div class="mrow"><i></i><b>Injection Moulding 1 (120 T)</b><span>Running · caps</span></div>
+                        <div class="mrow"><i></i><b>Injection Moulding 2 (200 T)</b><span>Running · tubs</span></div>
+                        <div class="mrow" style="--st: #d62839;"><i></i><b>Blow Moulding Machine</b><span>Breakdown since yesterday</span></div>
+                    </div>
+                    <div class="mini-bars" aria-label="Daily output, sample" style="background: #fff;"><i style="--h:62%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:70%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:55%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:78%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:74%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:82%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:68%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:88%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i><i style="--h:91%; background: linear-gradient(180deg, #19a874, #0b6e4f);"></i></div>
+                    <span style="font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted);">Sample · tap a plant to switch</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUMBERS -->
+        <section style="padding-bottom: clamp(70px, 9vw, 120px);">
+            <div class="wrap">
+                <div class="numbers">
+                    <div class="num-cell" data-reveal><b data-count="2">2</b><span>Plants, Porur and Thirumazhisai, each with its own staff and stock</span></div>
+                    <div class="num-cell" data-reveal><b data-count="7">7</b><span>Machines tracked: extruders, a bubble plant, bag making and moulding</span></div>
+                    <div class="num-cell" data-reveal><b data-count="14">14</b><span>Reports, from the stores ledger to the product cost sheet</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLOW -->
+        <section class="pad" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">How a kilo moves</span>
+                        <h2 class="t-l" data-split>Five steps. One record.</h2>
+                    </div>
+                    <p>Each step updates the next on its own. Nobody re-types a number from one register into another.</p>
+                </div>
+                <div class="flow">
+                    <div class="flow-step" data-reveal><span class="n">01</span><h4>Raw material in</h4><p>A purchase adds granules to stores at cost.</p></div>
+                    <div class="flow-step" data-reveal><span class="n">02</span><h4>Production</h4><p>Each shift's output by machine takes granules out of stores by recipe.</p></div>
+                    <div class="flow-step" data-reveal><span class="n">03</span><h4>Quality</h4><p>Micron, GSM or piece-weight checked against the target.</p></div>
+                    <div class="flow-step" data-reveal><span class="n">04</span><h4>Dispatch</h4><p>The order moves to Ready, then out with the right GST.</p></div>
+                    <div class="flow-step" data-reveal><span class="n">05</span><h4>Paid</h4><p>Receipts clear the customer's outstanding balance.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPLORER -->
+        <section class="pad" style="padding-top: 0;" id="eco-modules">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">The 10 sections</span>
+                        <h2 class="t-l" data-split>Pick a section. See its screen.</h2>
+                    </div>
+                    <p>A unit switch at the top shows both plants together or one at a time. Screens show sample figures.</p>
+                </div>
+                <div class="explorer" data-reveal>
+                    <div class="ex-list" role="tablist" aria-label="Eco Pack dashboard sections">
+                        <button type="button" class="ex-btn" role="tab" id="eco-1-tab" aria-controls="eco-1" aria-selected="true"><b>Dashboard</b><span>What needs you today</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="eco-2-tab" aria-controls="eco-2" aria-selected="false"><b>Production</b><span>Shift output by machine</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="eco-3-tab" aria-controls="eco-3" aria-selected="false"><b>Inventory &amp; Costing</b><span>Stores ledger, product cost</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="eco-4-tab" aria-controls="eco-4" aria-selected="false"><b>Orders &amp; Dispatch</b><span>Order to paid</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="eco-5-tab" aria-controls="eco-5" aria-selected="false"><b>Machines</b><span>Status, repairs, utilisation</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="eco-6-tab" aria-controls="eco-6" aria-selected="false"><b>Quality &amp; Compliance</b><span>Checks and licences</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="eco-7-tab" aria-controls="eco-7" aria-selected="false"><b>Attendance &amp; Payroll</b><span>Per plant, with PF and ESI</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="eco-8-tab" aria-controls="eco-8" aria-selected="false"><b>Reports</b><span>14 reports, Excel or PDF</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="eco-9-tab" aria-controls="eco-9" aria-selected="false"><b>Settings &amp; Access</b><span>PIN sign-in, who sees what</span></button>
+                        <button type="button" class="ex-btn" role="tab" id="eco-10-tab" aria-controls="eco-10" aria-selected="false"><b>User Manual</b><span>Every screen, step by step</span></button>
+                    </div>
+                    <div>
+                        <div class="ex-panel" role="tabpanel" id="eco-1" aria-labelledby="eco-1-tab">
+                            <div>
+                                <span class="idx">Section 01 · Dashboard</span>
+                                <h3>The whole factory before your first coffee.</h3>
+                                <p>Open it and see both plants, or switch to one.</p>
+                                <ul>
+                                    <li>Needs attention: everything waiting for someone, in one list</li>
+                                    <li>Daily production in kg with scrap % on the same chart</li>
+                                    <li>Raw-material cover: days of stock left at the last 30 days' usage</li>
+                                    <li>Deliveries due, sales by month and product mix</li>
+                                    <li>Machine utilisation against two 8-hour shifts a day</li>
+                                </ul>
+                            </div>
+                            <div class="win">
+                                <div class="win-bar"><i></i><i></i><i></i><span>dashboard · both plants</span></div>
+                                <div class="ui-row"><span>Blow Moulding Machine</span><span class="chip bad">Breakdown</span></div>
+                                <div class="ui-row"><span>Colour Masterbatch</span><span class="chip warn">4 days of stock</span></div>
+                                <div class="ui-row"><span>Deliveries due this week</span><b>6 orders</b></div>
+                                <div class="ui-row"><span>Scrap this month</span><b>3.8%</b></div>
+                                <div class="ui-row"><span>Fire Safety Certificate</span><span class="chip warn">Renew in 41 days</span></div>
+                            </div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="eco-2" aria-labelledby="eco-2-tab" hidden>
+                            <div>
+                                <span class="idx">Section 02 · Production</span>
+                                <h3>Every shift, every machine.</h3>
+                                <p>Record what each machine made in each shift. The dashboard does the stock-keeping for you.</p>
+                                <ul>
+                                    <li>Output, scrap, running hours and operator for each batch</li>
+                                    <li>Finished goods go into stock as soon as you save</li>
+                                    <li>Raw material (output + scrap) is issued from stores by each product's recipe</li>
+                                    <li>Batch numbers made automatically for tracing</li>
+                                </ul>
+                            </div>
+                            <div class="win">
+                                <div class="win-bar"><i></i><i></i><i></i><span>production · shift A</span></div>
+                                <div class="ui-row"><b>Air Bubble Roll · Bubble Plant</b><span class="chip ok">268 kg</span></div>
+                                <div class="ui-row"><span>Scrap</span><b>9.6 kg (3.6%)</b></div>
+                                <div class="ui-row"><span>Recipe issued from stores</span><b>LDPE 194.3 · LLDPE 83.3 kg</b></div>
+                                <div class="ui-row"><span>Batch</span><b style="font-family: var(--mono);">B2610-0412</b></div>
+                            </div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="eco-3" aria-labelledby="eco-3-tab" hidden>
+                            <div>
+                                <span class="idx">Section 03 · Inventory &amp; Costing</span>
+                                <h3>Know what each kilo really costs.</h3>
+                                <p>Stores for both plants, valued with proper cost accounting, not a guess.</p>
+                                <ul>
+                                    <li>Stores ledger at weighted-average cost or FIFO</li>
+                                    <li>Product cost sheet: material by recipe plus machine hours × machine-hour rate</li>
+                                    <li>Margin against the sale rate, so loss-making products stand out</li>
+                                    <li>Reorder planner with EOQ and ABC classes</li>
+                                </ul>
+                            </div>
+                            <div class="win">
+                                <div class="win-bar"><i></i><i></i><i></i><span>product cost sheet · per kg</span></div>
+                                <div class="costsheet">
+                                    <p><span>Air Bubble Roll · sale rate</span><b>₹150.00</b></p>
+                                    <p><span>LDPE 70% × ₹112</span><b>₹78.40</b></p>
+                                    <p><span>LLDPE 30% × ₹106</span><b>₹31.80</b></p>
+                                    <p><span>Machine hours × hour rate</span><b>₹15.00</b></p>
+                                    <p class="tot"><span>Cost ₹125.20 · margin</span><b>₹24.80 (16.5%)</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="eco-4" aria-labelledby="eco-4-tab" hidden>
+                            <div>
+                                <span class="idx">Section 04 · Orders &amp; Dispatch</span>
+                                <h3>One button for the next step.</h3>
+                                <p>Each order shows where it is and the one thing to do next.</p>
+                                <ul>
+                                    <li>Order → In production → Ready → Dispatched → Paid</li>
+                                    <li>Quick-order bar for repeat customers; dispatch many at once</li>
+                                    <li>CGST + SGST for Tamil Nadu customers, IGST for other states</li>
+                                    <li>Customer master with credit days and outstanding balances</li>
+                                </ul>
+                            </div>
+                            <div class="win">
+                                <div class="win-bar"><i></i><i></i><i></i><span>orders · pipeline</span></div>
+                                <div class="steps-ui"><span class="done">✓ ORDER</span><span class="done">✓ IN PRODUCTION</span><span class="now" style="background: #0b6e4f;">READY</span><span>DISPATCHED</span><span>PAID</span></div>
+                                <div class="ui-row"><b>Stretch Film · 1,200 kg</b><span class="chip info">Ready</span></div>
+                                <div class="ui-row"><span>Customer in Karnataka</span><b>IGST 18%</b></div>
+                                <div class="ui-row"><span>Customer in Tamil Nadu</span><b>CGST 9% + SGST 9%</b></div>
+                            </div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="eco-5" aria-labelledby="eco-5-tab" hidden>
+                            <div>
+                                <span class="idx">Section 05 · Machines</span>
+                                <h3>Catch the breakdown before it costs you.</h3>
+                                <p>One card per machine. The coloured bar tells you at a glance whether it needs anything.</p>
+                                <ul>
+                                    <li>Every machine with its plant, type and hourly capacity</li>
+                                    <li>Preventive service due dates (every 30 or 45 days)</li>
+                                    <li>Repair and service history with hours lost and cost</li>
+                                    <li>Utilisation against two 8-hour shifts per working day</li>
+                                </ul>
+                            </div>
+                            <div class="win">
+                                <div class="win-bar"><i></i><i></i><i></i><span>machines · Thirumazhisai</span></div>
+                                <div class="machines">
+                                    <div class="mc"><b>Extruder 2 (HM/HD)</b><span>50 kg/h · 81% used</span></div>
+                                    <div class="mc"><b>Injection 1 (120 T)</b><span>2,400 pcs/h</span></div>
+                                    <div class="mc"><b>Injection 2 (200 T)</b><span>600 pcs/h</span></div>
+                                    <div class="mc" style="--mc: #d62839;"><b>Blow Moulding</b><span>Breakdown · 9 h lost</span></div>
+                                    <div class="mc" style="--mc: #f59e0b;"><b>Extruder 2</b><span>Service in 5 days</span></div>
+                                    <div class="mc" style="--mc: #a8a29e;"><b>Repairs this month</b><span>₹18,500</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="eco-6" aria-labelledby="eco-6-tab" hidden>
+                            <div>
+                                <span class="idx">Section 06 · Quality &amp; Compliance</span>
+                                <h3>Out of tolerance? It fails on its own.</h3>
+                                <p>Checks against each product's target, and every licence with its renewal date.</p>
+                                <ul>
+                                    <li>Thickness in microns, GSM or piece weight against target and tolerance</li>
+                                    <li>Shopping bags below 120 microns and weak seals fail automatically</li>
+                                    <li>EPR registration, Pollution Control Board consent, factory licence and fire certificate, each with its renewal date</li>
+                                    <li>Anything expiring within 60 days appears on the dashboard</li>
+                                </ul>
+                            </div>
+                            <div class="win">
+                                <div class="win-bar"><i></i><i></i><i></i><span>quality checks · today</span></div>
+                                <div class="ui-row"><span>Shopping Bag · target 125 µm</span><span class="chip ok">127 µm · Pass</span></div>
+                                <div class="ui-row"><span>Shopping Bag · batch 0415</span><span class="chip bad">118 µm · Fail</span></div>
+                                <div class="ui-row"><span>Air Bubble Roll · target 60 GSM</span><span class="chip ok">62 · Pass</span></div>
+                                <div class="ui-row"><span>Moulded Cap · target 4 g</span><span class="chip ok">4.1 g · Pass</span></div>
+                            </div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="eco-7" aria-labelledby="eco-7-tab" hidden>
+                            <div>
+                                <span class="idx">Section 07 · Attendance &amp; Payroll</span>
+                                <h3>Each plant pays its own people.</h3>
+                                <p>The same attendance system as our STAY BAY suite, set up for factory shifts.</p>
+                                <ul>
+                                    <li>Daily register with check-in and check-out, including the night shift</li>
+                                    <li>Weekly log and a monthly drag-to-mark calendar</li>
+                                    <li>Overtime from the register paid at the rate you set</li>
+                                    <li>PF on basic (capped at ₹15,000), ESI up to ₹21,000 gross, Tamil Nadu professional tax</li>
+                                </ul>
+                            </div>
+                            <div class="win">
+                                <div class="win-bar"><i></i><i></i><i></i><span>payroll · Porur · Sep</span></div>
+                                <div class="ui-row"><b>Extrusion Operator · shift A</b><span class="chip ok">26 days paid</span></div>
+                                <div class="ui-row"><span>Overtime · 6 h at 2×</span><b>+ ₹1,125</b></div>
+                                <div class="ui-row"><span>PF 12% of basic</span><b>− ₹1,170</b></div>
+                                <div class="ui-row"><span>ESI 0.75%</span><b>− ₹155</b></div>
+                            </div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="eco-8" aria-labelledby="eco-8-tab" hidden>
+                            <div>
+                                <span class="idx">Section 08 · Reports</span>
+                                <h3>14 reports for owner, accounts and auditor.</h3>
+                                <p>Each report follows the plant and month chosen at the top. Sort any column, then export to Excel (CSV) or PDF.</p>
+                                <ul>
+                                    <li>Production register and summary by product, machine utilisation and downtime</li>
+                                    <li>Raw-material stock at cost, stores ledger, product cost sheet, finished goods</li>
+                                    <li>Purchase register, sales / GST register, receivables</li>
+                                    <li>Daily register, attendance summary, salary register, quality report</li>
+                                </ul>
+                            </div>
+                            <div class="win">
+                                <div class="win-bar"><i></i><i></i><i></i><span>reports</span></div>
+                                <div class="ui-row"><b>Stores Ledger (Stock Statement)</b><span class="chip info">CSV · PDF</span></div>
+                                <div class="ui-row"><b>Product Cost Sheet</b><span class="chip info">CSV · PDF</span></div>
+                                <div class="ui-row"><b>Machine Utilisation &amp; Downtime</b><span class="chip info">CSV · PDF</span></div>
+                                <div class="ui-row"><b>Sales / GST Register</b><span class="chip info">CSV · PDF</span></div>
+                            </div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="eco-9" aria-labelledby="eco-9-tab" hidden>
+                            <div>
+                                <span class="idx">Section 09 · Settings &amp; Access</span>
+                                <h3>Four digits to sign in. You choose the rest.</h3>
+                                <p>Simple for the shop floor, strict about who can see money.</p>
+                                <ul>
+                                    <li>Sign in with a 4-digit PIN</li>
+                                    <li>Access ticked user by user: which plants, sections and actions</li>
+                                    <li>Ready presets: Production Manager, Unit Supervisor, Accounts</li>
+                                    <li>Products, rates, raw materials, holidays, attendance rules, backups and an activity log</li>
+                                </ul>
+                            </div>
+                            <div class="win">
+                                <div class="win-bar"><i></i><i></i><i></i><span>settings · users &amp; access</span></div>
+                                <div class="ui-row"><b>Owner</b><span class="chip ok">Everything</span></div>
+                                <div class="ui-row"><b>Production Manager</b><span class="chip info">Both plants · no salaries</span></div>
+                                <div class="ui-row"><b>Unit Supervisor</b><span class="chip info">Thirumazhisai only</span></div>
+                                <div class="ui-row"><b>Accounts</b><span class="chip info">Orders, payroll, reports</span></div>
+                            </div>
+                        </div>
+                        <div class="ex-panel" role="tabpanel" id="eco-10" aria-labelledby="eco-10-tab" hidden>
+                            <div>
+                                <span class="idx">Section 10 · User Manual</span>
+                                <h3>Nobody gets stuck.</h3>
+                                <p>A manual built into the dashboard explains every screen step by step, and shows your own current settings so it's never out of date.</p>
+                                <ul>
+                                    <li>Searchable, with a contents list</li>
+                                    <li>Written for supervisors and operators, not software people</li>
+                                    <li>Hands-on training when the dashboard goes live</li>
+                                </ul>
+                            </div>
+                            <div class="win">
+                                <div class="win-bar"><i></i><i></i><i></i><span>user manual</span></div>
+                                <div class="ui-row"><b>Recording a shift's production</b><span>›</span></div>
+                                <div class="ui-row"><b>Adding a raw-material purchase</b><span>›</span></div>
+                                <div class="ui-row"><b>Moving an order to Dispatched</b><span>›</span></div>
+                                <div class="ui-row"><b>Logging a machine breakdown</b><span>›</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TWO PLANTS -->
+        <section class="paper-sec pad">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Two plants, one dashboard</span>
+                        <h2 class="t-l" data-split>Separate where it matters. Together where it counts.</h2>
+                    </div>
+                    <p>Each plant keeps its own staff, attendance, payroll and machines. The owner sees both side by side.</p>
+                </div>
+                <div class="plants">
+                    <div class="plant" data-reveal style="--pc: #0b6e4f;">
+                        <h3>Porur</h3>
+                        <div class="addr">Arcot Road, Porur, Chennai</div>
+                        <h5>Machines</h5>
+                        <ul><li>Blown Film Extruder 1 (LD / LLD)</li><li>Air Bubble Film Plant</li><li>Bag Making &amp; Sealing Machine</li></ul>
+                        <h5>Makes</h5>
+                        <ul><li>Air bubble rolls and bubble wrap bags</li><li>LD bags, 120+ micron shopping bags</li><li>Polythene tube, sheet and stretch film</li></ul>
+                    </div>
+                    <div class="plant" data-reveal style="--pc: #c9a227;">
+                        <h3>Thirumazhisai</h3>
+                        <div class="addr">Thirumazhisai, Chennai</div>
+                        <h5>Machines</h5>
+                        <ul><li>Blown Film Extruder 2 (HM / HD)</li><li>Injection Moulding 1 (120 T) and 2 (200 T)</li><li>Blow Moulding Machine</li></ul>
+                        <h5>Makes</h5>
+                        <ul><li>Garbage bags and rolls, HM plastic roll</li><li>Moulded caps and tubs</li><li>Moulded bottles</li></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COSTING -->
+        <section class="paper-sec pad" style="padding-top: 0;">
+            <div class="wrap two-col" style="align-items: center;">
+                <div data-reveal>
+                    <span class="eyebrow">Real cost accounting</span>
+                    <h2 class="t-m" style="margin: 18px 0 16px;">Reorder the right amount, at the right time.</h2>
+                    <p style="color: var(--on-paper-muted);">The reorder planner works out the most economical order size for each raw material and ranks materials A, B and C by how much money they tie up, so the owner watches the few that matter most.</p>
+                </div>
+                <div data-reveal style="display: grid; gap: 12px;">
+                    <div class="formula">EOQ = √(2 × yearly use × order cost ÷ yearly holding cost per kg)</div>
+                    <div class="costsheet">
+                        <p><span>LDPE Granules</span><b>Class A · reorder at 2,500 kg</b></p>
+                        <p><span>LLDPE Granules</span><b>Class A · reorder at 2,000 kg</b></p>
+                        <p><span>Colour Masterbatch</span><b>Class C · reorder at 150 kg</b></p>
+                    </div>
+                    <span style="font-family: var(--mono); font-size: 10.5px; color: var(--on-paper-muted);">Sample classes</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-band pad">
+            <span class="orbit" aria-hidden="true"></span><span class="orbit o2" aria-hidden="true"></span>
+            <div class="wrap" style="position: relative;">
+                <span class="eyebrow">Run a factory?</span>
+                <h2 style="margin-top: 24px;">Your machines,<br><span class="acc-text">on one screen.</span></h2>
+                <p>Film, moulding, textiles, food or engineering. Tell us your machines, products and shifts, and we'll build your factory dashboard around them, then stay on call 24/7.</p>
+                <div class="hero-ctas">
+                    <a class="btn btn-wa" href="#whatsapp" data-magnetic>Message on WhatsApp</a>
+                    <a class="btn btn-ghost" href="#work" data-magnetic>See our other work</a>
+                </div>
+            </div>
+        </section>
+    </div>
 <div class="route" data-route="industries" id="page-industries" hidden>
         <section class="page-hero">
             <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
@@ -1644,7 +2226,7 @@ body::after {
                         <p>Hotels, resorts, restaurants, cafés and service apartments. Morning, evening and night shifts, holiday work, banquet overtime and festival bonuses, all running today at STAY BAY Business Hotels.</p>
                         <div class="tags"><span>Rotating shifts</span><span>Night duty</span><span>Comp offs</span><span>Diwali bonus</span></div>
                     </a>
-                    <a class="ind-card" id="manufacturing" href="#eco-pack" data-tilt="5" data-cursor="Open">
+                    <a class="ind-card" id="manufacturing" href="#ecopack" data-tilt="5" data-cursor="Open">
                         <span class="glow"></span><span class="flag">Live today</span>
                         <span class="big-ico"><svg viewBox="0 0 64 64"><path d="M6 56V30l14 8V30l14 8V30l14 8V12h10v44z"/><path d="M6 56h52M16 48h6M28 48h6M40 48h6"/></svg></span>
                         <h3>Manufacturing</h3>
@@ -2063,14 +2645,14 @@ body::after {
         // Questions shown on the left of the chat. "keys" match words people type; "next" suggests follow-up questions.
         const WA = 'https://wa.me/919488522465?text=';
         window.SITE_FAQ = [
-            { id: 'what', q: 'What does the dashboard do?', keys: ['what', 'does', 'feature', 'do', 'about', 'module', 'dashboard'],
-              a: 'It runs your whole HR desk in one place: <b>attendance</b> (with check-in times and night shifts), <b>leave &amp; overtime</b>, a <b>5-step payroll</b> with payslip PDFs, <b>salary advances</b>, <b>increments &amp; incentives</b>, <b>staff welfare</b>, <b>income tax &amp; Form 130/16</b>, <b>19 reports</b> and a permanent <b>audit log</b>. <a href="#features">See every feature →</a>', next: ['custom', 'industries', 'demo'] },
+            { id: 'what', q: 'What do you build?', keys: ['what', 'does', 'feature', 'do', 'about', 'module', 'dashboard', 'build', 'make', 'product', 'service'],
+              a: 'Three things so far: an <b>HR &amp; payroll dashboard</b> (attendance, leave, 5-step payroll, payslips, advances, welfare, income tax) running at STAY BAY Business Hotels; a <b>factory dashboard</b> (production by machine, stock costing, orders, machines, quality, payroll per plant) running at Eco Pack; and <b>We Create ERP</b>, our own accounting and GST software, now in testing. <a href="#work">See our work →</a>', next: ['custom', 'erp', 'demo'] },
             { id: 'price', q: 'How much does it cost?', keys: ['cost', 'price', 'pricing', 'charge', 'fee', 'rate', 'budget', 'how much', 'rs', '₹'],
               a: 'It depends on your team size, the modules you need and how much customisation you want, so every quote is made for you. Share a few details on WhatsApp and Vignesh will send a clear quote with no hidden extras. <a href="#whatsapp">Ask for a quote →</a>', next: ['custom', 'time'] },
             { id: 'custom', q: 'Can it be customised for my business?', keys: ['custom', 'change', 'modify', 'my business', 'tailor', 'personal', 'logo', 'brand', 'own rules'],
               a: 'Yes, completely. We build it the way you want it: your logo and colours, your salary structure, leave rules, weekly offs, overtime rate, approval levels and the exact reports you need. Need something new later? We add it.', next: ['time', 'price'] },
             { id: 'industries', q: 'Is it only for hotels?', keys: ['hotel', 'only', 'industry', 'industries', 'manufactur', 'factory', 'retail', 'shop', 'clinic', 'hospital', 'school', 'college'],
-              a: 'No. STAY BAY Business Hotels is a hotel, and <b>Eco Pack</b> runs two plastic-packaging plants on our factory dashboard. It works for any team with shifts and salaries: manufacturing, retail, clinics and hospitals, schools, construction, logistics and professional firms. <a href="#industries">See industries →</a>', next: ['custom', 'demo'] },
+              a: 'No. STAY BAY Business Hotels is a hotel, and <b>Eco Pack</b> runs two plastic-packaging plants on our <a href="#ecopack">factory dashboard</a>. It works for any team with shifts and salaries: manufacturing, retail, clinics and hospitals, schools, construction, logistics and professional firms. <a href="#industries">See industries →</a>', next: ['custom', 'demo'] },
             { id: 'time', q: 'How long does it take to set up?', keys: ['long', 'time', 'days', 'weeks', 'setup', 'set up', 'start', 'when', 'ready', 'deliver'],
               a: 'The ready version can be set up with your employees in a few days. A fully customised build usually takes a few weeks, depending on what you need. You see the screens before anything goes live, and we check the payroll against your last manual month.', next: ['train', 'price'] },
             { id: 'compliance', q: 'Does it calculate PF, ESI, PT and TDS?', keys: ['pf', 'esi', 'tds', 'tax', 'professional tax', 'pt', 'compliance', 'form 16', 'form 130', 'statutory', 'regime'],
@@ -2086,7 +2668,7 @@ body::after {
             { id: 'demo', q: 'Can I see a live demo?', keys: ['demo', 'see', 'show', 'trial', 'try', 'example', 'sample', 'walkthrough'],
               a: 'Of course. We\'ll show it on your phone or laptop with sample data shaped like your business. <a href="' + WA + encodeURIComponent('Hi Vignesh! I\'d like a live demo of the We Create dashboard.') + '" target="_blank" rel="noopener">Book a demo on WhatsApp →</a>', next: ['price', 'time'] },
             { id: 'clients', q: 'Who are your clients?', keys: ['client', 'clients', 'customer', 'who uses', 'eco pack', 'stay bay', 'work', 'portfolio', 'example'],
-              a: 'Two businesses run on our dashboards today: <b>STAY BAY Business Hotels</b> (HR, payroll and tax for a Chennai hotel) and <b>Eco Pack Pvt Ltd</b> (a factory dashboard for two plastic-packaging plants in Porur and Thirumazhisai). <a href="#work">See our work →</a>', next: ['erp', 'demo'] },
+              a: 'Two businesses run on our dashboards today: <b>STAY BAY Business Hotels</b> (HR, payroll and tax for a Chennai hotel) and <b>Eco Pack Pvt Ltd</b> (a factory dashboard for two plastic-packaging plants in Porur and Thirumazhisai). <a href="#features">STAY BAY page →</a> · <a href="#ecopack">Eco Pack page →</a>', next: ['erp', 'demo'] },
             { id: 'erp', q: 'What is We Create ERP?', keys: ['erp', 'accounting', 'account', 'books', 'gst software', 'tally', 'invoice', 'billing', 'ledger'],
               a: 'Our own accounting software for Indian businesses and CAs: invoices and bills on Tally\'s F-keys, bill scanning, GSTR-1 and 3B, TDS under the new Income-tax Act, Schedule III statements and an audit trail that can\'t be switched off. It\'s in testing now, with all 61 automated checks passing. <a href="#erp">Explore the ERP →</a>', next: ['zoho', 'demo'] },
             { id: 'zoho', q: 'How is it better than Zoho Books?', keys: ['zoho', 'zoho books', 'better', 'compare', 'difference', 'vs', 'cheaper'],
@@ -2123,7 +2705,10 @@ body::after {
     const routes = [...document.querySelectorAll('.route')];
     const SPA = routes.length > 0;
     const go = (key, file, hash) => SPA ? '#' + (hash || key) : file + (hash ? '#' + hash : '');
-    const links = [['home', 'index.html', 'Home'], ['work', 'work.html', 'Our work'], ['erp', 'erp.html', 'ERP'], ['features', 'features.html', 'HR & Payroll'], ['industries', 'industries.html', 'Industries'], ['about', 'about.html', 'About me'], ['contact', 'contact.html', 'Contact']];
+    const links = [['home', 'index.html', 'Home'], ['work', 'work.html', 'Our work'], ['erp', 'erp.html', 'ERP'], ['industries', 'industries.html', 'Industries'], ['about', 'about.html', 'About me'], ['contact', 'contact.html', 'Contact']];
+    // Product pages live under "Our work" in the menu.
+    const NAV_PARENT = { features: 'work', ecopack: 'work' };
+    const navKey = key => NAV_PARENT[key] || key;
     const navEl = document.getElementById('site-nav');
     if (navEl) {
         navEl.outerHTML = `
@@ -2134,7 +2719,7 @@ body::after {
                     <span class="brand-mark">WC</span>
                     <span><b>We Create</b><small>Business dashboards · Chennai</small></span>
                 </a>
-                <nav aria-label="Main"><ul class="nav-links">${links.map(([k, h, l]) => `<li><a href="${go(k, h)}" data-k="${k}" class="${k === page ? 'active' : ''}">${l}</a></li>`).join('')}</ul></nav>
+                <nav aria-label="Main"><ul class="nav-links">${links.map(([k, h, l]) => `<li><a href="${go(k, h)}" data-k="${k}" class="${k === navKey(page) ? 'active' : ''}">${l}</a></li>`).join('')}</ul></nav>
                 <div class="nav-cta">
                     <a class="btn btn-primary" href="${go('contact', 'contact.html', 'whatsapp')}" data-magnetic>Book a demo ${arrow}</a>
                     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
@@ -2262,6 +2847,68 @@ body::after {
             el.addEventListener('pointerleave', () => { el.style.transform = ''; });
         });
     }
+
+    // ---------- module explorer: click a section, its screen shows ----------
+    document.querySelectorAll('.explorer').forEach(ex => {
+        const btns = [...ex.querySelectorAll('.ex-btn')];
+        const panels = [...ex.querySelectorAll('.ex-panel')];
+        const select = (btn, focus) => {
+            btns.forEach(b => b.setAttribute('aria-selected', String(b === btn)));
+            panels.forEach(p => { p.hidden = p.id !== btn.getAttribute('aria-controls'); });
+            if (focus) btn.focus();
+            if (innerWidth < 860) btn.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduced ? 'auto' : 'smooth' });
+        };
+        btns.forEach((b, i) => {
+            b.addEventListener('click', () => select(b));
+            b.addEventListener('keydown', e => {
+                const d = ['ArrowDown', 'ArrowRight'].includes(e.key) ? 1 : ['ArrowUp', 'ArrowLeft'].includes(e.key) ? -1 : 0;
+                if (!d) return;
+                e.preventDefault();
+                select(btns[(i + d + btns.length) % btns.length], true);
+            });
+        });
+        if (btns[0]) select(btns[0]);
+    });
+
+    // ---------- hero showcase: rotates through the three products ----------
+    document.querySelectorAll('[data-show]').forEach(show => {
+        const btns = [...show.querySelectorAll('[data-show-btn]')];
+        const screens = [...show.querySelectorAll('[data-show-screen]')];
+        const MS = 5000;
+        let i = 0, timer = null;
+        show.style.setProperty('--show-ms', MS + 'ms');
+        const set = n => {
+            i = (n + btns.length) % btns.length;
+            btns.forEach(b => b.setAttribute('aria-selected', 'false'));
+            void show.offsetWidth;   // restart the progress line under the active tab
+            btns[i].setAttribute('aria-selected', 'true');
+            screens.forEach((sc, k) => { sc.hidden = k !== i; });
+        };
+        const start = () => {
+            clearInterval(timer);
+            if (reduced || show.classList.contains('stopped')) return;
+            timer = setInterval(() => { if (!document.hidden && !show.classList.contains('paused')) set(i + 1); }, MS);
+        };
+        btns.forEach((b, k) => b.addEventListener('click', () => {
+            show.classList.add('stopped');   // the visitor chose; stop rotating
+            clearInterval(timer);
+            set(k);
+        }));
+        show.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') show.classList.add('paused'); });
+        show.addEventListener('pointerleave', () => { if (!show.classList.contains('paused')) return; show.classList.remove('paused'); set(i); start(); });
+        if (reduced) show.classList.add('stopped');
+        set(0);
+        start();
+    });
+
+    // ---------- plant switcher (Eco Pack mock) ----------
+    document.querySelectorAll('[data-plants]').forEach(box => {
+        const btns = [...box.querySelectorAll('[data-plant-btn]')];
+        btns.forEach(b => b.addEventListener('click', () => {
+            btns.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+            box.querySelectorAll('[data-plant]').forEach(l => { l.hidden = l.dataset.plant !== b.dataset.plantBtn; });
+        }));
+    });
 
     // ---------- horizontal story: arrows, drag, keyboard ----------
     document.querySelectorAll('.hscroll').forEach(box => {
@@ -2399,7 +3046,7 @@ body::after {
             const stage = $('.mock-stage');
             if (matchMedia('(pointer: fine)').matches) stage.addEventListener('pointermove', e => {
                 const r = stage.getBoundingClientRect();
-                gsap.to(mock, { rotateY: -14 + ((e.clientX - r.left) / r.width - .5) * 16, rotateX: 8 - ((e.clientY - r.top) / r.height - .5) * 12, duration: .8, ease: 'power3.out' });
+                gsap.to(stage.querySelector('.mock:not([hidden])') || mock, { rotateY: -14 + ((e.clientX - r.left) / r.width - .5) * 16, rotateX: 8 - ((e.clientY - r.top) / r.height - .5) * 12, duration: .8, ease: 'power3.out' });
             });
         }
 
@@ -2419,13 +3066,6 @@ body::after {
 
         $$('.hpanel .ui').forEach(ui => gsap.from(ui.children, { y: 24, opacity: 0, stagger: .08, ease: 'expo.out', duration: .9, scrollTrigger: { trigger: ui, start: 'top 90%' } }));
 
-        // stacked cards scale back
-        const cards = $$('.stack-card');
-        cards.forEach((card, i) => {
-            if (i === cards.length - 1 || innerWidth < 860) return;
-            gsap.to(card, { scale: .95, opacity: .55, ease: 'none', scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top 120px', scrub: true } });
-        });
-
         // process line
         const fill = $('.process .fill');
         if (fill) gsap.to(fill, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: $('.process'), start: 'top 75%', end: 'bottom 50%', scrub: true } });
@@ -2443,7 +3083,7 @@ body::after {
     }
 
     // ---------- single-file build: one page section visible at a time ----------
-    const ROUTE_TITLES = { home: 'We Create', work: 'Our Work · We Create', erp: 'We Create ERP', features: 'HR & Payroll · We Create', industries: 'Industries · We Create', about: 'About Vignesh · We Create', contact: 'Contact · We Create' };
+    const ROUTE_TITLES = { home: 'We Create', work: 'Our Work · We Create', erp: 'We Create ERP', features: 'STAY BAY HR & Payroll · We Create', ecopack: 'Eco Pack Factory Dashboard · We Create', industries: 'Industries · We Create', about: 'About Vignesh · We Create', contact: 'Contact · We Create' };
     let currentRoute = null;
     const animated = new Set();
     const useMotion = hasGsap && !reduced;
@@ -2470,7 +3110,7 @@ body::after {
                 currentRoute = route;
                 document.body.dataset.page = route;
                 document.title = ROUTE_TITLES[route] || 'We Create';
-                document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.k === route));
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.k === navKey(route)));
                 window.scrollTo(0, 0);
                 const scope = routes.find(r => r.dataset.route === route);
                 if (!animated.has(route)) { animated.add(route); prepare(scope); }
