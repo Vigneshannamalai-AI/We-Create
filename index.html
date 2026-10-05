@@ -623,6 +623,21 @@ body::after {
 .ours p { color: rgba(255, 255, 255, .9); }
 @media (max-width: 860px) { .cost { grid-template-columns: 1fr; } }
 
+.plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.plan { position: relative; padding: 26px 24px; border-radius: 22px; border: 1px solid var(--line); background: var(--ink-2); display: grid; gap: 12px; align-content: start; }
+.plan.pop { border: 2px solid var(--gold); box-shadow: 0 20px 50px -30px rgba(227, 185, 79, .55); }
+.plan .pbadge { position: absolute; top: -12px; right: 18px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; background: var(--gold); color: #1a1205; font-weight: 700; }
+.plan .pname { font-size: 18px; }
+.plan .pprice { font-size: 38px; font-weight: 800; line-height: 1; color: var(--gold); font-variant-numeric: tabular-nums; }
+.plan .pprice small { display: block; margin-top: 8px; font-size: 13px; font-weight: 500; color: var(--muted); }
+.plan p, .plan li { color: var(--muted); font-size: 14.5px; }
+.plan ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.plan-foot { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.plan-foot > div { padding: 22px 24px; border-radius: 22px; background: rgba(227, 185, 79, .08); border: 1px solid rgba(227, 185, 79, .25); display: grid; gap: 6px; }
+.plan-foot span { color: var(--muted); font-size: 14.5px; }
+@media (max-width: 1060px) { .plans { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .plans, .plan-foot { grid-template-columns: 1fr; } }
+
 .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .road { padding: 26px; border-radius: 22px; border: 1px solid var(--line); display: grid; gap: 10px; align-content: start; }
 .road .when { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
@@ -1059,7 +1074,7 @@ body::after {
                     <div class="num-cell" data-reveal><b data-count="2">2</b><span>Businesses running on them every day, in Chennai</span></div>
                     <div class="num-cell" data-reveal><b data-count="41">41</b><span>Sections across the three: 11 + 10 + 20</span></div>
                     <div class="num-cell" data-reveal><b data-count="33">33</b><span>Ready reports in the two dashboards, all exportable to Excel and PDF</span></div>
-                    <div class="num-cell" data-reveal><b data-count="61">61</b><span>Automated legal and accounting checks in the ERP, all passing</span></div>
+                    <div class="num-cell" data-reveal><b data-count="95">95</b><span>Automated legal and accounting checks in the ERP, all passing</span></div>
                     <div class="num-cell" data-reveal><b data-count="24" data-suffix="/7">24/7</b><span>Support from the person who built it</span></div>
                 </div>
             </div>
@@ -1184,12 +1199,12 @@ body::after {
                         <span class="eyebrow">We Create ERP vs Zoho Books</span>
                         <h2 class="t-l" data-split>Accounting without the add-ons.</h2>
                     </div>
-                    <p>On Zoho Books, a 5-user business in two states pays ₹2,268 a month before it can file GST and scan bills. Our ERP puts every compliance feature in one plan.</p>
+                    <p>On Zoho Books, a 5-user business in two states pays ₹2,268 a month before it can file GST and scan bills. On our ERP the same business pays ₹999, and small businesses can start free.</p>
                 </div>
                 <div class="numbers">
                     <div class="num-cell" data-reveal><b data-count="8">8</b><span>Voucher types on Tally's F-keys, so entry stays fast</span></div>
                     <div class="num-cell" data-reveal><b data-count="1">1</b><span>Screen for a CA to see every client's filing status</span></div>
-                    <div class="num-cell" data-reveal><b data-count="61">61</b><span>Automated legal and accounting checks, all passing</span></div>
+                    <div class="num-cell" data-reveal><b data-count="95">95</b><span>Automated legal and accounting checks, all passing</span></div>
                 </div>
                 <div class="hero-ctas" data-reveal><a class="btn btn-primary" href="#vs-zoho" data-magnetic>See the full comparison</a><a class="btn btn-ghost" href="#erp">What the ERP does</a></div>
             </div>
@@ -1311,9 +1326,9 @@ body::after {
                         <span class="hub-kicker" style="color: var(--gold);">Our product · Accounting, GST &amp; TDS · in testing</span>
                         <h2>We Create <span class="gold-text">ERP</span></h2>
                         <div class="what">Books, GST and audit for businesses and their CAs</div>
-                        <p class="desc">Everything Zoho Books does for an Indian business, plus Tally-speed entry, one screen for a CA's every client, legal checks as you work, and compliance included instead of sold by the tier.</p>
-                        <div class="hub-stats"><div><b class="gold-text">8</b><span>Tally F-keys</span></div><div><b class="gold-text">20</b><span>sections</span></div><div><b class="gold-text">61/61</b><span>checks passing</span></div></div>
-                        <div class="hub-chips"><span>Sales &amp; purchases</span><span>Bill scanning</span><span>GSTR-1 &amp; 3B</span><span>2B matching</span><span>TDS</span><span>Schedule III</span><span>CA workspace</span><span>Audit trail</span></div>
+                        <p class="desc">Everything Zoho Books does for an Indian business, plus Tally-speed entry, one screen for a CA's every client, legal checks as you work, and plans that start free, with no add-ons to buy.</p>
+                        <div class="hub-stats"><div><b class="gold-text">8</b><span>Tally F-keys</span></div><div><b class="gold-text">22</b><span>sections</span></div><div><b class="gold-text">95/95</b><span>checks passing</span></div></div>
+                        <div class="hub-chips"><span>Sales &amp; purchases</span><span>Bill scanning</span><span>GSTR-1 &amp; 3B</span><span>2B matching</span><span>TDS &amp; TCS</span><span>Schedule III</span><span>CA workspace</span><span>Audit trail</span><span>UPI QR invoices</span><span>Free Starter plan</span></div>
                         <div class="hero-ctas" style="margin-top: 0;"><a class="btn btn-gold" href="#erp" data-magnetic>Open the ERP page</a><a class="btn btn-ghost" href="#vs-zoho">Compare with Zoho Books</a></div>
                     </div>
                     <div style="display: grid; gap: 14px;">
@@ -1326,7 +1341,8 @@ body::after {
                         <div class="bill" style="padding: 20px;">
                             <h4 style="font-size: 18px; margin-bottom: 4px;">Zoho Books for 5 users, 2 states</h4>
                             <p><span>Plan + users + GSTIN + scanning</span><b>₹2,268/mo</b></p>
-                            <p class="total"><span>We Create ERP</span><span>All in one plan</span></p>
+                            <p><span>We Create ERP · Professional</span><b>₹999/mo</b></p>
+                            <p class="total"><span>You save</span><span>about 63%</span></p>
                         </div>
                     </div>
                 </article>
@@ -1351,11 +1367,12 @@ body::after {
             <div class="hero-glow" aria-hidden="true"><i></i><i></i></div>
             <div class="wrap" style="position: relative;">
                 <div data-work-nav></div>
-                <div class="case-tag"><span class="test">In testing · 61 of 61 checks passing</span><span>Our product</span></div>
+                <div class="case-tag"><span class="test">In testing · 95 of 95 checks passing</span><span>Our product</span></div>
                 <h1 data-split="load">We Create <span class="gold-text">ERP.</span></h1>
                 <p class="lede" data-reveal>Accounting, GST, TDS and audit for Indian businesses and the CAs who look after them. Everything you'd expect from Zoho Books, plus Tally-speed entry, one screen for every client, and the law checked before you save.</p>
                 <div class="hero-ctas" data-reveal>
                     <a class="btn btn-primary" href="#vs-zoho" data-magnetic>Compare with Zoho Books</a>
+                    <a class="btn btn-ghost" href="https://vigneshannamalai-ai.github.io/we-create-erp/" target="_blank" rel="noopener" data-magnetic>Try the test build ↗</a>
                     <a class="btn btn-wa" href="#whatsapp" data-magnetic>Join the pilot</a>
                 </div>
             </div>
@@ -1366,8 +1383,8 @@ body::after {
             <div class="wrap">
                 <div class="numbers">
                     <div class="num-cell" data-reveal><b data-count="8">8</b><span>Voucher types on Tally's own F-keys</span></div>
-                    <div class="num-cell" data-reveal><b data-count="20">20</b><span>Sections, from sales to the audit trail</span></div>
-                    <div class="num-cell" data-reveal><b data-count="61">61</b><span>Automated legal and accounting checks, all passing</span></div>
+                    <div class="num-cell" data-reveal><b data-count="22">22</b><span>Sections, from sales to plans &amp; billing</span></div>
+                    <div class="num-cell" data-reveal><b data-count="95">95</b><span>Automated legal and accounting checks, all passing</span></div>
                 </div>
             </div>
         </section>
@@ -1404,15 +1421,18 @@ body::after {
                         <span class="eyebrow">What it does</span>
                         <h2 class="t-l" data-split>Enter it once. Everything else follows.</h2>
                     </div>
-                    <p>Every entry posts double-entry by itself to the ledgers, GST, TDS, bills outstanding and stock.</p>
+                    <p>Every entry posts double-entry by itself to the ledgers, GST, TDS, TCS, bills outstanding and stock.</p>
                 </div>
                 <div class="feat-grid">
                     <div class="feat" data-reveal><span class="ico"><svg class="i-l" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg></span><h4>Scan a bill</h4><p>Take a photo or upload a PDF. It reads the GSTINs, invoice number, date, HSN, taxable value, GST and total, decides from the GSTINs whether it's a purchase or a sale, finds or creates the party, and attaches the file. You review and save.</p></div>
                     <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span><h4>GST, done properly</h4><ul><li>CGST + SGST or IGST from place of supply</li><li>Exports and SEZ under LUT, reverse charge, blocked credit</li><li>GSTR-1 with portal JSON, GSTR-3B with Rule 88A set-off</li><li>GSTR-2B import and matching, IMS actions</li><li>E-invoice (INV-01) and e-way bill</li></ul></div>
                     <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><h4>Statements an auditor accepts</h4><p>Profit &amp; Loss, Balance Sheet in Schedule III with previous-year figures, Cash Flow (indirect, AS 3), Trial Balance, Day Book, ledgers, ageing, registers, HSN summary and stock.</p></div>
-                    <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9 9h6M9 12h6M9 9c3 0 5 1 5 3s-2 3-5 3l5 4"/></svg></span><h4>TDS under the new Act</h4><p>Income-tax Act 2025 (section 393) with the old section numbers shown alongside, thresholds, 20% where there's no PAN, monthly deposit tracking and Form 140 data.</p></div>
+                    <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9 9h6M9 12h6M9 9c3 0 5 1 5 3s-2 3-5 3l5 4"/></svg></span><h4>TDS &amp; TCS under the new Act</h4><ul><li>Income-tax Act 2025 payment codes, old sections shown alongside (1027 = old 194J(b))</li><li>Thresholds, and 20% where there's no PAN</li><li>TCS on sales</li><li>Challans tracked, with interest on late deposits</li><li>Quarterly returns prepared: Form 140 (TDS) and Form 143 (TCS)</li></ul></div>
                     <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.5 3.2-5.5 6.5-5.5s6 2 6.5 5.5"/><path d="M17 11l2 2 4-4"/></svg></span><h4>A workspace for CAs</h4><p>Every client company and its filing status on one screen. Roles for owner, accountant and read-only auditor. Auditors raise queries on any voucher, and there's a compliance calendar and bank reconciliation.</p></div>
                     <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span><h4>Basic or Advanced</h4><p>The same switch as our STAY BAY suite. Basic shows only invoices, receipts, payments, expenses and reports. Advanced opens everything else.</p></div>
+                    <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v1M14 20h1M18 18h3v3"/></svg></span><h4>Get paid faster</h4><p>Invoices carry your logo, signature and a UPI QR for the exact amount due, so customers pay by scanning. Send invoices and payment reminders on WhatsApp from ready templates.</p></div>
+                    <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg></span><h4>Warnings as you type</h4><p>Debit and credit totals shown live on every journal, with a pop-up if they don't match. Warnings for negative cash, overdraft, over-payment, negative stock, duplicate invoices and unusually large journals.</p></div>
+                    <div class="feat" data-reveal><span class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.5"/></svg></span><h4>Never locked out</h4><p>Forgot the password? A one-time recovery code, shown when the owner account is made, gets you back in (5 wrong tries lock it for 15 minutes). Backup, restore and a searchable user manual are built in.</p></div>
                 </div>
             </div>
         </section>
@@ -1453,22 +1473,23 @@ body::after {
                     <table class="vs">
                         <thead><tr><th>What matters</th><th>Zoho Books (India)</th><th class="us">We Create ERP</th></tr></thead>
                         <tbody>
-                            <tr><td>Staying GST-compliant</td><td>GST filing, e-invoicing and period locking start on the Standard plan, ₹749 a month; fixed assets and budgets need Premium at ₹2,999</td><td class="us"><span class="y">✓</span> Every compliance feature in one plan, priced per company</td></tr>
-                            <tr><td>Users and branches</td><td>3 users on Standard; each extra user ₹150 a month; each extra GSTIN ₹720 a month</td><td class="us"><span class="y">✓</span> No charge per user or per GSTIN</td></tr>
-                            <tr><td>Invoice limits</td><td>1,000 to 1,00,000 invoices a year, depending on the plan</td><td class="us"><span class="y">✓</span> No invoice cap</td></tr>
+                            <tr><td>Staying GST-compliant</td><td>GST filing, e-invoicing and period locking start on the Standard plan, ₹749 a month; fixed assets and budgets need Premium at ₹2,999</td><td class="us"><span class="y">✓</span> GST filing tools, e-invoice and e-way bill from Standard at ₹499 a month; a free Starter plan to keep the books</td></tr>
+                            <tr><td>Users and branches</td><td>3 users on Standard; each extra user ₹150 a month; each extra GSTIN ₹720 a month</td><td class="us"><span class="y">✓</span> No add-ons to buy: 3 users on Standard, 10 users and 5 companies (GSTINs) on Professional at ₹999, unlimited on Enterprise</td></tr>
+                            <tr><td>Invoice limits</td><td>1,000 to 1,00,000 invoices a year, depending on the plan</td><td class="us"><span class="y">✓</span> No invoice cap on any plan, even the free one</td></tr>
                             <tr><td>Speed of entry</td><td>Form-based screens; no Tally-style F-key voucher entry</td><td class="us"><span class="y">✓</span> Tally's F-keys for all 8 voucher types; Enter to move, Ctrl + S to save</td></tr>
-                            <tr><td>Reading bills</td><td>Scanning is an add-on: 50 scans for ₹499 a month</td><td class="us"><span class="y">✓</span> Scan included; it also decides purchase or sale from the GSTINs and creates the party</td></tr>
+                            <tr><td>Reading bills</td><td>Scanning is an add-on: 50 scans for ₹499 a month</td><td class="us"><span class="y">✓</span> Scans included in every plan: 10 a month free, 100 on Standard, 500 on Professional, unlimited on Enterprise. It also decides purchase or sale from the GSTINs and creates the party</td></tr>
                             <tr><td>For CAs and auditors</td><td>Free accountant user inside each client's books; a view across all clients needs Zoho's separate Practice product</td><td class="us"><span class="y">✓</span> All clients and their filing status on one screen; auditor queries on any voucher</td></tr>
                             <tr><td>Audit trail</td><td>Audit trail of changes</td><td class="us"><span class="y">✓</span> Always on and hash-chained, so tampering is visible; nothing can be deleted</td></tr>
                             <tr><td>Legal checks while you work</td><td>Period locking (Standard and above)</td><td class="us"><span class="y">✓</span> ₹2 lakh cash rule, ₹10,000 cash warning, MSME 45-day dues, e-invoice 30-day limit, pre-filing health check</td></tr>
                             <tr><td>GST returns</td><td>GSTR-1 and GSTR-3B filed directly; GSTR-2B reconciliation; IMS</td><td class="us"><span class="y">✓</span> GSTR-1 JSON, GSTR-3B with Rule 88A set-off, 2B matching, IMS<br><span class="soon">Direct filing comes with the server version</span></td></tr>
+                            <tr><td>TDS and TCS</td><td>TDS and TCS recorded on transactions</td><td class="us"><span class="y">✓</span> Income-tax Act 2025 codes, challan tracking with late interest, Form 140 and Form 143 returns prepared<br><span class="soon">Filed through the government utility for now</span></td></tr>
                             <tr><td>Payroll and stock</td><td>Separate Zoho apps and subscriptions; warehouses need the Elite plan at ₹4,999</td><td class="us"><span class="y">✓</span> Stock in the same books<br><span class="soon">Payroll from our STAY BAY suite is coming</span></td></tr>
                             <tr><td>Support</td><td>Support speed is the most common complaint in user reviews</td><td class="us"><span class="y">✓</span> Straight from the people who built it, 24/7 on WhatsApp</td></tr>
                             <tr><td>Where Zoho is ahead today</td><td>Live bank feeds, phone apps and multi-computer cloud access, all available now</td><td class="us"><span class="soon">Coming with the server version</span> Today's test build runs in the browser, with backup and restore</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="vs-note">Zoho Books prices and limits are from Zoho's India pricing page (zoho.com/in/books/pricing), yearly billing, before GST, as checked in October 2026; support feedback is from reviews on G2 and Techjockey. Zoho and Zoho Books are trademarks of Zoho Corporation. We Create is not affiliated with Zoho.</p>
+                <p class="vs-note">Our prices are introductory test-build prices, before 18% GST, and may change at launch. Zoho Books prices and limits are from Zoho's India pricing page (zoho.com/in/books/pricing), yearly billing, before GST, as checked in October 2026; support feedback is from reviews on G2 and Techjockey. Zoho and Zoho Books are trademarks of Zoho Corporation. We Create is not affiliated with Zoho.</p>
             </div>
         </section>
 
@@ -1494,10 +1515,35 @@ body::after {
                     </div>
                     <div class="ours" data-reveal>
                         <h4>We Create ERP</h4>
-                        <p>One price for the company, with every user, every GSTIN, bill scanning and every compliance feature included. It doesn't go up when you hire someone or open a branch.</p>
-                        <a class="btn btn-ghost" href="#whatsapp" style="justify-self: start; color: #fff; border-color: rgba(255,255,255,.45);">Ask for a quote</a>
+                        <p>The same business fits our <b>Professional</b> plan: 10 users, 5 companies (one per GSTIN), 500 bill scans a month, GST filing tools, 2B matching, bank reconciliation and TDS / TCS returns.</p>
+                        <p style="font-family: var(--font-display, inherit); font-size: 30px; font-weight: 800; color: #fff; line-height: 1.1;">₹999 a month<br><span style="font-size: 17px; font-weight: 600; opacity: .85;">or ₹9,990 a year, about 63% less than Zoho's ₹27,216</span></p>
+                        <a class="btn btn-ghost" href="#plans" style="justify-self: start; color: #fff; border-color: rgba(255,255,255,.45);">See all plans</a>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Plans -->
+        <section class="pad" id="plans" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="shead">
+                    <div>
+                        <span class="eyebrow">Plans</span>
+                        <h2 class="t-l" data-split>Start free. Pay as you grow.</h2>
+                    </div>
+                    <p>Every new workspace gets 14 days of Professional free. After that, pick a plan, or carry on with Starter at no cost. Pay yearly and two months are free.</p>
+                </div>
+                <div class="plans">
+                    <div class="plan" data-reveal><b class="pname">Starter</b><div class="pprice">Free<small>forever</small></div><p>For a small business keeping its own books.</p><ul><li>1 user · 1 company</li><li>10 bill scans a month</li><li>Every entry, report and statement</li></ul></div>
+                    <div class="plan" data-reveal><b class="pname">Standard</b><div class="pprice">₹499<small>a month · ₹4,990 a year</small></div><p>GST filing, e-invoice and e-way bill, WhatsApp, imports.</p><ul><li>3 users · 1 company</li><li>100 bill scans a month</li><li>Logo, signature and UPI QR on invoices</li></ul></div>
+                    <div class="plan pop" data-reveal><span class="pbadge">Popular</span><b class="pname">Professional</b><div class="pprice">₹999<small>a month · ₹9,990 a year</small></div><p>Reconciliations, TDS / TCS returns, auditor access, several companies.</p><ul><li>10 users · 5 companies</li><li>500 bill scans a month</li><li>GSTR-2B / IMS and bank reconciliation</li></ul></div>
+                    <div class="plan" data-reveal><b class="pname">Enterprise</b><div class="pprice">₹2,499<small>a month · ₹24,990 a year</small></div><p>For CA firms and groups.</p><ul><li>Unlimited users and companies</li><li>Unlimited bill scans</li><li>Everything in Professional</li></ul></div>
+                </div>
+                <div class="plan-foot">
+                    <div data-reveal><b>Never locked, on any plan</b><span>Entering vouchers, GST / TDS / TCS on every entry, every report and statement, the audit trail, backup and full data export. If a plan lapses you drop to Starter and nothing is deleted.</span></div>
+                    <div data-reveal><b>Paying is simple</b><span>The owner upgrades from the Plan &amp; billing screen with UPI, card or net banking, and gets a GST tax invoice for every payment. Usage of users, companies and scans is shown as you go.</span></div>
+                </div>
+                <p class="vs-note" style="color: var(--muted);">Introductory prices, before 18% GST. In the test build, payments run in test mode and no money is taken; the live version will use a payment gateway (Razorpay or PayU).</p>
             </div>
         </section>
 
@@ -1512,8 +1558,8 @@ body::after {
                     <p>We're testing every rule with real businesses before anyone's books depend on it.</p>
                 </div>
                 <div class="roadmap">
-                    <div class="road now" data-reveal><span class="when">Now · test build</span><h4>Everything on this page</h4><p>Runs in the browser with a sample company, 18 months of entries, backup and restore. All 61 automated checks pass.</p></div>
-                    <div class="road" data-reveal><span class="when">Next · server version</span><h4>Live and online</h4><p>Hosted in India with daily Indian backups, many users on many computers, and live GST, IRN and e-way bill filing through a licensed GST Suvidha Provider.</p></div>
+                    <div class="road now" data-reveal><span class="when">Now · test build</span><h4>Everything on this page</h4><p>Runs in the browser with a sample company, 18 months of entries, backup and restore, plans and test-mode payments. All 95 automated checks pass.</p></div>
+                    <div class="road" data-reveal><span class="when">Next · server version</span><h4>Live and online</h4><p>Hosted in India with daily Indian backups, many users on many computers, and live GST, IRN and e-way bill filing through a licensed GST Suvidha Provider, and real payments through Razorpay or PayU.</p></div>
                     <div class="road" data-reveal><span class="when">Then</span><h4>One system for everything</h4><p>Payroll from our STAY BAY suite, warehouses, invoices and reminders on WhatsApp, and Tamil screens.</p></div>
                 </div>
             </div>
@@ -2699,10 +2745,12 @@ body::after {
               a: 'Of course. We\'ll show it on your phone or laptop with sample data shaped like your business. <a href="' + WA + encodeURIComponent('Hi Vignesh! I\'d like a live demo of the We Create dashboard.') + '" target="_blank" rel="noopener">Book a demo on WhatsApp →</a>', next: ['price', 'time'] },
             { id: 'clients', q: 'Who are your clients?', keys: ['client', 'clients', 'customer', 'who uses', 'eco pack', 'stay bay', 'work', 'portfolio', 'example'],
               a: 'Two businesses run on our dashboards today: <b>STAY BAY Business Hotels</b> (HR, payroll and tax for a Chennai hotel) and <b>Eco Pack Pvt Ltd</b> (a factory dashboard for two plastic-packaging plants in Porur and Thirumazhisai). <a href="#features">STAY BAY page →</a> · <a href="#ecopack">Eco Pack page →</a>', next: ['erp', 'demo'] },
+            { id: 'erpplans', q: 'How much does the ERP cost?', keys: ['erp price', 'erp cost', 'plans', 'plan', 'subscription', 'trial', 'free plan', 'starter', 'professional', 'enterprise'],
+              a: 'Four plans, before 18% GST: <b>Starter</b> free (1 user), <b>Standard</b> ₹499 a month (3 users, GST filing tools, e-invoice), <b>Professional</b> ₹999 (10 users, 5 companies, reconciliations, TDS / TCS returns) and <b>Enterprise</b> ₹2,499 (unlimited). Yearly billing gives two months free, and every workspace starts with a 14-day Professional trial. Your books, reports and backups are never locked on any plan. <a href="#plans">See the plans →</a>', next: ['zoho', 'demo'] },
             { id: 'erp', q: 'What is We Create ERP?', keys: ['erp', 'accounting', 'account', 'books', 'gst software', 'tally', 'invoice', 'billing', 'ledger'],
-              a: 'Our own accounting software for Indian businesses and CAs: invoices and bills on Tally\'s F-keys, bill scanning, GSTR-1 and 3B, TDS under the new Income-tax Act, Schedule III statements and an audit trail that can\'t be switched off. It\'s in testing now, with all 61 automated checks passing. <a href="#erp">Explore the ERP →</a>', next: ['zoho', 'demo'] },
+              a: 'Our own accounting software for Indian businesses and CAs: invoices and bills on Tally\'s F-keys, bill scanning, GSTR-1 and 3B, TDS and TCS under the new Income-tax Act, UPI QR on invoices, Schedule III statements and an audit trail that can\'t be switched off. Plans start free. It\'s in testing now, with all 95 automated checks passing. <a href="#erp">Explore the ERP →</a>', next: ['erpplans', 'zoho'] },
             { id: 'zoho', q: 'How is it better than Zoho Books?', keys: ['zoho', 'zoho books', 'better', 'compare', 'difference', 'vs', 'cheaper'],
-              a: 'Zoho Books charges for GST filing by plan (from ₹749 a month), plus ₹150 for each extra user, ₹720 for each extra GSTIN and ₹499 for bill scanning. We Create ERP puts every compliance feature in one plan, uses Tally\'s keys for faster entry, and gives CAs one screen for all their clients. Live GST filing arrives with our server version. <a href="#vs-zoho">See the full comparison →</a>', next: ['erp', 'price'] },
+              a: 'Zoho Books charges for GST filing by plan (from ₹749 a month), plus ₹150 for each extra user, ₹720 for each extra GSTIN and ₹499 for bill scanning. We Create ERP starts free, Standard is ₹499 a month with GST filing tools and 100 scans included, and Professional (10 users, 5 GSTINs) is ₹999. It uses Tally\'s keys for faster entry, and gives CAs one screen for all their clients. Live GST filing arrives with our server version. <a href="#vs-zoho">See the full comparison →</a>', next: ['erp', 'price'] },
             { id: 'who', q: 'Who builds it?', keys: ['who', 'vignesh', 'developer', 'built', 'company', 'team', 'you'],
               a: 'Vignesh Annamalai, founder of We Create and a commerce student at Loyola College, Chennai, with internships at two CA firms filing TDS returns and designing salary computation sheets. He knows payroll from the inside. <a href="#about">Meet Vignesh →</a>', next: ['support', 'demo'] }
         ];
